@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/sahaayak/public/precache-manifest.e3a088bebd5100fd33192733b2ad16ca.js"
+  "/sahaayak/precache-manifest.25500dfe6b401baf7adc879fe36de43f.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/sahaayak/public/index.html", {
+workbox.routing.registerNavigationRoute("/sahaayak/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
