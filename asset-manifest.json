@@ -1,15 +1,15 @@
 {
-  "main.css": "/sahaayak/src/static/css/main.117654d0.chunk.css",
-  "main.js": "/sahaayak/src/static/js/main.a468d873.chunk.js",
-  "main.js.map": "/sahaayak/src/static/js/main.a468d873.chunk.js.map",
-  "runtime~main.js": "/sahaayak/src/static/js/runtime~main.481fc324.js",
-  "runtime~main.js.map": "/sahaayak/src/static/js/runtime~main.481fc324.js.map",
-  "static/css/2.6592ac5d.chunk.css": "/sahaayak/src/static/css/2.6592ac5d.chunk.css",
-  "static/js/2.c6745dca.chunk.js": "/sahaayak/src/static/js/2.c6745dca.chunk.js",
-  "static/js/2.c6745dca.chunk.js.map": "/sahaayak/src/static/js/2.c6745dca.chunk.js.map",
-  "index.html": "/sahaayak/src/index.html",
-  "precache-manifest.dda1f0a2195c421e1a0b71488332a57f.js": "/sahaayak/src/precache-manifest.dda1f0a2195c421e1a0b71488332a57f.js",
-  "service-worker.js": "/sahaayak/src/service-worker.js",
-  "static/css/2.6592ac5d.chunk.css.map": "/sahaayak/src/static/css/2.6592ac5d.chunk.css.map",
-  "static/css/main.117654d0.chunk.css.map": "/sahaayak/src/static/css/main.117654d0.chunk.css.map"
+  "main.css": "/sahaayak/public/static/css/main.117654d0.chunk.css",
+  "main.js": "/sahaayak/public/static/js/main.7f3d4d29.chunk.js",
+  "main.js.map": "/sahaayak/public/static/js/main.7f3d4d29.chunk.js.map",
+  "runtime~main.js": "/sahaayak/public/static/js/runtime~main.1cceda18.js",
+  "runtime~main.js.map": "/sahaayak/public/static/js/runtime~main.1cceda18.js.map",
+  "static/css/2.6592ac5d.chunk.css": "/sahaayak/public/static/css/2.6592ac5d.chunk.css",
+  "static/js/2.9dc4286f.chunk.js": "/sahaayak/public/static/js/2.9dc4286f.chunk.js",
+  "static/js/2.9dc4286f.chunk.js.map": "/sahaayak/public/static/js/2.9dc4286f.chunk.js.map",
+  "index.html": "/sahaayak/public/index.html",
+  "precache-manifest.e3a088bebd5100fd33192733b2ad16ca.js": "/sahaayak/public/precache-manifest.e3a088bebd5100fd33192733b2ad16ca.js",
+  "service-worker.js": "/sahaayak/public/service-worker.js",
+  "static/css/2.6592ac5d.chunk.css.map": "/sahaayak/public/static/css/2.6592ac5d.chunk.css.map",
+  "static/css/main.117654d0.chunk.css.map": "/sahaayak/public/static/css/main.117654d0.chunk.css.map"
 }
