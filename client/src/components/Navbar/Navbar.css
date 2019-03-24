@@ -1,0 +1,10 @@
+.left {
+  float: left;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.right {
+  float: right;
+  font-size: 24px;
+}
