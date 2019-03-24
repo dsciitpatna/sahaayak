@@ -4,6 +4,10 @@
   font-weight: 500;
 }
 
+.ant-menu-item-selected {
+  background-color: inherit !important;
+}
+
 .right {
   float: right;
   font-size: 24px;
