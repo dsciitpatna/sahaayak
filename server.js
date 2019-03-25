@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const config = require('config');
-
+const cors = require('cors');
 const app = express();
 
 const db = config.get('mongoURI');
@@ -21,7 +21,7 @@ mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(cors());
 // Use routes
 
 app.use('/api/login', require('./routes/api/login'));
