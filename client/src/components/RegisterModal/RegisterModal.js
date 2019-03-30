@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Modal, Button, Form, Input, Alert } from 'antd';
-import { register } from '../../redux/actions/authActions';
+import { Modal, Form, Input, Alert } from 'antd';
+import { register, openLoginModal, closeRegisterModal } from '../../redux/actions/authActions';
 import { clearErrors } from '../../redux/actions/errorActions';
 
 class RegisterModal extends Component {
   state = {
-    visible: false,
+    visible: this.props.openregisterModal,
     name: '',
     email: '',
     password: '',
@@ -17,9 +17,12 @@ class RegisterModal extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
+    openregisterModal: PropTypes.bool,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func.isRequired,
+    openLoginModal: PropTypes.func.isRequired,
+    closeRegisterModal: PropTypes.func.isRequired
   }
 
   componentDidUpdate(prevProps) {
@@ -46,17 +49,15 @@ class RegisterModal extends Component {
   toggleModal = () => {
     this.props.clearErrors();
     this.setState({
-      visible: !this.state.visible,
       name: '',
       email: '',
       password: ''
     })
+    this.props.closeRegisterModal();
   }
 
   handleCancel = () => {
-    this.setState({
-      visible: false
-    })
+    this.toggleModal();
   }
 
   handleCreate = () => {
@@ -73,11 +74,20 @@ class RegisterModal extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  openLoginModal = () => {
+    this.props.clearErrors();
+    this.setState({
+      name: '',
+      email: '',
+      password: ''
+    })
+    this.props.openLoginModal();
+  }
+
   render() {
     const { visible, name, email, password, msg } = this.state;
     return (
       <div>
-        <Button type="primary" onClick={this.toggleModal}>Register</Button>
         <Modal
           visible={visible}
           title="Register"
@@ -96,6 +106,7 @@ class RegisterModal extends Component {
             <Form.Item label="Password">
               <Input type="password" name="password" value={password} onChange={this.onChange} />
             </Form.Item>
+            Already have an account? <a href="#" onClick={this.openLoginModal}>Login</a>
           </Form>
         </Modal>
       </div>
@@ -105,7 +116,8 @@ class RegisterModal extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
+  openregisterModal: state.auth.openregisterModal
 })
 
-export default connect(mapStateToProps, { register, clearErrors })(RegisterModal);
+export default connect(mapStateToProps, { register, clearErrors, openLoginModal, closeRegisterModal })(RegisterModal);
