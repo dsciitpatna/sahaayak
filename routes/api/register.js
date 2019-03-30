@@ -7,17 +7,18 @@ const config = require('config');
 const User = require('../../models/user');
 
 router.post('/', (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
 
   // Simple Validation
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !role) {
     return res.status(400).json({ msg: 'Please enter all fields' });
   }
 
   const newUser = new User({
     name,
     email,
-    password
+    password,
+    role
   })
 
   User.findOne({ email })
@@ -32,7 +33,7 @@ router.post('/', (req, res) => {
           newUser.save()
             .then(user => {
               jwt.sign(
-                { id: user.id },
+                { id: user.id, role: user.role },
                 config.get('jwtSecret'),
                 { expiresIn: 3600 },
                 (err, token) => {
@@ -42,7 +43,8 @@ router.post('/', (req, res) => {
                     user: {
                       id: user.id,
                       name: user.name,
-                      email: user.email
+                      email: user.email,
+                      role: user.role
                     }
                   })
                 }
