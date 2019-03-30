@@ -1,4 +1,4 @@
-import { USER_LOADING, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, AUTH_ERROR } from './type';
+import { USER_LOADING, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL, AUTH_ERROR, OPEN_LOGIN_MODAL, CLOSE_LOGIN_MODAL, OPEN_REGISTER_MODAL, CLOSE_REGISTER_MODAL } from './type';
 import axios from 'axios';
 import { returnErrors } from './errorActions';
 
@@ -56,6 +56,23 @@ export const login = ({ email, password }) => dispatch => {
 export const logout = () => dispatch => {
   dispatch({ type: LOGOUT_SUCCESS });
 }
+
+export const openLoginModal = () => dispatch => {
+  dispatch({ type: OPEN_LOGIN_MODAL });
+}
+
+export const closeLoginModal = () => dispatch => {
+  dispatch({ type: CLOSE_LOGIN_MODAL });
+}
+
+export const openRegisterModal = () => dispatch => {
+  dispatch({ type: OPEN_REGISTER_MODAL });
+}
+
+export const closeRegisterModal = () => dispatch => {
+  dispatch({ type: CLOSE_REGISTER_MODAL });
+}
+
 
 export const tokenConfig = getState => {
   const token = getState().auth.token;

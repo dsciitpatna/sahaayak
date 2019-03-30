@@ -1,15 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { Component, Fragment } from "react";
 import "antd/dist/antd.css";
 
 import { Layout, Menu, Icon } from "antd";
 
-const { Header, Sider, Content } = Layout;
+const { Sider } = Layout;
 
-class SideBar extends React.Component {
+class SideBar extends Component {
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <Sider
           style={{ minHeight: 1000 }}
           trigger={null}
@@ -57,7 +56,7 @@ class SideBar extends React.Component {
             </Menu.Item>
           </Menu>
         </Sider>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
