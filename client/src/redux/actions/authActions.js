@@ -17,13 +17,13 @@ export const loaduser = () => (dispatch, getState) => {
     })
 }
 
-export const register = ({ name, email, password }) => dispatch => {
+export const register = ({ name, email, password, role }) => dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, email, password, role });
   axios.post('/api/register', body, config)
     .then(res => dispatch({
       type: REGISTER_SUCCESS,
@@ -35,13 +35,13 @@ export const register = ({ name, email, password }) => dispatch => {
     })
 }
 
-export const login = ({ email, password }) => dispatch => {
+export const login = ({ email, password, role }) => dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   }
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ email, password, role });
   axios.post('/api/login', body, config)
     .then(res => dispatch({
       type: LOGIN_SUCCESS,
