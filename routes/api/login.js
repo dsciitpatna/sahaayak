@@ -8,8 +8,8 @@ const auth = require('../../middleware/auth');
 const User = require('../../models/user');
 
 router.post('/', (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const { email, password, role } = req.body;
+  if (!email || !password || !role) {
     res.status(400).json({ msg: 'Please enter all fields' });
   }
 
@@ -17,12 +17,14 @@ router.post('/', (req, res) => {
     .then(user => {
       if (!user) res.status(400).json({ msg: 'User does not exist' });
 
+      if (user.role !== role) res.status(400).json({ msg: 'Invalid Role' });
+
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (!isMatch) res.status(400).json({ msg: 'Invalid credentials' });
 
           jwt.sign(
-            { id: user.id },
+            { id: user.id, role: user.role },
             config.get('jwtSecret'),
             { expiresIn: 3600 },
             (err, token) => {
@@ -32,7 +34,8 @@ router.post('/', (req, res) => {
                 user: {
                   id: user.id,
                   name: user.name,
-                  email: user.email
+                  email: user.email,
+                  role: user.role
                 }
               })
             }
@@ -43,10 +46,14 @@ router.post('/', (req, res) => {
 
 })
 
-router.get('/user', auth, (req, res) => {
-  User.findById(req.user.id)
-    .selected('-password')
-    .then(user => res.json(user))
+router.get('/user', auth("admin"), (req, res) => {
+  User.findById(req.user.id, (err, users) => {
+    if (err)
+      throw err;
+    else {
+      res.json(users);
+    }
+  })
 })
 
 module.exports = router;
