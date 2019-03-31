@@ -10,6 +10,7 @@ class App extends Component {
       <Provider store={store}>
         <Navbar />
       </Provider>
+      
     );
   }
 }

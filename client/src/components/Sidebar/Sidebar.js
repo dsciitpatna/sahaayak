@@ -10,9 +10,10 @@ class SideBar extends Component {
     return (
       <Fragment>
         <Sider
-          style={{ minHeight: 1000 }}
+          style={{  overflow: 'auto', height: '100vh', position: 'fixed', left: 0, }}
           trigger={null}
           collapsible
+          collapsedWidth={95}
           collapsed={this.props.collapseProp}
         >
           <div className="logo" />
@@ -49,8 +50,31 @@ class SideBar extends Component {
               <Icon type="form" />
               <span>Regular Repair Man</span>
             </Menu.Item>
-
             <Menu.Item key="9">
+              <Icon type="form" />
+              <span>Beautician</span>
+            </Menu.Item>
+            <Menu.Item key="10">
+              <Icon type="form" />
+              <span>Mason</span>
+            </Menu.Item>
+            <Menu.Item key="11">
+              <Icon type="form" />
+              <span>Carpenter</span>
+            </Menu.Item>
+            <Menu.Item key="12">
+              <Icon type="form" />
+              <span>Painter</span>
+            </Menu.Item>
+            <Menu.Item key="13">
+              <Icon type="form" />
+              <span>Regular Repair Man</span>
+            </Menu.Item>
+            <Menu.Item key="14">
+              <Icon type="form" />
+              <span>Beautician</span>
+            </Menu.Item>
+            <Menu.Item key="15">
               <Icon type="form" />
               <span>Beautician</span>
             </Menu.Item>
