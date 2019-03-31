@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const auth = require('../../middleware/auth');
 
-import {User} from '../../models/user';
+const User = require('../../models/user');
 
 router.post('/', (req, res) => {
   const { email, password, role } = req.body;
