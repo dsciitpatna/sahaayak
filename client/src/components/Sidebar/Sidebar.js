@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import "antd/dist/antd.css";
+import "./Sidebar.css"
 
 import { Layout, Menu, Icon } from "antd";
 
@@ -16,7 +17,7 @@ class SideBar extends Component {
           collapsedWidth={95}
           collapsed={this.props.collapseProp}
         >
-          <div className="logo" />
+          <div className="logo"/>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
               <Icon type="form" />
@@ -56,27 +57,27 @@ class SideBar extends Component {
             </Menu.Item>
             <Menu.Item key="10">
               <Icon type="form" />
-              <span>Mason</span>
+              <span>Person 1</span>
             </Menu.Item>
             <Menu.Item key="11">
               <Icon type="form" />
-              <span>Carpenter</span>
+              <span>Person 2</span>
             </Menu.Item>
             <Menu.Item key="12">
               <Icon type="form" />
-              <span>Painter</span>
+              <span>Person 3</span>
             </Menu.Item>
             <Menu.Item key="13">
               <Icon type="form" />
-              <span>Regular Repair Man</span>
+              <span>Person 4</span>
             </Menu.Item>
             <Menu.Item key="14">
               <Icon type="form" />
-              <span>Beautician</span>
+              <span>Person 5</span>
             </Menu.Item>
             <Menu.Item key="15">
               <Icon type="form" />
-              <span>Beautician</span>
+              <span>Person 6</span>
             </Menu.Item>
           </Menu>
         </Sider>
