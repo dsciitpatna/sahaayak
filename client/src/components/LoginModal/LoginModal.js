@@ -16,7 +16,6 @@ class LoginModal extends Component {
     visible: this.props.openloginModal,
     email: "",
     password: "",
-    role: "user",
     msg: null
   };
 
@@ -57,7 +56,6 @@ class LoginModal extends Component {
     this.setState({
       email: "",
       password: "",
-      role: ""
     });
     this.props.closeLoginModal();
   };
@@ -67,11 +65,10 @@ class LoginModal extends Component {
   };
 
   handleCreate = () => {
-    const { email, password, role } = this.state;
+    const { email, password } = this.state;
     const user = {
       email,
       password,
-      role
     };
 
     this.props.login(user);
@@ -86,13 +83,12 @@ class LoginModal extends Component {
     this.setState({
       email: "",
       password: "",
-      role: ""
     });
     this.props.openRegisterModal();
   };
 
   render() {
-    const { visible, email, password, role, msg } = this.state;
+    const { visible, email, password, msg } = this.state;
     return (
       <div>
         <Modal
@@ -104,12 +100,6 @@ class LoginModal extends Component {
         >
           {msg ? <Alert message={msg} type="error" /> : null}
           <Form layout="vertical">
-            <Form.Item label="Role">
-              <Radio.Group name="role" buttonStyle="solid" value={role} onChange={this.onChange}>
-                <Radio.Button value="user">User</Radio.Button>
-                <Radio.Button value="vendor">Vendor</Radio.Button>
-              </Radio.Group>
-            </Form.Item>
             <Form.Item label="Email">
               <Input
                 type="email"
