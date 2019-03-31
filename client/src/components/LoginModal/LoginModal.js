@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
+import './LoginModal.css';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -125,8 +126,9 @@ class LoginModal extends Component {
                 onChange={this.onChange}
               />
             </Form.Item>
-            Don't have an account? <a href="#" onClick={this.openRegisterModal}>Register</a>
-          </Form>
+            Don't have an account? 
+            <button className="newbutton" onClick={this.openRegisterModal}>Register</button>
+            </Form>
         </Modal>
       </div>
     );
