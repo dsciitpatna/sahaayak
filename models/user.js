@@ -15,9 +15,10 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  role: {
-    type: String,
-    required: true
+  isVendor: {
+    type: Boolean,
+    required: true,
+    default: false,
   },
   register_date: {
     type: Date,
