@@ -11,6 +11,7 @@ import { Layout, Menu, Icon, Button } from "antd";
 import SideBar from "../Sidebar/Sidebar";
 import { openLoginModal } from '../../redux/actions/authActions';
 import UserProfile from '../UserProfile/UserProfile';
+import VendorDashboard from '../VendorDashboard/VendorDashboard';
 
 const { Header, Content } = Layout;
 
@@ -48,7 +49,7 @@ class Navbar extends Component {
                     onClick={this.toggle}
                   />
                   Sahaayak
-        </Menu.Item>
+                </Menu.Item>
                 <Menu.Item key="2" className="right">
                   <Logout />
                 </Menu.Item>
