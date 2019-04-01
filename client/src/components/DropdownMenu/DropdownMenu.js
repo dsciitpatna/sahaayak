@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import "antd/dist/antd.css";
-import "./DropdownMenu.css";
-import { connect } from "react-redux";
-import Logout from "../Logout/Logout";
-import { Menu, Dropdown, Button, Icon } from "antd";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import 'antd/dist/antd.css';
+import './DropdownMenu.css';
+import { connect } from 'react-redux';
+import Logout from '../Logout/Logout';
+import { Menu, Dropdown, Button, Icon } from 'antd';
+import { Link } from 'react-router-dom';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -45,13 +45,13 @@ class DropdownMenu extends Component {
                 </Link>
               </Menu.Item>
             ) : (
-              <Menu.Item>
-                <Link to="/userDashboard">
-                  <Icon type="idcard" />
-                  Dashboard
+                <Menu.Item>
+                  <Link to="/userDashboard">
+                    <Icon type="idcard" />
+                    Dashboard
                 </Link>
-              </Menu.Item>
-            )}
+                </Menu.Item>
+              )}
             <Menu.Item>
               <Logout />
             </Menu.Item>

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { logout } from "../../redux/actions/authActions";
-import { Icon } from "antd";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { logout } from '../../redux/actions/authActions';
+import { Icon } from 'antd';
 
 class Logout extends Component {
   static propTypes = {
