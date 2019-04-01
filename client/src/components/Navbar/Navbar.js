@@ -1,19 +1,18 @@
-import React, { Component } from "react";
-import "./Navbar.css";
-import "antd/dist/antd.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import LoginModal from "../LoginModal/LoginModal";
-import RegisterModal from "../RegisterModal/RegisterModal";
-import { Layout, Menu, Icon, Button } from "antd";
-import SideBar from "../Sidebar/Sidebar";
+import React, { Component } from 'react';
+import './Navbar.css';
+import 'antd/dist/antd.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import LoginModal from '../LoginModal/LoginModal';
+import RegisterModal from '../RegisterModal/RegisterModal';
+import { Layout, Menu, Icon, Button } from 'antd';
+import SideBar from '../Sidebar/Sidebar';
 import { openLoginModal } from '../../redux/actions/authActions';
-import UserProfile from "../UserProfile/UserProfile";
-import DropdownMenu from "../DropdownMenu/DropdownMenu";
-import UserDashboard from "../UserDashboard/UserDashboard";
+import UserProfile from '../UserProfile/UserProfile';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import UserDashboard from '../UserDashboard/UserDashboard';
 import VendorDashboard from '../VendorDashboard/VendorDashboard';
-
 
 const { Header, Content } = Layout;
 
@@ -64,7 +63,7 @@ class Navbar extends Component {
                   />
                   Sahaayak
                 </Menu.Item>
-                <Menu.Item key="2" className="right">
+                <Menu.Item key="2" className="right" style={{ margin: 9 }}>
                   <DropdownMenu />
                 </Menu.Item>
                 <Menu.Item key="4" className="right">
@@ -109,6 +108,7 @@ class Navbar extends Component {
                 <Route exact path="/userProfile" component={UserProfile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
                 <Route exact path="/vendorDashboard" component={VendorDashboard} />
+
               </Switch>
             </Content>
           </Layout>

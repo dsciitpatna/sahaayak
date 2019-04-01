@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import "antd/dist/antd.css";
+import React, { Component } from 'react';
+import 'antd/dist/antd.css';
 import './RegisterModal.css';
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { Modal, Form, Input, Alert, Radio } from "antd";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Modal, Form, Input, Alert, Radio } from 'antd';
 import {
   register,
   openLoginModal,
@@ -131,9 +131,9 @@ class RegisterModal extends Component {
                 onChange={this.onChange}
               />
             </Form.Item>
-            Already have an account? 
+            Already have an account?
             <button className="newbutton2" onClick={this.openLoginModal}>Login</button>
-           </Form>
+          </Form>
         </Modal>
       </div>
     );

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import "antd/dist/antd.css";
+import React, { Component } from 'react';
+import 'antd/dist/antd.css';
 import './LoginModal.css';
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   login,
   closeLoginModal,

@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
-import "antd/dist/antd.css";
-import "./Sidebar.css"
+import React, { Component, Fragment } from 'react';
+import 'antd/dist/antd.css';
+import './Sidebar.css'
 
 import { Layout, Menu, Icon } from "antd";
 
