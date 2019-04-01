@@ -63,7 +63,7 @@ class Navbar extends Component {
                   />
                   Sahaayak
                 </Menu.Item>
-                <Menu.Item key="2" className="right">
+                <Menu.Item key="2" className="right" style={{ margin: 9 }}>
                   <DropdownMenu />
                 </Menu.Item>
                 <Menu.Item key="4" className="right">

@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import './DropdownMenu.css';
 import { connect } from 'react-redux';
 import Logout from '../Logout/Logout';
-import { Menu, Dropdown, Button, Icon } from 'antd';
+import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
