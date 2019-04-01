@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
+import './RegisterModal.css';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Modal, Form, Input, Alert, Radio } from "antd";
@@ -16,7 +17,7 @@ class RegisterModal extends Component {
     name: "",
     email: "",
     password: "",
-    role: 'user',
+    isVendor: false,
     msg: null
   };
 
@@ -57,7 +58,7 @@ class RegisterModal extends Component {
       name: "",
       email: "",
       password: "",
-      role: null
+      isVendor: false
     });
     this.props.closeRegisterModal();
   };
@@ -67,12 +68,12 @@ class RegisterModal extends Component {
   };
 
   handleCreate = () => {
-    const { name, email, password, role } = this.state;
+    const { name, email, password, isVendor } = this.state;
     const newUser = {
       name,
       email,
       password,
-      role
+      isVendor
     };
     this.props.register(newUser);
   };
@@ -87,13 +88,13 @@ class RegisterModal extends Component {
       name: "",
       email: "",
       password: "",
-      role: null
+      isVendor: false
     });
     this.props.openLoginModal();
   };
 
   render() {
-    const { visible, name, email, password, role, msg } = this.state;
+    const { visible, name, email, password, isVendor, msg } = this.state;
     return (
       <div>
         <Modal
@@ -105,10 +106,10 @@ class RegisterModal extends Component {
         >
           {msg ? <Alert message={msg} type="error" /> : null}
           <Form layout="vertical">
-            <Form.Item label="Role">
-              <Radio.Group name="role" buttonStyle="solid" value={role} onChange={this.onChange}>
-                <Radio.Button value="user">User</Radio.Button>
-                <Radio.Button value="vendor">Vendor</Radio.Button>
+            <Form.Item label="Are you a vendor also?">
+              <Radio.Group name="isVendor" buttonStyle="solid" value={isVendor} onChange={this.onChange}>
+                <Radio.Button value="true">Yes</Radio.Button>
+                <Radio.Button value="false">No</Radio.Button>
               </Radio.Group>
             </Form.Item>
             <Form.Item label="Name">
@@ -130,8 +131,9 @@ class RegisterModal extends Component {
                 onChange={this.onChange}
               />
             </Form.Item>
-            Already have an account? <a href="#" onClick={this.openLoginModal}>Login</a>
-          </Form>
+            Already have an account? 
+            <button className="newbutton2" onClick={this.openLoginModal}>Login</button>
+           </Form>
         </Modal>
       </div>
     );
