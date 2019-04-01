@@ -9,10 +9,14 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import Logout from "../Logout/Logout";
 import { Layout, Menu, Icon, Button } from "antd";
 import SideBar from "../Sidebar/Sidebar";
+import { openLoginModal } from '../../redux/actions/authActions';
+import UserProfile from '../UserProfile/UserProfile';
 import { openLoginModal } from "../../redux/actions/authActions";
 import UserProfile from "../UserProfile/UserProfile";
 import DropdownMenu from "../Dropdown/Dropdown";
 import Dashboard from "../Dashboard/Dashboard";
+import VendorDashboard from '../VendorDashboard/VendorDashboard';
+
 
 const { Header, Content } = Layout;
 
