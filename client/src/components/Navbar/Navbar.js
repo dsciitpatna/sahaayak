@@ -6,15 +6,12 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
-import Logout from "../Logout/Logout";
 import { Layout, Menu, Icon, Button } from "antd";
 import SideBar from "../Sidebar/Sidebar";
 import { openLoginModal } from '../../redux/actions/authActions';
-import UserProfile from '../UserProfile/UserProfile';
-import { openLoginModal } from "../../redux/actions/authActions";
 import UserProfile from "../UserProfile/UserProfile";
-import DropdownMenu from "../Dropdown/Dropdown";
-import Dashboard from "../Dashboard/Dashboard";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
+import UserDashboard from "../UserDashboard/UserDashboard";
 import VendorDashboard from '../VendorDashboard/VendorDashboard';
 
 
@@ -70,38 +67,33 @@ class Navbar extends Component {
                 <Menu.Item key="2" className="right">
                   <DropdownMenu />
                 </Menu.Item>
-                <Menu.Item key="3" className="right">
-                  <Logout />
-                </Menu.Item>
                 <Menu.Item key="4" className="right">
-                  <strong class="username">
-                    {user ? `Welcome ${user.name}` : null}
-                  </strong>
+                  {user ? user.name : null}
                 </Menu.Item>
               </Menu>
             ) : (
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                style={{ lineHeight: "64px" }}
-              >
-                <Menu.Item key="1" className="left">
-                  <Icon
-                    className="trigger"
-                    type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                    onClick={this.toggle}
-                  />
-                  Sahaayak
+                <Menu
+                  theme="dark"
+                  mode="horizontal"
+                  style={{ lineHeight: "64px" }}
+                >
+                  <Menu.Item key="1" className="left">
+                    <Icon
+                      className="trigger"
+                      type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
+                      onClick={this.toggle}
+                    />
+                    Sahaayak
                 </Menu.Item>
-                <Menu.Item key="3" className="right">
-                  <Button type="primary" onClick={this.openLoginModal}>
-                    Login
+                  <Menu.Item key="3" className="right">
+                    <Button type="primary" onClick={this.openLoginModal}>
+                      Login
                   </Button>
-                  {openloginModal ? <LoginModal /> : null}
-                  {openregisterModal ? <RegisterModal /> : null}
-                </Menu.Item>
-              </Menu>
-            )}
+                    {openloginModal ? <LoginModal /> : null}
+                    {openregisterModal ? <RegisterModal /> : null}
+                  </Menu.Item>
+                </Menu>
+              )}
           </Header>
           <SideBar collapseProp={this.state.collapsed} />
           <Layout>
@@ -115,7 +107,8 @@ class Navbar extends Component {
             >
               <Switch>
                 <Route exact path="/userProfile" component={UserProfile} />
-                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/userDashboard" component={UserDashboard} />
+                <Route exact path="/vendorDashboard" component={VendorDashboard} />
               </Switch>
             </Content>
           </Layout>

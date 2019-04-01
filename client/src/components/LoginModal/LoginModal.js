@@ -9,7 +9,7 @@ import {
   openRegisterModal
 } from "../../redux/actions/authActions";
 import { clearErrors } from "../../redux/actions/errorActions";
-import { Modal, Form, Input, Alert, Radio } from "antd";
+import { Modal, Form, Input, Alert } from "antd";
 
 class LoginModal extends Component {
   state = {
@@ -116,9 +116,9 @@ class LoginModal extends Component {
                 onChange={this.onChange}
               />
             </Form.Item>
-            Don't have an account? 
+            Don't have an account?
             <button className="newbutton" onClick={this.openRegisterModal}>Register</button>
-            </Form>
+          </Form>
         </Modal>
       </div>
     );

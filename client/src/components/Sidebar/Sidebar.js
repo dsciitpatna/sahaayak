@@ -11,13 +11,13 @@ class SideBar extends Component {
     return (
       <Fragment>
         <Sider
-          style={{  overflow: 'auto', height: '100vh', position: 'fixed', left: 0, }}
+          style={{ overflow: 'auto', height: '100vh', left: 0 }}
           trigger={null}
           collapsible
           collapsedWidth={95}
           collapsed={this.props.collapseProp}
         >
-          <div className="logo"/>
+          <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
               <Icon type="form" />
