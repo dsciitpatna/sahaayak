@@ -37,21 +37,21 @@ class DropdownMenu extends Component {
           }
         >
           <MenuItemGroup>
-            {user.isVendor ? (
+            {
+              user.isVendor && 
               <Menu.Item>
-                <Link to="/vendorDashboard">
-                  <Icon type="idcard" />
-                  Dashboard
+              <Link to="/vendorDashboard">
+                <Icon type="idcard" />
+                Dashboard
+              </Link>
+            </Menu.Item>  
+            }
+              <Menu.Item>
+                <Link to="/Profile">
+                 <Icon type="idcard" />
+                  Profile
                 </Link>
-              </Menu.Item>
-            ) : (
-                <Menu.Item>
-                  <Link to="/userDashboard">
-                    <Icon type="idcard" />
-                    Dashboard
-                </Link>
-                </Menu.Item>
-              )}
+               </Menu.Item>
             <Menu.Item>
               <Logout />
             </Menu.Item>

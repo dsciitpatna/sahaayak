@@ -9,7 +9,7 @@ import RegisterModal from '../RegisterModal/RegisterModal';
 import { Layout, Menu, Icon, Button } from 'antd';
 import SideBar from '../Sidebar/Sidebar';
 import { openLoginModal } from '../../redux/actions/authActions';
-import UserProfile from '../UserProfile/UserProfile';
+import Profile from '../Profile/Profile';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import UserDashboard from '../UserDashboard/UserDashboard';
 import VendorDashboard from '../VendorDashboard/VendorDashboard';
@@ -105,7 +105,7 @@ class Navbar extends Component {
               }}
             >
               <Switch>
-                <Route exact path="/userProfile" component={UserProfile} />
+                <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
                 <Route exact path="/vendorDashboard" component={VendorDashboard} />
 
