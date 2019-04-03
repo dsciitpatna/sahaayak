@@ -23,7 +23,7 @@ function beforeUpload(file) {
   return isJPG && isLt2M;
 }
 
-class UserProfile extends Component {
+class VendorProfile extends Component {
   state={
     name:"",
     email:"",
@@ -65,7 +65,7 @@ class UserProfile extends Component {
         <Fragment>
           <Form layout="vertical">
             <Row>
-              <h1>Profile Page</h1>
+              <h1>Vendor Profile Page</h1>
               <hr></hr>
             </Row>
             <Row>
@@ -136,7 +136,7 @@ class UserProfile extends Component {
     else {
       return (
         <Fragment>
-          <p>Please login to view user Profile.</p>
+          <p>Please login to view vendor Profile.</p>
         </Fragment>
       )
     }
@@ -151,4 +151,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {}
-)(UserProfile);
+)(VendorProfile);
