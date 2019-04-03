@@ -3,6 +3,7 @@ import React, { Component, Fragment } from "react";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import { Form, Input, Button, Row, Col, Upload, Icon, message } from "antd";
+import "./Profilestyling.css";
 
 function getBase64(img, callback) {
   const reader = new FileReader();
@@ -63,6 +64,10 @@ class UserProfile extends Component {
       return (
         <Fragment>
           <Form layout="vertical">
+            <Row>
+              <h1>Profile Page</h1>
+              <hr></hr>
+            </Row>
             <Row>
               <Col span={8}>
                 <p>Here is a pic</p>
