@@ -13,7 +13,6 @@ import Profile from "../Profile/Profile";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import UserDashboard from "../UserDashboard/UserDashboard";
 import VendorDashboard from "../VendorDashboard/VendorDashboard";
-import VendorSalesPages from "../VendorSalesPage/VendorSalesPage";
 
 const { Header, Content } = Layout;
 
@@ -111,7 +110,6 @@ class Navbar extends Component {
                   component={VendorDashboard}
                 />
               </Switch>
-              <VendorSalesPages />
             </Content>
           </Layout>
         </Layout>
