@@ -12,7 +12,7 @@ class Logout extends Component {
   render() {
     return (
       <Link to="/" onClick={this.props.logout}>
-        <Icon type="export" />
+        <Icon type="export" style={{ paddingRight: 10 }} />
         Logout
       </Link>
     );
