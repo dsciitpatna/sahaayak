@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import './DropdownMenu.css';
 import { connect } from 'react-redux';
 import Logout from '../Logout/Logout';
-import { Menu, Icon, Dropdown, message, Avatar } from 'antd';
+import { Menu, Icon, Dropdown, Avatar } from 'antd';
 import { Link } from 'react-router-dom';
 
 
@@ -12,22 +12,34 @@ class DropdownMenu extends Component {
     current: "mail"
   };
 
-
-  onClick = ({ key }) => {
-    message.info(`Clicked on ${key}`);
-  }
-
   render() {
     const { username } = this.props;
+    const { isVendor } = this.props.user;
     const menu = (
-      <Menu onClick={this.onClick} style={{ marginTop: 20 }}>
+      <Menu style={{ marginTop: 20 }}>
         <Menu.Item key="1">
-          <Link to="/vendorDashboard">
-            <Icon type="idcard" style={{ paddingRight: 10 }} />
-            Dashboard
-                </Link>
+          <Link to="/Profile">
+            Profile
+          </Link>
         </Menu.Item>
-        <Menu.Item key="2">
+        {isVendor ?
+          (
+            <Menu.Item key="2">
+              <Link to="/vendorDashboard">
+                <Icon type="idcard" style={{ paddingRight: 10 }} />
+                Dashboard
+            </Link>
+            </Menu.Item>
+          ) : (
+            <Menu.Item key="2">
+              <Link to="/userDashboard">
+                <Icon type="idcard" style={{ paddingRight: 10 }} />
+                Dashboard
+              </Link>
+            </Menu.Item>
+          )
+        }
+        <Menu.Item key="3">
           <Logout />
         </Menu.Item>
       </Menu>
