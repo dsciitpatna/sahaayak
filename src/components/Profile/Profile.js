@@ -125,7 +125,7 @@ class UserProfile extends Component {
                     onChange={this.onChange}
                   />
                 </Form.Item>
-                <Button>UPDATE</Button>
+                <Button type="primary">UPDATE</Button>
               </Col>
             </Row>
 
