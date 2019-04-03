@@ -2,7 +2,7 @@
 import React, { Component, Fragment } from "react";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Form,Input,Checkbox,Button,Row,Col,Upload, Icon, message } from "antd";
+import { Form, Input, Button, Row, Col, Upload, Icon, message } from "antd";
 
 function getBase64(img, callback) {
   const reader = new FileReader();
@@ -23,17 +23,17 @@ function beforeUpload(file) {
 }
 
 class UserProfile extends Component {
-  state={
-    name:"",
-    email:"",
-    password:"",
-    newpassword:"",
-    phone:"",
+  state = {
+    name: "",
+    email: "",
+    password: "",
+    newpassword: "",
+    phone: "",
     // Property used for uploading image
-    loading:false
- }
- onChange = e => {
-  this.setState({ [e.target.name]: e.target.value });
+    loading: false
+  }
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
   // Function is used for uploading picture
   handleChange = (info) => {
@@ -48,10 +48,10 @@ class UserProfile extends Component {
         loading: false,
       }));
     }
-  } 
+  }
   render() {
-    const { isAuthenticated, user } = this.props;
-    const {name,email,password,newpassword,phone}=this.state;
+    const { isAuthenticated } = this.props;
+    const { name, email, password, newpassword, phone } = this.state;
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -59,7 +59,7 @@ class UserProfile extends Component {
       </div>
     );
     const imageUrl = this.state.imageUrl;
-    if (isAuthenticated && user.isVendor === false) {
+    if (isAuthenticated) {
       return (
         <Fragment>
           <Form layout="vertical">
@@ -77,53 +77,53 @@ class UserProfile extends Component {
                 >
                   {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
                 </Upload>
-              
+
               </Col>
               <Col span={16}>
-              <Form.Item label="Username">
-              <Input
-              type="text"
-              name="name"
-              value={name}
-              onChange={this.onChange}
-              />
-            </Form.Item>
-            <Form.Item label="E-mail Id">
-              <Input
-                type="email"
-                name="email"
-                value={email}
-                onChange={this.onChange}
-              />            
-            </Form.Item>
-            <Form.Item label="New Password">
-              <Input
-                type="password"
-                name="password"
-                value={password}
-                onChange={this.onChange}
-              />
-            </Form.Item>
-            <Form.Item label="Confirm New Password">
-              <Input
-                type="password"
-                name="newpassword"
-                value={newpassword}
-                onChange={this.onChange}
-              />           
-             </Form.Item>
-            <Form.Item label="Phone Number">
-             <Input
-                type="text"
-                name="phone"
-                value={phone}
-                onChange={this.onChange}
-              />
-            </Form.Item>
-            <Button>UPDATE</Button>
+                <Form.Item label="Username">
+                  <Input
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={this.onChange}
+                  />
+                </Form.Item>
+                <Form.Item label="E-mail Id">
+                  <Input
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={this.onChange}
+                  />
+                </Form.Item>
+                <Form.Item label="New Password">
+                  <Input
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={this.onChange}
+                  />
+                </Form.Item>
+                <Form.Item label="Confirm New Password">
+                  <Input
+                    type="password"
+                    name="newpassword"
+                    value={newpassword}
+                    onChange={this.onChange}
+                  />
+                </Form.Item>
+                <Form.Item label="Phone Number">
+                  <Input
+                    type="text"
+                    name="phone"
+                    value={phone}
+                    onChange={this.onChange}
+                  />
+                </Form.Item>
+                <Button>UPDATE</Button>
               </Col>
             </Row>
-            
+
           </Form>
         </Fragment>
       )
@@ -139,8 +139,7 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(
