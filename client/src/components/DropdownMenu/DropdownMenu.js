@@ -6,10 +6,12 @@ import Logout from '../Logout/Logout';
 import { Menu, Icon, Dropdown, message, Avatar } from 'antd';
 import { Link } from 'react-router-dom';
 
+
 class DropdownMenu extends Component {
   state = {
     current: "mail"
   };
+
 
   onClick = ({ key }) => {
     message.info(`Clicked on ${key}`);
@@ -42,6 +44,7 @@ class DropdownMenu extends Component {
 
 
     );
+
   }
 }
 
