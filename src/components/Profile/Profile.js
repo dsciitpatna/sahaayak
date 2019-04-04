@@ -3,7 +3,7 @@ import React, { Component, Fragment } from "react";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import { Form, Input, Button, Row, Col, Upload, Icon, message } from "antd";
-import "./Profilestyling.css";
+import "./Profile.css";
 
 function getBase64(img, callback) {
   const reader = new FileReader();

@@ -15,30 +15,32 @@ class DropdownMenu extends Component {
   render() {
     const { username } = this.props;
     const { isVendor } = this.props.user;
+    
     const menu = (
       <Menu style={{ marginTop: 20 }}>
         <Menu.Item key="1">
           <Link to="/Profile">
+          <Icon type="edit" style={{ paddingRight: 10 }}/>
             Profile
           </Link>
         </Menu.Item>
-        {isVendor ?
-          (
+        {isVendor &&
+          
             <Menu.Item key="2">
               <Link to="/vendorDashboard">
                 <Icon type="idcard" style={{ paddingRight: 10 }} />
                 Dashboard
             </Link>
             </Menu.Item>
-          ) : (
-            <Menu.Item key="2">
+        }    
+            <Menu.Item key={isVendor?"3":"2"}>
               <Link to="/userDashboard">
                 <Icon type="idcard" style={{ paddingRight: 10 }} />
                 Dashboard
               </Link>
             </Menu.Item>
-          )
-        }
+          
+        
         <Menu.Item key="3">
           <Logout />
         </Menu.Item>
