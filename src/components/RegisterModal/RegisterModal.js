@@ -10,6 +10,7 @@ import {
   closeRegisterModal
 } from "../../redux/actions/authActions";
 import { clearErrors } from "../../redux/actions/errorActions";
+import Recaptcha from "react-recaptcha";
 
 class RegisterModal extends Component {
   state = {
@@ -18,7 +19,8 @@ class RegisterModal extends Component {
     email: "",
     password: "",
     isVendor: false,
-    msg: null
+    msg: null,
+    captchaVerified:false
   };
 
   static propTypes = {
@@ -68,14 +70,17 @@ class RegisterModal extends Component {
   };
 
   handleCreate = () => {
-    const { name, email, password, isVendor } = this.state;
+    const { name, email, password, isVendor,msg,captchaVerified } = this.state;
     const newUser = {
       name,
       email,
       password,
       isVendor
     };
-    this.props.register(newUser);
+    if(captchaVerified)
+      this.props.register(newUser);
+    else
+      alert("Please verify that you are a human !!!");
   };
 
   onChange = e => {
@@ -92,6 +97,17 @@ class RegisterModal extends Component {
     });
     this.props.openLoginModal();
   };
+  captchaLoad = ()=>{
+    console.log("Captcha loaded");
+  }
+  verifyCaptcha=(response)=>{
+    if(response){
+      this.setState({
+        captchaVerified:true
+      })
+    }
+  }
+
 
   render() {
     const { visible, name, email, password, isVendor, msg } = this.state;
@@ -133,6 +149,13 @@ class RegisterModal extends Component {
             </Form.Item>
             Already have an account?
             <button className="newbutton2" onClick={this.openLoginModal}>Login</button>
+            <br></br>
+            <Recaptcha
+              sitekey="6LdMxpsUAAAAANDzFwLrJaRBe7CJYTKRxZYflL3M"
+              render="explicit"
+              onloadCallback={this.captchaLoad}
+              verifyCallback={this.verifyCaptcha}
+            />
           </Form>
         </Modal>
       </div>
