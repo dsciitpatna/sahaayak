@@ -19,6 +19,7 @@ class DropdownMenu extends Component {
       <Menu style={{ marginTop: 20 }}>
         <Menu.Item key="1">
           <Link to="/Profile">
+          <Icon type="edit" style={{ paddingRight: 10 }} />
             Profile
           </Link>
         </Menu.Item>
