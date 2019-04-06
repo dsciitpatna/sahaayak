@@ -13,6 +13,7 @@ import Profile from '../Profile/Profile';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import UserDashboard from '../UserDashboard/UserDashboard';
 import VendorDashboard from '../VendorDashboard/VendorDashboard';
+import VendorSalesPage from '../VendorSalesPage/VendorSalesPage';
 
 const { Header, Content } = Layout;
 
@@ -34,6 +35,7 @@ class Navbar extends Component {
   openLoginModal = () => {
     this.props.openLoginModal();
   };
+
   render() {
     const {
       isAuthenticated,
@@ -91,8 +93,8 @@ class Navbar extends Component {
                 </Menu>
               )}
           </Header>
-          <SideBar collapseProp={this.state.collapsed} />
           <Layout>
+            <Route exact path="/" component={(props) => <SideBar {...props} collapseProp={this.state.collapsed} />} />
             <Content
               style={{
                 marginTop: "50px",
@@ -104,11 +106,8 @@ class Navbar extends Component {
               <Switch>
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
-                <Route
-                  exact
-                  path="/vendorDashboard"
-                  component={VendorDashboard}
-                />
+                <Route exact path="/vendorDashboard" component={VendorDashboard} />
+                <Route exact path="/vendorSalesPage" component={VendorSalesPage} />
               </Switch>
             </Content>
           </Layout>

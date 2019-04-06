@@ -20,7 +20,7 @@ class RegisterModal extends Component {
     password: "",
     isVendor: false,
     msg: null,
-    captchaVerified:false
+    captchaVerified: false
   };
 
   static propTypes = {
@@ -70,14 +70,14 @@ class RegisterModal extends Component {
   };
 
   handleCreate = () => {
-    const { name, email, password, isVendor,msg,captchaVerified } = this.state;
+    const { name, email, password, isVendor, captchaVerified } = this.state;
     const newUser = {
       name,
       email,
       password,
       isVendor
     };
-    if(captchaVerified)
+    if (captchaVerified)
       this.props.register(newUser);
     else
       alert("Please verify that you are a human !!!");
@@ -97,13 +97,13 @@ class RegisterModal extends Component {
     });
     this.props.openLoginModal();
   };
-  captchaLoad = ()=>{
+  captchaLoad = () => {
     console.log("Captcha loaded");
   }
-  verifyCaptcha=(response)=>{
-    if(response){
+  verifyCaptcha = (response) => {
+    if (response) {
       this.setState({
-        captchaVerified:true
+        captchaVerified: true
       })
     }
   }
