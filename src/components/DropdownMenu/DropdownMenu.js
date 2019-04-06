@@ -19,26 +19,33 @@ class DropdownMenu extends Component {
       <Menu style={{ marginTop: 20 }}>
         <Menu.Item key="1">
           <Link to="/Profile">
-          <Icon type="edit" style={{ paddingRight: 10 }} />
+            <Icon type="edit" style={{ paddingRight: 10 }} />
             Profile
           </Link>
         </Menu.Item>
-        {isVendor ?
-          (
-            <Menu.Item key="2">
-              <Link to="/vendorDashboard">
-                <Icon type="idcard" style={{ paddingRight: 10 }} />
-                Dashboard
+        {isVendor &&
+          <Menu.Item key="2">
+            <Link to="/vendorDashboard">
+              <Icon type="idcard" style={{ paddingRight: 10 }} />
+              Dashboard
+                </Link>
+          </Menu.Item>
+        }
+        {isVendor &&
+          <Menu.Item key="3">
+            <Link to="/vendorSalesPage">
+              <Icon type="idcard" style={{ paddingRight: 10 }} />
+              List Your Bussiness
             </Link>
-            </Menu.Item>
-          ) : (
-            <Menu.Item key="2">
-              <Link to="/userDashboard">
-                <Icon type="idcard" style={{ paddingRight: 10 }} />
-                Dashboard
-              </Link>
-            </Menu.Item>
-          )
+          </Menu.Item>
+        }
+        {!isVendor &&
+          <Menu.Item key="2">
+            <Link to="/userDashboard">
+              <Icon type="idcard" style={{ paddingRight: 10 }} />
+              Dashboard
+            </Link>
+          </Menu.Item>
         }
         <Menu.Item key="3">
           <Logout />
