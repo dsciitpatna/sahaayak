@@ -104,7 +104,11 @@ class Navbar extends Component {
               <Switch>
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
-                <Route exact path="/vendorDashboard" component={VendorDashboard} />
+                <Route
+                  exact
+                  path="/vendorDashboard"
+                  component={VendorDashboard}
+                />
               </Switch>
             </Content>
           </Layout>
