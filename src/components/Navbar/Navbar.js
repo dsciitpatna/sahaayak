@@ -14,6 +14,7 @@ import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import UserDashboard from '../UserDashboard/UserDashboard';
 import VendorDashboard from '../VendorDashboard/VendorDashboard';
 import VendorSalesPage from '../VendorSalesPage/VendorSalesPage';
+import Admin from '../Admin/Admin';
 
 const { Header, Content } = Layout;
 
@@ -108,6 +109,7 @@ class Navbar extends Component {
                 <Route exact path="/userDashboard" component={UserDashboard} />
                 <Route exact path="/vendorDashboard" component={VendorDashboard} />
                 <Route exact path="/vendorSalesPage" component={VendorSalesPage} />
+                <Route exact path="/admin" component={Admin} />
               </Switch>
             </Content>
           </Layout>
