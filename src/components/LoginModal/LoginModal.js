@@ -34,7 +34,7 @@ class LoginModal extends Component {
     if (error !== prevProps.error) {
       if (error.id === "LOGIN_FAIL") {
         this.setState({
-          msg: error.msg
+          msg: error.msg.name.message
         });
       } else {
         this.setState({

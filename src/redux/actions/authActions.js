@@ -24,7 +24,7 @@ export const register = ({ name, email, password, isVendor }) => dispatch => {
     }
   }
   const body = JSON.stringify({ name, email, password, isVendor });
-  axios.post('/api/register', body, config)
+  axios.post('/users/signup', body, config)
     .then(res => dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data
@@ -33,6 +33,7 @@ export const register = ({ name, email, password, isVendor }) => dispatch => {
       dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
       dispatch({ type: REGISTER_FAIL })
     })
+
 }
 
 export const login = ({ email, password }) => dispatch => {
@@ -41,8 +42,8 @@ export const login = ({ email, password }) => dispatch => {
       'Content-Type': 'application/json'
     }
   }
-  const body = JSON.stringify({ email, password});
-  axios.post('/api/login', body, config)
+  const body = JSON.stringify({ email, password });
+  axios.post('/users/login', body, config)
     .then(res => dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data

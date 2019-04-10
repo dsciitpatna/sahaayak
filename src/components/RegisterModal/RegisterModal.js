@@ -38,7 +38,7 @@ class RegisterModal extends Component {
     if (error !== prevProps.error) {
       if (error.id === "REGISTER_FAIL") {
         this.setState({
-          msg: error.msg
+          msg: error.msg.name.message
         });
       } else {
         this.setState({
@@ -60,7 +60,8 @@ class RegisterModal extends Component {
       name: "",
       email: "",
       password: "",
-      isVendor: false
+      isVendor: false,
+      captchaVerified: false
     });
     this.props.closeRegisterModal();
   };
@@ -93,7 +94,8 @@ class RegisterModal extends Component {
       name: "",
       email: "",
       password: "",
-      isVendor: false
+      isVendor: false,
+      captchaVerified: false
     });
     this.props.openLoginModal();
   };
@@ -147,15 +149,15 @@ class RegisterModal extends Component {
                 onChange={this.onChange}
               />
             </Form.Item>
-            Already have an account?
-            <button className="newbutton2" onClick={this.openLoginModal}>Login</button>
-            <br></br>
             <Recaptcha
               sitekey="6LdMxpsUAAAAANDzFwLrJaRBe7CJYTKRxZYflL3M"
               render="explicit"
               onloadCallback={this.captchaLoad}
               verifyCallback={this.verifyCaptcha}
             />
+            <br></br>
+            Already have an account?
+            <button className="newbutton2" onClick={this.openLoginModal}>Login</button>
           </Form>
         </Modal>
       </div>
