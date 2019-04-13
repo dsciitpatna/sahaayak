@@ -10,7 +10,6 @@ Sahaayak is a platform for the talented vendors and people who all are willing t
 
 Our chat channel is to be found on Gitter [here](https://gitter.im/dsciitpatna/Sahaayak)
 
-
 ## Technology Stack
 
 ### Components
@@ -22,6 +21,14 @@ Our chat channel is to be found on Gitter [here](https://gitter.im/dsciitpatna/S
 ## Requirements
 * node --version >= 6
 * npm --version >= 3
+
+## Steps to set up on Local machine
+1. git clone repo
+2. cd sahaayak
+3. npm install
+4. npm run start
+
+Set up derails for sever is [here](https://github.com/dsciitpatna/sahaayak_server) 
 
 ## License
 
