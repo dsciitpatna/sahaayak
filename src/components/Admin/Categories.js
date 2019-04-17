@@ -1,23 +1,25 @@
 import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
+import { Layout } from 'antd';
 
-class Admin extends Component {
+const {
+  Header, Content, Footer, Sider,
+} = Layout;
 
+class Categories extends Component {
   render() {
     const { isAuthenticated, user } = this.props;
     if (isAuthenticated && user.isVendor === false && user.isAdmin === true) {
       return (
         <Fragment>
-          <p>Admin Logged in</p>
+          Categories
         </Fragment>
       )
     }
     else {
       return (
-        <Fragment>
-          <p>Unauthorized Access</p>
-        </Fragment>
+        <p>Unauthorized Access</p>
       )
     }
   }
@@ -31,4 +33,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {}
-)(Admin);
+)(Categories);
