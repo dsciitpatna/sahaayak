@@ -14,7 +14,8 @@ import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import UserDashboard from '../UserDashboard/UserDashboard';
 import VendorDashboard from '../VendorDashboard/VendorDashboard';
 import VendorSalesPage from '../VendorSalesPage/VendorSalesPage';
-import Admin from '../Admin/Admin';
+import AdminNavbar from '../Admin/AdminNavbar';
+import Categories from '../Admin/Categories';
 
 const { Header, Content } = Layout;
 
@@ -96,6 +97,7 @@ class Navbar extends Component {
           </Header>
           <Layout>
             <Route exact path="/" component={(props) => <SideBar {...props} collapseProp={this.state.collapsed} />} />
+            <Route path="/admin" component={AdminNavbar} />
             <Content
               style={{
                 marginTop: "50px",
@@ -109,7 +111,7 @@ class Navbar extends Component {
                 <Route exact path="/userDashboard" component={UserDashboard} />
                 <Route exact path="/vendorDashboard" component={VendorDashboard} />
                 <Route exact path="/vendorSalesPage" component={VendorSalesPage} />
-                <Route exact path="/admin" component={Admin} />
+                <Route exact path="/admin/categories" component={Categories} />
               </Switch>
             </Content>
           </Layout>
