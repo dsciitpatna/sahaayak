@@ -1,20 +1,54 @@
 import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Layout } from 'antd';
+import { Layout,Button,Modal } from 'antd';
+
 
 const {
   Header, Content, Footer, Sider,
 } = Layout;
 
 class Categories extends Component {
+  state = { visible: false }
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+
+  handleOk = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+
   render() {
     const { isAuthenticated, user } = this.props;
     if (isAuthenticated && user.isVendor === false && user.isAdmin === true) {
       return (
         <Fragment>
           Categories
-        </Fragment>
+          <br/>
+          <br/>
+           <Button type="primary" onClick={this.showModal}>
+          Add Category
+          </Button>
+          <Modal
+            title="Add a new category"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+          >
+           </Modal>
+          </Fragment>
       )
     }
     else {
