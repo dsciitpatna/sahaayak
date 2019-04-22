@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Layout,Button,Modal } from 'antd';
+import { Layout,Button,Modal,Input } from 'antd';
 
 
 const {
@@ -47,6 +47,7 @@ class Categories extends Component {
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
+          <Input placeholder="Enter the name" />
            </Modal>
           </Fragment>
       )
