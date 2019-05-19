@@ -1,7 +1,7 @@
 .left {
-  float: left;
   font-size: 32px;
   font-weight: 500;
+  display: inline-block;
 }
 
 .ant-menu-item-selected {
@@ -26,7 +26,6 @@
 }
 
 @media only screen and (max-width: 600px) {
-
   .right {
     float: right;
     font-size: 14px;
@@ -42,5 +41,4 @@
   .header {
     padding: 0 !important;
   }
-  
 }
