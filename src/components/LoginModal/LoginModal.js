@@ -27,14 +27,14 @@ class LoginModal extends Component {
     clearErrors: PropTypes.func.isRequired,
     closeLoginModal: PropTypes.func.isRequired,
     openRegisterModal: PropTypes.func.isRequired
-  };
+  }; 
 
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       if (error.id === "LOGIN_FAIL") {
         this.setState({
-          msg: error.msg.name.message
+          msg: error.msg
         });
       } else {
         this.setState({
