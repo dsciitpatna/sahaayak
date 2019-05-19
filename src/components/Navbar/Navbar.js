@@ -17,6 +17,7 @@ import VendorSalesPage from '../VendorSalesPage/VendorSalesPage';
 import AdminNavbar from '../Admin/AdminNavbar';
 import Categories from '../Admin/Categories';
 import Slideshow from '../Slideshow/Slideshow';
+import TopVendors from '../TopVendors/TopVendors';
 
 const { Header, Content } = Layout;
 
@@ -107,7 +108,9 @@ class Navbar extends Component {
                 minHeight: 280
               }}
             >
-            <Slideshow />
+
+              <Slideshow />
+              <TopVendors />
               <Switch>
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />

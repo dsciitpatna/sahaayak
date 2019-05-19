@@ -11,7 +11,7 @@ class SideBar extends Component {
     return (
       <Fragment>
         <Sider
-          style={{ overflow: 'auto', height: '100vh', left: 0 }}
+          
           trigger={null}
           collapsible
           collapsedWidth={95}

@@ -1,0 +1,11 @@
+.container{
+    margin: 2% 1%;
+    
+}
+.typography{
+    font-family: monospace;
+    font-weight: 600;
+}
+.grid{
+    margin: 30px 0;
+}
