@@ -1,11 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Layout } from 'antd';
-
-const {
-  Header, Content, Footer, Sider,
-} = Layout;
 
 class Categories extends Component {
   render() {
