@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import "antd/dist/antd.css";
 import { Carousel } from "antd";
 import './SlideShow.css';
@@ -8,7 +7,7 @@ function Slideshow(props) {
     return (
         <div className="parentDiv">
             <div className="scale">
-                <Carousel effect="fade" autoplay dots="false" dots="true">
+                <Carousel effect="fade" autoplay >
                     <div className="blur">
                         <img
                             src="https://source.unsplash.com/random/2200x505"
