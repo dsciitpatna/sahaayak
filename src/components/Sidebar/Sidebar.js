@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import 'antd/dist/antd.css';
-import './Sidebar.css'
+import React, { Component, Fragment } from "react";
+import "antd/dist/antd.css";
+import "./Sidebar.css";
 
 import { Layout, Menu, Icon } from "antd";
 
@@ -11,7 +11,7 @@ class SideBar extends Component {
     return (
       <Fragment>
         <Sider
-          style={{ overflow: 'auto', height: '100vh', left: 0 }}
+          style={{ overflow: "auto", height: "100vh", left: 0 }}
           trigger={null}
           collapsible
           collapsedWidth={95}
