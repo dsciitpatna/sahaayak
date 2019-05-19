@@ -9,3 +9,31 @@
 .grid{
     margin: 30px 0;
 }
+.ant-card{
+    transition: 0.8s;
+    z-index: 0;
+}
+.ant-card-cover:hover{
+    filter: blur(3px) brightness(40%);
+}
+
+.ant-card .data{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    font-size:30px;
+    font-family: monospace;
+    color: aliceblue!important;
+
+}
+.ant-card:hover .data{
+    display: block;
+    color: white;
+}
+
+h2,h3{
+    color: white!important;
+}
