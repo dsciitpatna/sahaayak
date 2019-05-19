@@ -1,0 +1,39 @@
+.ant-carousel .slick-slide {
+
+    margin-top: 10px;
+    height: 500px;
+    background: #364d79;
+    overflow: hidden;
+    border: solid 2px #364d79;
+    
+  }
+  .scale
+  {
+      width: 90%;
+      margin: 0  auto;
+      transition: all 0.8s;
+  }
+  .parentDiv{
+      position: relative;
+      transition: all 0.8s;
+  }
+   .hoverShow{
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 60px;
+      color: #fff;
+      font-family: monospace;
+      font-weight: bold;
+
+  }  
+  .scale:hover{
+      filter: blur(3px) grayscale(100%);
+      position: relative;
+
+  }
+   .parentDiv:hover .hoverShow{
+      display: inline;
+  } 
