@@ -13,7 +13,7 @@
     transition: 0.8s;
     z-index: 0;
 }
-.ant-card-cover:hover{
+.ant-card:hover .ant-card-cover{
     filter: blur(3px) brightness(40%);
 }
 
