@@ -56,11 +56,6 @@ class VendorSalesPage extends Component {
         children: [{
           value: 'Bank 1',
           label: 'Bank 1',
-          value: 'Bank 2',
-          label: 'Bank 2',
-          value: 'Bank 3',
-          label: 'Bank 3',
-
         }],
 
       }, {
@@ -69,11 +64,6 @@ class VendorSalesPage extends Component {
         children: [{
           value: 'Bank 1',
           label: 'Bank 1',
-          value: 'Bank 2',
-          label: 'Bank 2',
-          value: 'Bank 3',
-          label: 'Bank 3',
-
         }],
 
       },
@@ -83,14 +73,7 @@ class VendorSalesPage extends Component {
         children: [{
           value: 'Bank 1',
           label: 'Bank 1',
-          value: 'Bank 2',
-          label: 'Bank 2',
-          value: 'Bank 3',
-          label: 'Bank 3',
-
         }],
-
-
       }];
 
       const formItemLayout = {
@@ -221,7 +204,7 @@ class VendorSalesPage extends Component {
               {getFieldDecorator('agreement', {
                 valuePropName: 'checked',
               })(
-                <Checkbox>I have read the <a href="">agreement</a></Checkbox>
+                <Checkbox>I have read the <a href="https://www.google.com/">agreement</a></Checkbox>
               )}
             </Form.Item>
 
