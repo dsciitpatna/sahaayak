@@ -17,7 +17,7 @@ function Slideshow(props) {
                     <div>
 
                         <img
-                            src="https://picsum.photos/2200/500?grayscale"
+                            src="https://picsum.photos/2200/500"
                             alt=""
                         />
                     </div>
