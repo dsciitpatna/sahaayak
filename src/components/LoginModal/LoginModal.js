@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import 'antd/dist/antd.css';
 import './LoginModal.css';
 import { connect } from 'react-redux';
@@ -9,7 +10,7 @@ import {
   openRegisterModal
 } from "../../redux/actions/authActions";
 import { clearErrors } from "../../redux/actions/errorActions";
-import { Modal, Form, Input, Alert } from "antd";
+import { Modal, Form, Input, Icon, Alert, Button, Checkbox } from "antd";
 
 class LoginModal extends Component {
   state = {
@@ -34,7 +35,7 @@ class LoginModal extends Component {
     if (error !== prevProps.error) {
       if (error.id === "LOGIN_FAIL") {
         this.setState({
-          msg: error.msg.name.message
+          msg: error.msg
         });
       } else {
         this.setState({
@@ -73,6 +74,15 @@ class LoginModal extends Component {
 
     this.props.login(user);
   };
+//
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.handleCreate();
+      }
+    });
+  };
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -89,37 +99,53 @@ class LoginModal extends Component {
 
   render() {
     const { visible, email, password, msg } = this.state;
+    const { getFieldDecorator } = this.props.form;
     return (
       <div>
+        <Form layout="vertical" className="login-form" onSubmit={this.handleSubmit}>
         <Modal
           visible={visible}
           title="Login"
           okText="Login"
           onCancel={this.handleCancel}
-          onOk={this.handleCreate}
+          onOk={this.handleSubmit}
         >
           {msg ? <Alert message={msg} type="error" /> : null}
-          <Form layout="vertical">
-            <Form.Item label="Email">
+          
+            <Form.Item>
+            {getFieldDecorator('email', {
+              rules: [{ required: true, message: 'Please input your email!' }],
+            })(
               <Input
                 type="email"
                 name="email"
                 value={email}
                 onChange={this.onChange}
-              />
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder="Email"
+              />,
+            )}
+          </Form.Item>
+
+            <Form.Item>
+              {getFieldDecorator('password', {
+                rules: [{ required: true, message: 'Please input your Password!' }],
+              })(
+                <Input
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={this.onChange}
+                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="Password"
+                />,
+              )}
             </Form.Item>
-            <Form.Item label="Password">
-              <Input
-                type="password"
-                name="password"
-                value={password}
-                onChange={this.onChange}
-              />
-            </Form.Item>
+
             Don't have an account?
             <button className="newbutton" onClick={this.openRegisterModal}>Register</button>
-          </Form>
         </Modal>
+        </Form>
       </div>
     );
   }
@@ -131,7 +157,7 @@ const mapStateToProps = state => ({
   openloginModal: state.auth.openloginModal
 });
 
-export default connect(
-  mapStateToProps,
-  { login, clearErrors, closeLoginModal, openRegisterModal }
+export default compose(
+  connect(mapStateToProps,{ login, clearErrors, closeLoginModal, openRegisterModal }),
+  Form.create({ name: 'normal_login' })
 )(LoginModal);
