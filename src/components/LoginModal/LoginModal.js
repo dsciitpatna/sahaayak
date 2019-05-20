@@ -10,7 +10,7 @@ import {
   openRegisterModal
 } from "../../redux/actions/authActions";
 import { clearErrors } from "../../redux/actions/errorActions";
-import { Modal, Form, Input, Icon, Alert, Button, Checkbox } from "antd";
+import { Modal, Form, Input, Icon, Alert } from "antd";
 
 class LoginModal extends Component {
   state = {
