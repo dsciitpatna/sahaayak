@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "https://secure-falls-92714.herokuapp.com",
   "eslintConfig": {
     "extends": "react-app"
   },

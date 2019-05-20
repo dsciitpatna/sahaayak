@@ -74,7 +74,7 @@ class LoginModal extends Component {
 
     this.props.login(user);
   };
-//
+  
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
