@@ -2,3 +2,19 @@
   margin-right: 8px;
   margin-bottom: 8px;
 }
+.ant-avatar {
+  position: relative;
+  font-size: 20px;
+  font-family: monospace;
+  background-color: #2f5ec4;
+  text-transform: uppercase;
+  width: 50px;
+  height: 45px;
+  
+}
+.ant-avatar span{
+position: absolute;
+top: 20%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
