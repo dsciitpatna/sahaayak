@@ -7,10 +7,7 @@ cache:
 script:
   - npm test
   - npm run build
-deploy:
-  provider: surge
-  skip_cleanup: true
-  domain: sahaayak.surge.sh
-  project: ./build/
+after_success:
+  - bash ./pr_deploy.sh
 on:
   branch: master

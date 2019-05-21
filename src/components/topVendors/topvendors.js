@@ -1,174 +1,65 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "./topVendors.css";
+import "antd/dist/antd.css";
+import { Card, Rate } from "antd";
 
-class Topvendors extends Component {
+const { Meta } = Card;
+
+class TopVendors extends Component {
+  state = {
+    values: [4.5, 5, 4, 4.5]
+  };
+
   render() {
     return (
-      <div>
+      <div className="Container">
         <h1>Top Vendors</h1>
+        <Card
+          hoverable
+          style={{ width: 240 }}
+          cover={<img src="https://picsum.photos/200" alt="Name" />}
+        >
+          <div className="Vendor-info">
+            <Meta title="Name" description="Service Name" />
+            <Rate disabled allowHalf value={this.state.values[0]} />
+          </div>
+        </Card>
 
-        <div className="vendor">
-          <div className="profile">
-            <img src="https://picsum.photos/200" />
-            <h2>Name</h2>
+        <Card
+          hoverable
+          style={{ width: 240 }}
+          cover={<img src="https://picsum.photos/200" alt="Name" />}
+        >
+          <div className="Vendor-info">
+            <Meta title="Name" description="Service Name" />
+            <Rate disabled allowHalf value={this.state.values[1]} />
           </div>
-          <h3>Service Name</h3>
-          <div className="stars" data-rating="3">
-            <span className={this.getClass(1)} id="1">
-              &nbsp;
-            </span>
-            <span className={this.getClass(2)} id="2">
-              &nbsp;
-            </span>
-            <span className={this.getClass(3)} id="3">
-              &nbsp;
-            </span>
-            <span className={this.getClass(4)} id="4">
-              &nbsp;
-            </span>
-            <span className={this.getClass(5)} id="5">
-              &nbsp;
-            </span>
-          </div>
-        </div>
+        </Card>
 
-        <div className="vendor">
-          <div className="profile">
-            <img src="https://picsum.photos/200" />
-            <h2>Name</h2>
+        <Card
+          hoverable
+          style={{ width: 240 }}
+          cover={<img src="https://picsum.photos/200" alt="Name" />}
+        >
+          <div className="Vendor-info">
+            <Meta title="Name" description="Service Name" />
+            <Rate disabled allowHalf value={this.state.values[2]} />
           </div>
-          <h3>Service Name</h3>
-          <div className="stars" data-rating="3">
-            <span className={this.getClass(1)} id="1">
-              &nbsp;
-            </span>
-            <span className={this.getClass(2)} id="2">
-              &nbsp;
-            </span>
-            <span className={this.getClass(3)} id="3">
-              &nbsp;
-            </span>
-            <span className={this.getClass(4)} id="4">
-              &nbsp;
-            </span>
-            <span className={this.getClass(5)} id="5">
-              &nbsp;
-            </span>
-          </div>
-        </div>
+        </Card>
 
-        <div className="vendor">
-          <div className="profile">
-            <img src="https://picsum.photos/200" />
-            <h2>Name</h2>
+        <Card
+          hoverable
+          style={{ width: 240 }}
+          cover={<img src="https://picsum.photos/200" alt="Name" />}
+        >
+          <div className="Vendor-info">
+            <Meta title="Name" description="Service Name" />
+            <Rate disabled allowHalf value={this.state.values[3]} />
           </div>
-          <h3>Service Name</h3>
-          <div className="stars" data-rating="3">
-            <span className={this.getClass(1)} id="1">
-              &nbsp;
-            </span>
-            <span className={this.getClass(2)} id="2">
-              &nbsp;
-            </span>
-            <span className={this.getClass(3)} id="3">
-              &nbsp;
-            </span>
-            <span className={this.getClass(4)} id="4">
-              &nbsp;
-            </span>
-            <span className={this.getClass(5)} id="5">
-              &nbsp;
-            </span>
-          </div>
-        </div>
-
-        <div className="vendor">
-          <div className="profile">
-            <img src="https://picsum.photos/200" />
-            <h2>Name</h2>
-          </div>
-          <h3>Service Name</h3>
-          <div className="stars" data-rating="3">
-            <span className={this.getClass(1)} id="1">
-              &nbsp;
-            </span>
-            <span className={this.getClass(2)} id="2">
-              &nbsp;
-            </span>
-            <span className={this.getClass(3)} id="3">
-              &nbsp;
-            </span>
-            <span className={this.getClass(4)} id="4">
-              &nbsp;
-            </span>
-            <span className={this.getClass(5)} id="5">
-              &nbsp;
-            </span>
-          </div>
-        </div>
-
-        <div className="vendor">
-          <div className="profile">
-            <img src="https://picsum.photos/200" />
-            <h2>Name</h2>
-          </div>
-          <h3>Service Name</h3>
-          <div className="stars" data-rating="3">
-            <span className={this.getClass(1)} id="1">
-              &nbsp;
-            </span>
-            <span className={this.getClass(2)} id="2">
-              &nbsp;
-            </span>
-            <span className={this.getClass(3)} id="3">
-              &nbsp;
-            </span>
-            <span className={this.getClass(4)} id="4">
-              &nbsp;
-            </span>
-            <span className={this.getClass(5)} id="5">
-              &nbsp;
-            </span>
-          </div>
-        </div>
-
-        <div className="vendor">
-          <div className="profile">
-            <img src="https://picsum.photos/200" />
-            <h2>Name</h2>
-          </div>
-          <h3>Service Name</h3>
-          <div className="stars" data-rating="3">
-            <span className={this.getClass(1)} id="1">
-              &nbsp;
-            </span>
-            <span className={this.getClass(2)} id="2">
-              &nbsp;
-            </span>
-            <span className={this.getClass(3)} id="3">
-              &nbsp;
-            </span>
-            <span className={this.getClass(4)} id="4">
-              &nbsp;
-            </span>
-            <span className={this.getClass(5)} id="5">
-              &nbsp;
-            </span>
-          </div>
-        </div>
+        </Card>
       </div>
     );
   }
-
-  //this function decide how many stars needs to be filled
-  getClass(id) {
-    let rating = 4; //this value tells no. of stars filled
-    if (id <= rating) {
-      return "star rated";
-    } else {
-      return "star";
-    }
-  }
 }
 
-export default Topvendors;
+export default TopVendors;

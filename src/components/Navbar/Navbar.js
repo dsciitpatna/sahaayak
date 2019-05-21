@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Navbar.css";
 import "antd/dist/antd.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import LoginModal from "../LoginModal/LoginModal";
@@ -17,7 +17,7 @@ import VendorSalesPage from "../VendorSalesPage/VendorSalesPage";
 import AdminNavbar from "../Admin/AdminNavbar";
 import Categories from "../Admin/Categories";
 import Slideshow from "../Slideshow/Slideshow";
-import Topvendors from "../topVendors/topvendors";
+import TopVendors from "../topVendors/topvendors";
 
 const { Header, Content } = Layout;
 
@@ -67,7 +67,9 @@ class Navbar extends Component {
                     type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
                     onClick={this.toggle}
                   />
-                  Sahaayak
+                </Menu.Item>
+                <Menu.Item key="2" className="left">
+                  <Link to="/">Sahaayak</Link>
                 </Menu.Item>
                 <Menu.Item key="2" className="right">
                   <DropdownMenu username={user.name} />
@@ -85,7 +87,9 @@ class Navbar extends Component {
                     type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
                     onClick={this.toggle}
                   />
-                  Sahaayak
+                </Menu.Item>
+                <Menu.Item key="2" className="left">
+                  <Link to="/">Sahaayak</Link>
                 </Menu.Item>
                 <Menu.Item key="3" className="right">
                   <Button type="primary" onClick={this.openLoginModal}>
@@ -114,9 +118,9 @@ class Navbar extends Component {
                 minHeight: 280
               }}
             >
-              <Slideshow />
-              <Topvendors />
               <Switch>
+                <Route exact path="/" component={Slideshow} />
+                <Route exact path="/" component={TopVendors} />
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
                 <Route
