@@ -118,9 +118,9 @@ class Navbar extends Component {
                 minHeight: 280
               }}
             >
+              <Route exact path="/" component={Slideshow} />
+              <Route exact path="/" component={TopVendors} />
               <Switch>
-                <Route exact path="/" component={Slideshow} />
-                <Route exact path="/" component={TopVendors} />
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
                 <Route
