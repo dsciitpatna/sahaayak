@@ -26,8 +26,11 @@ function beforeUpload(file) {
 
 class UserProfile extends Component {
   state = {
-    name: this.props.userUser.name,
-    email: this.props.userUser.email,
+    alertMessage: null,
+    initialName: this.props.authUser.name,
+    initialEmail: this.props.authUser.email,
+    name: this.props.authUser.name,
+    email: this.props.authUser.email,
     newpassword: "",
     confnewpassword: "",
     phone: "",
@@ -54,39 +57,47 @@ class UserProfile extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("submitt");
     if ( this.state.newpassword!=="" && this.state.confnewpassword==="" ) {
-      alert("Please confirm your password !!!");
+      this.setState({
+        alertMessage: "Please confirm your password !!!"
+      })
       return;
     }
     if ( this.state.newpassword==="" && this.state.confnewpassword!=="" ) {
-      alert("Please enter both password fields !!!");
+      this.setState({
+        alertMessage: "Please enter both password fields !!!"
+      })
       return;
     }
     if ( this.state.newpassword!==this.state.confnewpassword ) {
-      alert("Password do not match !!!");
+      this.setState({
+        alertMessage: "Password do not match !!!"
+      })
       return;
     }
-    const update={};
-    const body={};
-    if ( this.state.name!=="" ) {
+    let body={};
+    if ( this.state.name!=="" && this.state.name!==this.state.initialName ) {
       body.name=this.state.name;
     }
-    if ( this.state.email!=="" ) {
+    if ( this.state.email!=="" && this.state.email!==this.state.initialEmail ) {
       body.email=this.state.email;
     }
     if ( this.state.newpassword!=="" ) {
       body.password=this.state.newpassword;
     }
-    update.updatedUser=body;
-    update.userId=this.props.authUser.id;
-    console.log(update);
+    this.setState({
+      alertMessage: null
+    })
+    const update={
+      updatedUser: body,
+      userId: this.props.authUser.id
+    }
     this.props.updateUser(update);
   }
 
   render() {
     const { isAuthenticated } = this.props;
-    const { name, email, newpassword, confnewpassword, phone } = this.state;
+    const { name, email, newpassword, confnewpassword, phone, alertMessage } = this.state;
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -119,6 +130,7 @@ class UserProfile extends Component {
 
               </Col>
               <Col span={16}>
+              {alertMessage ? <Alert message={alertMessage} type="error" /> : null}
                 <Form.Item label="Username">
                   <Input
                     type="text"
