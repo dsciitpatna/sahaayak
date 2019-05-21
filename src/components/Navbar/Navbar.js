@@ -58,7 +58,7 @@ class Navbar extends Component {
               <Menu
                 theme="dark"
                 mode="horizontal"
-                style={{ lineHeight: "64px" }}
+                style={{ lineHeight: "60px" }}
               >
                 <Menu.Item key="1" className="left">
                   <Icon

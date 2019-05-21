@@ -68,8 +68,6 @@ class DropdownMenu extends Component {
     return (
       <React.Fragment>
         <Avatar
-          style={{ backgroundColor: "#2f5ec4", verticalAlign: "middle" }}
-          size="large"
         >
           {username[0]}
         </Avatar>
