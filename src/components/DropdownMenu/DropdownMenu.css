@@ -18,3 +18,8 @@ top: 20%;
 left: 50%;
 transform: translate(-50%,-50%);
 }
+.anticon-more svg{
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 30%;}
