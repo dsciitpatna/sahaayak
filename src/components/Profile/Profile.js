@@ -1,8 +1,9 @@
 
 import React, { Component, Fragment } from "react";
+import { updateUser } from "../../redux/actions/userActions";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Form, Input, Button, Row, Col, Upload, Icon, message } from "antd";
+import { Form, Input, Button, Row, Col, Upload, Icon, message, Alert } from "antd";
 import "./Profile.css";
 
 function getBase64(img, callback) {
@@ -25,10 +26,10 @@ function beforeUpload(file) {
 
 class UserProfile extends Component {
   state = {
-    name: "",
-    email: "",
-    password: "",
+    name: this.props.userUser.name,
+    email: this.props.userUser.email,
     newpassword: "",
+    confnewpassword: "",
     phone: "",
     // Property used for uploading image
     loading: false
@@ -50,9 +51,42 @@ class UserProfile extends Component {
       }));
     }
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log("submitt");
+    if ( this.state.newpassword!=="" && this.state.confnewpassword==="" ) {
+      alert("Please confirm your password !!!");
+      return;
+    }
+    if ( this.state.newpassword==="" && this.state.confnewpassword!=="" ) {
+      alert("Please enter both password fields !!!");
+      return;
+    }
+    if ( this.state.newpassword!==this.state.confnewpassword ) {
+      alert("Password do not match !!!");
+      return;
+    }
+    const update={};
+    const body={};
+    if ( this.state.name!=="" ) {
+      body.name=this.state.name;
+    }
+    if ( this.state.email!=="" ) {
+      body.email=this.state.email;
+    }
+    if ( this.state.newpassword!=="" ) {
+      body.password=this.state.newpassword;
+    }
+    update.updatedUser=body;
+    update.userId=this.props.authUser.id;
+    console.log(update);
+    this.props.updateUser(update);
+  }
+
   render() {
     const { isAuthenticated } = this.props;
-    const { name, email, password, newpassword, phone } = this.state;
+    const { name, email, newpassword, confnewpassword, phone } = this.state;
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -63,7 +97,7 @@ class UserProfile extends Component {
     if (isAuthenticated) {
       return (
         <Fragment>
-          <Form layout="vertical">
+          <Form layout="vertical" onSubmit={this.handleSubmit}>
             <Row>
               <h1>Profile Page</h1>
               <hr></hr>
@@ -104,16 +138,16 @@ class UserProfile extends Component {
                 <Form.Item label="New Password">
                   <Input
                     type="password"
-                    name="password"
-                    value={password}
+                    name="newpassword"
+                    value={newpassword}
                     onChange={this.onChange}
                   />
                 </Form.Item>
                 <Form.Item label="Confirm New Password">
                   <Input
                     type="password"
-                    name="newpassword"
-                    value={newpassword}
+                    name="confnewpassword"
+                    value={confnewpassword}
                     onChange={this.onChange}
                   />
                 </Form.Item>
@@ -125,7 +159,7 @@ class UserProfile extends Component {
                     onChange={this.onChange}
                   />
                 </Form.Item>
-                <Button type="primary">UPDATE</Button>
+                <Button type="primary" onClick={this.handleSubmit}>UPDATE</Button>
               </Col>
             </Row>
 
@@ -144,10 +178,12 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  authUser: state.auth.user,
+  userUser: state.user.user
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  { updateUser }
 )(UserProfile);
