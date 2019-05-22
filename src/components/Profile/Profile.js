@@ -27,8 +27,6 @@ function beforeUpload(file) {
 class UserProfile extends Component {
   state = {
     alertMessage: null,
-    initialName: this.props.authUser.name,
-    initialEmail: this.props.authUser.email,
     name: this.props.authUser.name,
     email: this.props.authUser.email,
     newpassword: "",
@@ -76,10 +74,10 @@ class UserProfile extends Component {
       return;
     }
     let body={};
-    if ( this.state.name!=="" && this.state.name!==this.state.initialName ) {
+    if ( this.state.name!=="" && this.state.name!==this.props.authUser.name ) {
       body.name=this.state.name;
     }
-    if ( this.state.email!=="" && this.state.email!==this.state.initialEmail ) {
+    if ( this.state.email!=="" && this.state.email!==this.props.authUser.email ) {
       body.email=this.state.email;
     }
     if ( this.state.newpassword!=="" ) {

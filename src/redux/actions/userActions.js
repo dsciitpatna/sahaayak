@@ -16,6 +16,7 @@ export const updateUser = ({updatedUser, userId}) => (dispatch, getState) => {
       });
     })
     .catch(err => {
+      console.log(err.response);
       dispatch(returnErrors(err.response.data, err.response.status));
     })
 
