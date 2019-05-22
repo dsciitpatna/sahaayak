@@ -9,9 +9,7 @@ export default function (state = initialState, action) {
     case USER_UPDATE:
         localStorage.setItem('user',JSON.stringify(action.payload));
       return {
-        ...state,
-        user: action.payload,
-        isAuthenticated: true
+        user: action.payload
       }
     default:
       return state;
