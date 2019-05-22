@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 import {
-  Form, Input, Select, Button, Typography
+  Form, Input, Select, Button, Typography,Alert
 } from 'antd';
 import {registerBusiness} from '../../redux/actions/vendorActions';
 const { Option } = Select;
@@ -15,13 +15,25 @@ class VendorSalesPage extends Component {
     autoCompleteResult: [],
     values: {
 
-    }
+    },
+    msg:  ''
   };
   componentDidUpdate(prevProps,prevState){
     const values = this.state.values;
     if(values !== prevState.values){
       this.props.registerBusiness(values);
+      const {error} = this.props;
+      if(error.id === "REGISTER_BUSINESS_FAIL"){
+        this.setState({
+          msg : error.msg
+        });
+      } else{
+        this.setState({
+          msg : null
+        });
+      }
     }
+
   }
 
   handleSubmit = (e) => {
@@ -41,8 +53,10 @@ class VendorSalesPage extends Component {
     console.log(value);
   }
 
+
   render() {
     const { isAuthenticated, user } = this.props;
+    const { msg} = this.state;
     if (isAuthenticated && user.isVendor === true) {
       const { getFieldDecorator } = this.props.form;
 
@@ -77,11 +91,10 @@ class VendorSalesPage extends Component {
         </Select>
       );
 
-      // const websiteOptions = autoCompleteResult.map(website => (
-      //   <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-      // ));
       return (
         <Fragment>
+               {msg ? <Alert message={msg} type="error" /> : null}
+              
           <Text strong style={{ fontSize: 40 }}>Register Your Business With Us</Text>
           <Form {...formItemLayout} style={{ paddingTop: 40 }} onSubmit={this.handleSubmit}>
             <Form.Item
@@ -152,7 +165,8 @@ const WrappedRegistrationForm = Form.create({ name: 'register' })(VendorSalesPag
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
+  user: state.auth.user,
+  error: state.error
 });
 
 export default connect(
