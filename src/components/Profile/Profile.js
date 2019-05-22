@@ -86,6 +86,9 @@ class UserProfile extends Component {
     this.setState({
       alertMessage: null
     })
+    if(body==={}) {
+      return;
+    }
     const update={
       updatedUser: body,
       userId: this.props.authUser.id
