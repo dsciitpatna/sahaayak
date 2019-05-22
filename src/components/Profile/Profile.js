@@ -26,7 +26,8 @@ function beforeUpload(file) {
 
 class UserProfile extends Component {
   state = {
-    alertMessage: null,
+    pwdError: "",
+    confPwdError: "",
     name: this.props.authUser.name,
     email: this.props.authUser.email,
     newpassword: "",
@@ -57,19 +58,22 @@ class UserProfile extends Component {
     e.preventDefault();
     if ( this.state.newpassword!=="" && this.state.confnewpassword==="" ) {
       this.setState({
-        alertMessage: "Please confirm your password !!!"
+        confPwdError: "Please confirm your password !!!",
+        pwdError: ""
       })
       return;
     }
     if ( this.state.newpassword==="" && this.state.confnewpassword!=="" ) {
       this.setState({
-        alertMessage: "Please enter both password fields !!!"
+        pwdError: "Please enter both password fields !!!",
+        confPwdError: ""
       })
       return;
     }
     if ( this.state.newpassword!==this.state.confnewpassword ) {
       this.setState({
-        alertMessage: "Password do not match !!!"
+        pwdError: "Passwords do not match !!!",
+        confPwdError: "Passwords do not match !!!"
       })
       return;
     }
@@ -80,11 +84,14 @@ class UserProfile extends Component {
     if ( this.state.email!=="" && this.state.email!==this.props.authUser.email ) {
       body.email=this.state.email;
     }
-    if ( this.state.newpassword!=="" ) {
+    if ( this.state.newpassword!=="" && this.state.newpassword===this.state.confnewpassword ) {
       body.password=this.state.newpassword;
     }
     this.setState({
-      alertMessage: null
+      pwdError: "",
+      confPwdError: "",
+      newpassword: "",
+      confnewpassword: ""
     })
     if(body==={}) {
       return;
@@ -98,7 +105,7 @@ class UserProfile extends Component {
 
   render() {
     const { isAuthenticated } = this.props;
-    const { name, email, newpassword, confnewpassword, phone, alertMessage } = this.state;
+    const { name, email, newpassword, confnewpassword, phone, pwdError, confPwdError } = this.state;
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -131,7 +138,6 @@ class UserProfile extends Component {
 
               </Col>
               <Col span={16}>
-              {alertMessage ? <Alert message={alertMessage} type="error" /> : null}
                 <Form.Item label="Username">
                   <Input
                     type="text"
@@ -148,7 +154,11 @@ class UserProfile extends Component {
                     onChange={this.onChange}
                   />
                 </Form.Item>
-                <Form.Item label="New Password">
+                <Form.Item 
+                  label="New Password"
+                  validateStatus={pwdError ? "error" : null}
+                  help={pwdError ? pwdError : null}
+                >
                   <Input
                     type="password"
                     name="newpassword"
@@ -156,7 +166,11 @@ class UserProfile extends Component {
                     onChange={this.onChange}
                   />
                 </Form.Item>
-                <Form.Item label="Confirm New Password">
+                <Form.Item 
+                  label="Confirm New Password"
+                  validateStatus={confPwdError ? "error" : null}
+                  help={confPwdError ? confPwdError : null}
+                >
                   <Input
                     type="password"
                     name="confnewpassword"
