@@ -154,7 +154,7 @@ class RegisterModal extends Component {
             </Form.Item>
             <Form.Item>
               {getFieldDecorator('email', {
-                rules: [{ required: true, message: 'Please input your email!' }],
+                rules: [{ required: true, message: 'Please enter email!' }, { type: 'email', message: 'Please enter valid email!' },],
               })(
                 <Input
                   type="email"
