@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Layout,Button,Modal,Input,Table, Divider } from 'antd';
+import { Button,Modal,Input,Table, Divider } from 'antd';
 
 const data = [
   {
@@ -76,9 +76,9 @@ class Categories extends Component {
       key="action"
       render={(text, record) => (
         <span>
-          <a href="javascript:;">Update</a>
+          <a href="">Update</a>
           <Divider type="vertical" />
-          <a href="javascript:;">Delete</a>
+          <a href="">Delete</a>
         </span>
       )}
     />
