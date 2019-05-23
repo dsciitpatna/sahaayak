@@ -3,6 +3,8 @@ import axios from "axios";
 import {returnErrors} from './errorActions';
 import { tokenConfig } from './authActions';
 
+const url = "https://secure-falls-92714.herokuapp.com";
+
 export const registerBusiness = ({businessname,description,residence,phone}) => (dispatch, getState) => {
   const detail = {
     description: description,
@@ -12,7 +14,7 @@ export const registerBusiness = ({businessname,description,residence,phone}) => 
   const body = JSON.stringify({ name:businessname, detail });
   const config = tokenConfig(getState);
   axios
-    .post("/services", body,config)
+    .post(`${url}/services`, body,config)
     .then(res =>{
       dispatch({
         type: REGISTER_BUSINESS_SUCCESS,
