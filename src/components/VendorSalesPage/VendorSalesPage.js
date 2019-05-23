@@ -13,41 +13,33 @@ class VendorSalesPage extends Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
-    values: {
-
-    },
-    msg:  ''
+		msg:  '',
   };
-  componentDidUpdate(prevProps,prevState){
-    const values = this.state.values;
-    if(values !== prevState.values){
-      const promiseFunction = new Promise((resolve, reject) => {
-        
-        resolve(this.props.registerBusiness(values));
-      });
-      promiseFunction.then((response) => {
-        const {error} = this.props;
-        console.log(error);
-      // if(error.id === "REGISTER_BUSINESS_FAIL"){
-      //   this.setState({
-      //     msg : error.msg
-      //   });
-      // } else{
-      //   this.setState({
-      //     msg : null
-      //   });
-      // }
-      })
-      
-    }
-
-  }
+  componentDidUpdate(prevProps){
+    const {error} = this.props;
+    if(error !== prevProps.error){
+      if(error.id === "REGISTER_BUSINESS_FAIL"){
+        this.setState({
+					msg : error.msg,
+        });
+			}
+			else{
+        this.setState({
+					msg : null
+        });
+			}			
+		}
+		}
+	
+	handleRegister=(values)=>{
+		this.props.registerBusiness(values);
+	}
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        this.setState({ values: values })
+				this.handleRegister(values)
       }
     });
   }
@@ -62,7 +54,7 @@ class VendorSalesPage extends Component {
 
 
   render() {
-    const { isAuthenticated, user } = this.props;
+    const { isAuthenticated, user,registrationDone } = this.props;
     const { msg} = this.state;
     if (isAuthenticated && user.isVendor === true) {
       const { getFieldDecorator } = this.props.form;
@@ -312,7 +304,8 @@ class VendorSalesPage extends Component {
 
       return (
         <Fragment>
-               {msg ? <Alert message={msg} type="error" /> : null}
+							 {msg ? <Alert message={msg} type='error' /> : null}
+							 {(registrationDone&&!msg)?<Alert message="Registration Successfull" type="success" />: null}
               
           <Text strong style={{ fontSize: 40 }}>Register Your Business With Us</Text>
           <Form {...formItemLayout} style={{ paddingTop: 40 }} onSubmit={this.handleSubmit}>
@@ -385,7 +378,8 @@ const WrappedRegistrationForm = Form.create({ name: 'register' })(VendorSalesPag
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
-  error: state.error
+	error: state.error,
+	registrationDone: state.vendor.registrationDone
 });
 
 export default connect(
