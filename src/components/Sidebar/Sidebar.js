@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './Sidebar.css'
 import { Layout, Menu, Icon } from "antd";
@@ -26,7 +27,7 @@ class SideBar extends Component {
         return(
           <Menu.Item key={category._id}>
             <Icon type="form" />
-            <span>{category.name}</span>
+            <span><Link exact to="/" style={{ color: 'white' }} >{category.name}</Link></span>
           </Menu.Item>
         )
       })
