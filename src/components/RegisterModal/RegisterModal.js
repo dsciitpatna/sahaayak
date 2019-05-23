@@ -16,9 +16,6 @@ import Recaptcha from "react-recaptcha";
 class RegisterModal extends Component {
   state = {
     visible: this.props.openregisterModal,
-    name: "",
-    email: "",
-    password: "",
     isVendor: false,
     msg: null,
     captchaVerified: false
@@ -58,9 +55,6 @@ class RegisterModal extends Component {
   toggleModal = () => {
     this.props.clearErrors();
     this.setState({
-      name: "",
-      email: "",
-      password: "",
       isVendor: false,
       captchaVerified: false
     });
@@ -71,8 +65,8 @@ class RegisterModal extends Component {
     this.toggleModal();
   };
 
-  handleCreate = () => {
-    const { name, email, password, isVendor, captchaVerified } = this.state;
+  handleCreate = ({name,email,password}) => {
+    const {  isVendor, captchaVerified } = this.state;
     const newUser = {
       name,
       email,
@@ -89,14 +83,12 @@ class RegisterModal extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.handleCreate();
+        this.handleCreate(values);
       }
     });
   };
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+
   onChangeSwitch = (checked,e) => {
     this.setState({ isVendor: checked });
   };
@@ -104,9 +96,6 @@ class RegisterModal extends Component {
   openLoginModal = () => {
     this.props.clearErrors();
     this.setState({
-      name: "",
-      email: "",
-      password: "",
       isVendor: false,
       captchaVerified: false
     });
@@ -125,7 +114,7 @@ class RegisterModal extends Component {
 
 
   render() {
-    const { visible, name, email, password, msg } = this.state;
+    const { visible, msg } = this.state;
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
@@ -144,9 +133,6 @@ class RegisterModal extends Component {
               })(
                 <Input
                   type="text"
-                  name="name"
-                  value={name}
-                  onChange={this.onChange}
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Name"
                 />,
@@ -158,9 +144,6 @@ class RegisterModal extends Component {
               })(
                 <Input
                   type="email"
-                  name="email"
-                  value={email}
-                  onChange={this.onChange}
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Email"
                 />,
@@ -172,16 +155,13 @@ class RegisterModal extends Component {
               })(
                 <Input
                   type="password"
-                  name="password"
-                  value={password}
-                  onChange={this.onChange}
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Password"
                 />,
               )}
             </Form.Item>
             <Form.Item label="Are you a vendor also?">
-              <Switch defaultUnchecked name="isVendor" onChange={this.onChangeSwitch} />
+              <Switch checked ={this.state.isVendor} onChange={this.onChangeSwitch} />
             </Form.Item>
             <Recaptcha
               sitekey="6LdMxpsUAAAAANDzFwLrJaRBe7CJYTKRxZYflL3M"

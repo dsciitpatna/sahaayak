@@ -15,8 +15,6 @@ import { Modal, Form, Input, Icon, Alert } from "antd";
 class LoginModal extends Component {
   state = {
     visible: this.props.openloginModal,
-    email: "",
-    password: "",
     msg: null
   };
 
@@ -54,10 +52,6 @@ class LoginModal extends Component {
 
   toggleModal = () => {
     this.props.clearErrors();
-    this.setState({
-      email: "",
-      password: "",
-    });
     this.props.closeLoginModal();
   };
 
@@ -65,8 +59,7 @@ class LoginModal extends Component {
     this.toggleModal();
   };
 
-  handleCreate = () => {
-    const { email, password } = this.state;
+  handleCreate = ({email,password}) => {
     const user = {
       email,
       password,
@@ -74,31 +67,22 @@ class LoginModal extends Component {
 
     this.props.login(user);
   };
-//
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.handleCreate();
+        this.handleCreate(values);
       }
     });
   };
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
   openRegisterModal = () => {
     this.props.clearErrors();
-    this.setState({
-      email: "",
-      password: "",
-    });
     this.props.openRegisterModal();
   };
 
   render() {
-    const { visible, email, password, msg } = this.state;
+    const { visible, msg } = this.state;
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
@@ -117,10 +101,7 @@ class LoginModal extends Component {
               rules: [{ required: true, message: 'Please input your email!' }],
             })(
               <Input
-                type="email"
-                name="email"
-                value={email}
-                onChange={this.onChange}
+              type="email"
                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder="Email"
               />,
@@ -132,12 +113,9 @@ class LoginModal extends Component {
                 rules: [{ required: true, message: 'Please input your Password!' }],
               })(
                 <Input
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={this.onChange}
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Password"
+                  type="password"
                 />,
               )}
             </Form.Item>
