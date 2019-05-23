@@ -26,7 +26,7 @@ class Navbar extends Component {
     openLoginModal: PropTypes.func.isRequired
   };
   state = {
-    collapsed: false
+    collapsed: true
   };
 
   toggle = () => {
