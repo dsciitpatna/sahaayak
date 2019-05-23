@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "antd/dist/antd.css";
 import "./DropdownMenu.css";
 import { connect } from "react-redux";
@@ -6,16 +6,11 @@ import Logout from "../Logout/Logout";
 import { Menu, Icon, Dropdown, Avatar } from "antd";
 import { Link } from "react-router-dom";
 
-class DropdownMenu extends Component {
-  state = {
-    current: "mail"
-  };
-
-  render() {
-    const { username } = this.props;
-    const { isVendor, isAdmin } = this.props.user;
+const DropdownMenu=(props)=> {
+    const { username } = props;
+    const { isVendor, isAdmin } = props.user;
     const menu = (
-      <Menu style={{ marginTop: 20 }}>
+      <Menu className="dropdown-margin">
         <Menu.Item key="1">
           <Link to="/">
             <Icon type="home" style={{ paddingRight: 10 }} />
@@ -81,7 +76,6 @@ class DropdownMenu extends Component {
       </React.Fragment>
     );
   }
-}
 
 const mapStateToProps = state => ({
   user: state.auth.user

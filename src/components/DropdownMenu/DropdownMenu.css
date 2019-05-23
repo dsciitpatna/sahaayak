@@ -2,6 +2,20 @@
   margin-right: 8px;
   margin-bottom: 8px;
 }
+
+.dropdown-margin{
+  margin: 20px 30px;
+  font-size: 30px;
+}
+.ant-dropdown-menu-item{
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: 500;
+}
+.ant-dropdown-menu{
+  padding: 10px;
+}
+
 .ant-avatar {
   position: relative;
   font-size: 20px;
@@ -22,4 +36,6 @@ transform: translate(-50%,-50%);
   width: 2rem;
   height: 2rem;
   position: absolute;
+
   top: 30%;}
+
