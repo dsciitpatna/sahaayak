@@ -2,6 +2,7 @@
   margin-right: 8px;
   margin-bottom: 8px;
 }
+
 .dropdown-margin{
   margin: 20px 30px;
   font-size: 30px;
@@ -11,3 +12,28 @@
   font-family: monospace;
   font-weight: 500;
 }
+.ant-dropdown-menu{
+  padding: 10px;
+}
+.ant-avatar {
+  position: relative;
+  font-size: 20px;
+  font-family: monospace;
+  background-color: #2f5ec4;
+  text-transform: uppercase;
+  width: 50px;
+  height: 45px;
+  
+}
+.ant-avatar span{
+position: absolute;
+top: 20%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
+.anticon-more svg{
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 30%;}
+

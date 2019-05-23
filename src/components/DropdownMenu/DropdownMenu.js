@@ -6,7 +6,7 @@ import Logout from "../Logout/Logout";
 import { Menu, Icon, Dropdown, Avatar } from "antd";
 import { Link } from "react-router-dom";
 
-function DropdownMenu(props) {
+const DropdownMenu=(props)=> {
     const { username } = props;
     const { isVendor, isAdmin } = props.user;
     const menu = (
@@ -63,8 +63,6 @@ function DropdownMenu(props) {
     return (
       <React.Fragment>
         <Avatar
-          style={{ backgroundColor: "#2f5ec4", verticalAlign: "middle" }}
-          size="large"
         >
           {username[0]}
         </Avatar>
