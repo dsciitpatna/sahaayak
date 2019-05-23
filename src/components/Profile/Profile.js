@@ -2,7 +2,11 @@
 import React, { Component, Fragment } from "react";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Form, Input, Button, Row, Col, Upload, Icon, message } from "antd";
+import PropTypes from 'prop-types';
+import { Form, Input, Button, Row, Col, Upload, Icon, message, Alert } from "antd";
+
+import { clearErrors } from "../../redux/actions/errorActions";
+import { updateUser } from "../../redux/actions/userActions";
 import "./Profile.css";
 
 function getBase64(img, callback) {
@@ -25,14 +29,55 @@ function beforeUpload(file) {
 
 class UserProfile extends Component {
   state = {
-    name: "",
-    email: "",
-    password: "",
+    msg: null,
+    pwdError: "",
+    confPwdError: "",
+    name: this.props.authUser.name,
+    email: this.props.authUser.email,
     newpassword: "",
+    confnewpassword: "",
     phone: "",
     // Property used for uploading image
     loading: false
   }
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+    error: PropTypes.object.isRequired,
+    clearErrors: PropTypes.func.isRequired,
+    updateUser: PropTypes.func.isRequired,
+    authUser: PropTypes.object.isRequired,
+    userUser: PropTypes.object.isRequired
+  };
+
+  componentDidUpdate(prevProps) {
+    const { error } = this.props;
+    if (error !== prevProps.error) {
+      if (error.id === "USER_UPDATE_FAIL") {
+        if(error.msg!==Object(error.msg)) {
+          this.setState({
+            msg: error.msg
+          });
+        } else {
+          let message="";
+          if(error.msg.name && error.msg.name.message!=="") {
+            message+=error.msg.name.message+" ";
+          }
+          if(error.msg.email && error.msg.email.message!=="") {
+            message+=error.msg.email.message;
+          }
+          this.setState({
+            msg: message
+          });
+        }
+      } else {
+        this.setState({
+          msg: null
+        });
+      }
+    }
+  }
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -50,9 +95,59 @@ class UserProfile extends Component {
       }));
     }
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    if ( this.state.newpassword!=="" && this.state.confnewpassword==="" ) {
+      this.setState({
+        confPwdError: "Please confirm your password !!!",
+        pwdError: ""
+      })
+      return;
+    }
+    if ( this.state.newpassword==="" && this.state.confnewpassword!=="" ) {
+      this.setState({
+        pwdError: "Please enter both password fields !!!",
+        confPwdError: ""
+      })
+      return;
+    }
+    if ( this.state.newpassword!==this.state.confnewpassword ) {
+      this.setState({
+        pwdError: "Passwords do not match !!!",
+        confPwdError: "Passwords do not match !!!"
+      })
+      return;
+    }
+    let body={};
+    if ( this.state.name!=="" && this.state.name!==this.props.authUser.name ) {
+      body.name=this.state.name;
+    }
+    if ( this.state.email!=="" && this.state.email!==this.props.authUser.email ) {
+      body.email=this.state.email;
+    }
+    if ( this.state.newpassword!=="" && this.state.newpassword===this.state.confnewpassword ) {
+      body.password=this.state.newpassword;
+    }
+    this.setState({
+      pwdError: "",
+      confPwdError: "",
+      newpassword: "",
+      confnewpassword: ""
+    })
+    if(body==={}) {
+      return;
+    }
+    const update={
+      updatedUser: body,
+      userId: this.props.authUser.id
+    }
+    this.props.updateUser(update);
+  }
+
   render() {
     const { isAuthenticated } = this.props;
-    const { name, email, password, newpassword, phone } = this.state;
+    const { name, email, newpassword, confnewpassword, phone, pwdError, confPwdError, msg } = this.state;
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -63,7 +158,9 @@ class UserProfile extends Component {
     if (isAuthenticated) {
       return (
         <Fragment>
-          <Form layout="vertical">
+          <Form layout="vertical" onSubmit={this.handleSubmit}>
+          {msg && this.props.userStatus!==200 ? <Alert message={msg} type="error" /> : null}
+          {this.props.userStatus===200 ? <Alert message="Profile Updated" type="success" showIcon /> : null}
             <Row>
               <h1>Profile Page</h1>
               <hr></hr>
@@ -101,19 +198,27 @@ class UserProfile extends Component {
                     onChange={this.onChange}
                   />
                 </Form.Item>
-                <Form.Item label="New Password">
-                  <Input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={this.onChange}
-                  />
-                </Form.Item>
-                <Form.Item label="Confirm New Password">
+                <Form.Item 
+                  label="New Password"
+                  validateStatus={pwdError ? "error" : null}
+                  help={pwdError ? pwdError : null}
+                >
                   <Input
                     type="password"
                     name="newpassword"
                     value={newpassword}
+                    onChange={this.onChange}
+                  />
+                </Form.Item>
+                <Form.Item 
+                  label="Confirm New Password"
+                  validateStatus={confPwdError ? "error" : null}
+                  help={confPwdError ? confPwdError : null}
+                >
+                  <Input
+                    type="password"
+                    name="confnewpassword"
+                    value={confnewpassword}
                     onChange={this.onChange}
                   />
                 </Form.Item>
@@ -125,7 +230,7 @@ class UserProfile extends Component {
                     onChange={this.onChange}
                   />
                 </Form.Item>
-                <Button type="primary">UPDATE</Button>
+                <Button type="primary" onClick={this.handleSubmit}>UPDATE</Button>
               </Col>
             </Row>
 
@@ -144,10 +249,14 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  authUser: state.auth.user,
+  userUser: state.user.user,
+  userStatus: state.user.status,
+  error: state.error,
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  { updateUser, clearErrors }
 )(UserProfile);
