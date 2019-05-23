@@ -114,6 +114,7 @@ class LoginModal extends Component {
                 <Input
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Password"
+                  type="password"
                 />,
               )}
             </Form.Item>
