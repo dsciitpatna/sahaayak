@@ -65,8 +65,8 @@ class RegisterModal extends Component {
     this.toggleModal();
   };
 
-  handleCreate = ({name,email,password}) => {
-    const {  isVendor, captchaVerified } = this.state;
+  handleCreate = ({ name, email, password }) => {
+    const { isVendor, captchaVerified } = this.state;
     const newUser = {
       name,
       email,
@@ -89,7 +89,7 @@ class RegisterModal extends Component {
   };
 
 
-  onChangeSwitch = (checked,e) => {
+  onChangeSwitch = (checked, e) => {
     this.setState({ isVendor: checked });
   };
 
@@ -161,10 +161,10 @@ class RegisterModal extends Component {
               )}
             </Form.Item>
             <Form.Item label="Are you a vendor also?">
-              <Switch checked ={this.state.isVendor} onChange={this.onChangeSwitch} />
+              <Switch checked={this.state.isVendor} onChange={this.onChangeSwitch} />
             </Form.Item>
             <Recaptcha
-              sitekey="6LdMxpsUAAAAANDzFwLrJaRBe7CJYTKRxZYflL3M"
+              sitekey="6LdBLaUUAAAAAIB8O9rgu9pAw9Tplg8lda7YM50W"
               render="explicit"
               onloadCallback={this.captchaLoad}
               verifyCallback={this.verifyCaptcha}
@@ -186,6 +186,6 @@ const mapStateToProps = state => ({
 });
 
 export default compose(
-  connect(mapStateToProps,{ register, clearErrors, openLoginModal, closeRegisterModal }),
+  connect(mapStateToProps, { register, clearErrors, openLoginModal, closeRegisterModal }),
   Form.create({ name: 'normal_register' })
 )(RegisterModal);
