@@ -9,12 +9,13 @@ const { Sider } = Layout;
 class SideBar extends Component {
   render() {
     return (
-      <Fragment>
+      <div className="wrapper">
+      <Fragment style={{position: 'relative'}}>
         <Sider
           style={{ overflow: 'auto', height: '100vh', left: 0 }}
           trigger={null}
           collapsible
-          collapsedWidth={95}
+          collapsedWidth={0}
           collapsed={this.props.collapseProp}
         >
           <div className="logo" />
@@ -82,6 +83,7 @@ class SideBar extends Component {
           </Menu>
         </Sider>
       </Fragment>
+      </div>
     );
   }
 }
