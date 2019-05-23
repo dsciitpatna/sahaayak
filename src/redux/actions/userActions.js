@@ -1,4 +1,4 @@
-import { USER_UPDATE, USER_LOADED } from './type';
+import { USER_UPDATE, USER_LOADED, USER_UPDATE_FAIL } from './type';
 import axios from 'axios';
 import { returnErrors } from './errorActions';
 
@@ -16,8 +16,8 @@ export const updateUser = ({updatedUser, userId}) => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      console.log(err.response);
-      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch(returnErrors(err.response.data, err.response.status, 'USER_UPDATE_FAIL'));
+      dispatch({ type: USER_UPDATE_FAIL })
     })
 
 }
