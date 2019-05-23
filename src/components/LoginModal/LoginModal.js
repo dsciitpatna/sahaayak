@@ -98,7 +98,7 @@ class LoginModal extends Component {
           
             <Form.Item>
             {getFieldDecorator('email', {
-              rules: [{ required: true, message: 'Please input your email!' }],
+              rules: [{ required: true, message: 'Please enter your email!' }, { type: 'email', message: 'Please enter valid email!' },],
             })(
               <Input
               type="email"
