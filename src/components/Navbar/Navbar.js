@@ -70,7 +70,7 @@ class Navbar extends Component {
                 <Menu.Item key="2" className="left">
                   <Link to="/">Sahaayak</Link>
                 </Menu.Item>
-                <Menu.Item key="2" className="right">
+                <Menu.Item key="3" className="right">
                   <DropdownMenu username={user.name} />
                 </Menu.Item>
               </Menu>

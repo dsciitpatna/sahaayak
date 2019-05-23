@@ -101,6 +101,7 @@ class LoginModal extends Component {
               rules: [{ required: true, message: 'Please input your email!' }],
             })(
               <Input
+              type="email"
                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder="Email"
               />,
