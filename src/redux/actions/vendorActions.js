@@ -18,7 +18,7 @@ export const registerBusiness = ({businessname,description,residence,phone}) => 
     .then(res =>{
       dispatch({
         type: REGISTER_BUSINESS_SUCCESS,
-        payload: res.data
+        payload: res.status
       })}
     )
     .catch(err =>{
