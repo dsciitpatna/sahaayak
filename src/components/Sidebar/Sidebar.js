@@ -27,7 +27,7 @@ class SideBar extends Component {
         return(
           <Menu.Item key={category._id}>
             <Icon type="form" />
-            <span><Link exact to="/" style={{ color: 'white' }} >{category.name}</Link></span>
+            <span><Link to="/categoryWiseServices" style={{ color: 'white' }} >{category.name}</Link></span>
           </Menu.Item>
         )
       })

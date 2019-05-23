@@ -17,6 +17,7 @@ import VendorSalesPage from "../VendorSalesPage/VendorSalesPage";
 import AdminNavbar from "../Admin/AdminNavbar";
 import Categories from "../Admin/Categories";
 import Slideshow from "../Slideshow/Slideshow";
+import CategoryWiseServices from "../CategoryWiseServices/CategoryWiseServices";
 
 const { Header, Content } = Layout;
 
@@ -121,6 +122,7 @@ class Navbar extends Component {
                 <Route exact path="/" component={Slideshow} />
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
+                <Route exact path="/categoryWiseServices" component={CategoryWiseServices} />
                 <Route
                   exact
                   path="/vendorDashboard"
