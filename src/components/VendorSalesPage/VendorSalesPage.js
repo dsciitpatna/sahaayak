@@ -146,7 +146,7 @@ class VendorSalesPage extends Component {
 
 
             <Form.Item {...tailFormItemLayout}>
-              <Button type="danger" block htmlType="submit">Enter The Details</Button>
+              <Button type="primary" block htmlType="submit">Enter The Details</Button>
             </Form.Item>
           </Form>
         </Fragment>
