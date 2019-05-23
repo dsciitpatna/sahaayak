@@ -15,6 +15,7 @@
 .ant-dropdown-menu{
   padding: 10px;
 }
+
 .ant-avatar {
   position: relative;
   font-size: 20px;
@@ -35,5 +36,6 @@ transform: translate(-50%,-50%);
   width: 2rem;
   height: 2rem;
   position: absolute;
+
   top: 30%;}
 
