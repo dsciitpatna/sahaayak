@@ -1,11 +1,26 @@
-import {USER_LOADING,USER_LOADED,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT_SUCCESS,REGISTER_SUCCESS,REGISTER_FAIL,AUTH_ERROR,OPEN_LOGIN_MODAL,CLOSE_LOGIN_MODAL,OPEN_REGISTER_MODAL,CLOSE_REGISTER_MODAL} from "./type";
+import {
+  USER_LOADING,
+  USER_LOADED,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT_SUCCESS,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  AUTH_ERROR,
+  OPEN_LOGIN_MODAL,
+  CLOSE_LOGIN_MODAL,
+  OPEN_REGISTER_MODAL,
+  CLOSE_REGISTER_MODAL
+} from "./type";
 import axios from "axios";
 import { returnErrors } from "./errorActions";
+
+const url = "https://secure-falls-92714.herokuapp.com";
 
 export const loaduser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
   axios
-    .get("/api/login/user", tokenConfig(getState))
+    .get(`${url}/api/login/user`, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: USER_LOADED,
@@ -28,7 +43,7 @@ export const register = ({ name, email, password, isVendor }) => dispatch => {
   };
   const body = JSON.stringify({ name, email, password, isVendor });
   axios
-    .post("/users/signup", body, config)
+    .post(`${url}/users/signup`, body, config)
     .then(res =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -51,7 +66,7 @@ export const login = ({ email, password }) => dispatch => {
   };
   const body = JSON.stringify({ email, password });
   axios
-    .post("/users/login", body, config)
+    .post(`${url}/users/login`, body, config)
     .then(res =>
       dispatch({
         type: LOGIN_SUCCESS,
