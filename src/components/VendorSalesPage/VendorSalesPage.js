@@ -5,7 +5,7 @@ import {
   Form, Input, Select, Button, Typography,Alert
 } from 'antd';
 import {registerBusiness} from '../../redux/actions/vendorActions';
-const { Option } = Select;
+const Option  = Select.Option;
 const { Text } = Typography;
 const { TextArea } = Input;
 
@@ -54,7 +54,7 @@ class VendorSalesPage extends Component {
 
 
   render() {
-    const { isAuthenticated, user,registrationDone } = this.props;
+    const { isAuthenticated, user,status } = this.props;
     const { msg} = this.state;
     if (isAuthenticated && user.isVendor === true) {
       const { getFieldDecorator } = this.props.form;
@@ -80,232 +80,27 @@ class VendorSalesPage extends Component {
             offset: 8,
           },
         },
-      };
+			};
+		const	phoneprefix=[
+			{"name":"Israel","dial_code":"+972","code":"IL"},{"name":"Afghanistan","dial_code":"+93","code":"AF"},{"name":"Albania","dial_code":"+355","code":"AL"},{"name":"Algeria","dial_code":"+213","code":"DZ"},{"name":"AmericanSamoa","dial_code":"+1 684","code":"AS"},{"name":"Andorra","dial_code":"+376","code":"AD"},{"name":"Angola","dial_code":"+244","code":"AO"},{"name":"Anguilla","dial_code":"+1 264","code":"AI"},{"name":"Antigua and Barbuda","dial_code":"+1268","code":"AG"},{"name":"Argentina","dial_code":"+54","code":"AR"},{"name":"Armenia","dial_code":"+374","code":"AM"},{"name":"Aruba","dial_code":"+297","code":"AW"},{"name":"Australia","dial_code":"+61","code":"AU"},{"name":"Austria","dial_code":"+43","code":"AT"},{"name":"Azerbaijan","dial_code":"+994","code":"AZ"},{"name":"Bahamas","dial_code":"+1 242","code":"BS"},{"name":"Bahrain","dial_code":"+973","code":"BH"},{"name":"Bangladesh","dial_code":"+880","code":"BD"},{"name":"Barbados","dial_code":"+1 246","code":"BB"},{"name":"Belarus","dial_code":"+375","code":"BY"},{"name":"Belgium","dial_code":"+32","code":"BE"},{"name":"Belize","dial_code":"+501","code":"BZ"},{"name":"Benin","dial_code":"+229","code":"BJ"},{"name":"Bermuda","dial_code":"+1 441","code":"BM"},{"name":"Bhutan","dial_code":"+975","code":"BT"},{"name":"Bosnia and Herzegovina","dial_code":"+387","code":"BA"},{"name":"Botswana","dial_code":"+267","code":"BW"},{"name":"Brazil","dial_code":"+55","code":"BR"},{"name":"British Indian Ocean Territory","dial_code":"+246","code":"IO"},{"name":"Bulgaria","dial_code":"+359","code":"BG"},{"name":"Burkina Faso","dial_code":"+226","code":"BF"},{"name":"Burundi","dial_code":"+257","code":"BI"},{"name":"Cambodia","dial_code":"+855","code":"KH"},{"name":"Cameroon","dial_code":"+237","code":"CM"},{"name":"Canada","dial_code":"+1","code":"CA"},{"name":"Cape Verde","dial_code":"+238","code":"CV"},{"name":"Cayman Islands","dial_code":"+ 345","code":"KY"},{"name":"Central African Republic","dial_code":"+236","code":"CF"},{"name":"Chad","dial_code":"+235","code":"TD"},{"name":"Chile","dial_code":"+56","code":"CL"},{"name":"China","dial_code":"+86","code":"CN"},{"name":"Christmas Island","dial_code":"+61","code":"CX"},{"name":"Colombia","dial_code":"+57","code":"CO"},{"name":"Comoros","dial_code":"+269","code":"KM"},{"name":"Congo","dial_code":"+242","code":"CG"},{"name":"Cook Islands","dial_code":"+682","code":"CK"},{"name":"Costa Rica","dial_code":"+506","code":"CR"},{"name":"Croatia","dial_code":"+385","code":"HR"},{"name":"Cuba","dial_code":"+53","code":"CU"},{"name":"Cyprus","dial_code":"+537","code":"CY"},{"name":"Czech Republic","dial_code":"+420","code":"CZ"},{"name":"Denmark","dial_code":"+45","code":"DK"},{"name":"Djibouti","dial_code":"+253","code":"DJ"},{"name":"Dominica","dial_code":"+1 767","code":"DM"},{"name":"Dominican Republic","dial_code":"+1 849","code":"DO"},{"name":"Ecuador","dial_code":"+593","code":"EC"},{"name":"Egypt","dial_code":"+20","code":"EG"},{"name":"El Salvador","dial_code":"+503","code":"SV"},{"name":"Equatorial Guinea","dial_code":"+240","code":"GQ"},{"name":"Eritrea","dial_code":"+291","code":"ER"},{"name":"Estonia","dial_code":"+372","code":"EE"},{"name":"Ethiopia","dial_code":"+251","code":"ET"},{"name":"Faroe Islands","dial_code":"+298","code":"FO"},{"name":"Fiji","dial_code":"+679","code":"FJ"},{"name":"Finland","dial_code":"+358","code":"FI"},{"name":"France","dial_code":"+33","code":"FR"},{"name":"French Guiana","dial_code":"+594","code":"GF"},{"name":"French Polynesia","dial_code":"+689","code":"PF"},{"name":"Gabon","dial_code":"+241","code":"GA"},{"name":"Gambia","dial_code":"+220","code":"GM"},{"name":"Georgia","dial_code":"+995","code":"GE"},{"name":"Germany","dial_code":"+49","code":"DE"},{"name":"Ghana","dial_code":"+233","code":"GH"},{"name":"Gibraltar","dial_code":"+350","code":"GI"},{"name":"Greece","dial_code":"+30","code":"GR"},{"name":"Greenland","dial_code":"+299","code":"GL"},{"name":"Grenada","dial_code":"+1 473","code":"GD"},{"name":"Guadeloupe","dial_code":"+590","code":"GP"},{"name":"Guam","dial_code":"+1 671","code":"GU"},{"name":"Guatemala","dial_code":"+502","code":"GT"},{"name":"Guinea","dial_code":"+224","code":"GN"},{"name":"Guinea-Bissau","dial_code":"+245","code":"GW"},{"name":"Guyana","dial_code":"+595","code":"GY"},{"name":"Haiti","dial_code":"+509","code":"HT"},{"name":"Honduras","dial_code":"+504","code":"HN"},{"name":"Hungary","dial_code":"+36","code":"HU"},{"name":"Iceland","dial_code":"+354","code":"IS"},{"name":"India","dial_code":"+91","code":"IN"},{"name":"Indonesia","dial_code":"+62","code":"ID"},{"name":"Iraq","dial_code":"+964","code":"IQ"},{"name":"Ireland","dial_code":"+353","code":"IE"},{"name":"Israel","dial_code":"+972","code":"IL"},{"name":"Italy","dial_code":"+39","code":"IT"},{"name":"Jamaica","dial_code":"+1 876","code":"JM"},{"name":"Japan","dial_code":"+81","code":"JP"},{"name":"Jordan","dial_code":"+962","code":"JO"},{"name":"Kazakhstan","dial_code":"+7 7","code":"KZ"},{"name":"Kenya","dial_code":"+254","code":"KE"},{"name":"Kiribati","dial_code":"+686","code":"KI"},{"name":"Kuwait","dial_code":"+965","code":"KW"},{"name":"Kyrgyzstan","dial_code":"+996","code":"KG"},{"name":"Latvia","dial_code":"+371","code":"LV"},{"name":"Lebanon","dial_code":"+961","code":"LB"},{"name":"Lesotho","dial_code":"+266","code":"LS"},{"name":"Liberia","dial_code":"+231","code":"LR"},{"name":"Liechtenstein","dial_code":"+423","code":"LI"},{"name":"Lithuania","dial_code":"+370","code":"LT"},{"name":"Luxembourg","dial_code":"+352","code":"LU"},{"name":"Madagascar","dial_code":"+261","code":"MG"},{"name":"Malawi","dial_code":"+265","code":"MW"},{"name":"Malaysia","dial_code":"+60","code":"MY"},{"name":"Maldives","dial_code":"+960","code":"MV"},{"name":"Mali","dial_code":"+223","code":"ML"},{"name":"Malta","dial_code":"+356","code":"MT"},{"name":"Marshall Islands","dial_code":"+692","code":"MH"},{"name":"Martinique","dial_code":"+596","code":"MQ"},{"name":"Mauritania","dial_code":"+222","code":"MR"},{"name":"Mauritius","dial_code":"+230","code":"MU"},{"name":"Mayotte","dial_code":"+262","code":"YT"},{"name":"Mexico","dial_code":"+52","code":"MX"},{"name":"Monaco","dial_code":"+377","code":"MC"},{"name":"Mongolia","dial_code":"+976","code":"MN"},{"name":"Montenegro","dial_code":"+382","code":"ME"},{"name":"Montserrat","dial_code":"+1664","code":"MS"},{"name":"Morocco","dial_code":"+212","code":"MA"},{"name":"Myanmar","dial_code":"+95","code":"MM"},{"name":"Namibia","dial_code":"+264","code":"NA"},{"name":"Nauru","dial_code":"+674","code":"NR"},{"name":"Nepal","dial_code":"+977","code":"NP"},{"name":"Netherlands","dial_code":"+31","code":"NL"},{"name":"Netherlands Antilles","dial_code":"+599","code":"AN"},{"name":"New Caledonia","dial_code":"+687","code":"NC"},{"name":"New Zealand","dial_code":"+64","code":"NZ"},{"name":"Nicaragua","dial_code":"+505","code":"NI"},{"name":"Niger","dial_code":"+227","code":"NE"},{"name":"Nigeria","dial_code":"+234","code":"NG"},{"name":"Niue","dial_code":"+683","code":"NU"},{"name":"Norfolk Island","dial_code":"+672","code":"NF"},{"name":"Northern Mariana Islands","dial_code":"+1 670","code":"MP"},{"name":"Norway","dial_code":"+47","code":"NO"},{"name":"Oman","dial_code":"+968","code":"OM"},{"name":"Pakistan","dial_code":"+92","code":"PK"},{"name":"Palau","dial_code":"+680","code":"PW"},{"name":"Panama","dial_code":"+507","code":"PA"},{"name":"Papua New Guinea","dial_code":"+675","code":"PG"},{"name":"Paraguay","dial_code":"+595","code":"PY"},{"name":"Peru","dial_code":"+51","code":"PE"},{"name":"Philippines","dial_code":"+63","code":"PH"},{"name":"Poland","dial_code":"+48","code":"PL"},{"name":"Portugal","dial_code":"+351","code":"PT"},{"name":"Puerto Rico","dial_code":"+1 939","code":"PR"},{"name":"Qatar","dial_code":"+974","code":"QA"},{"name":"Romania","dial_code":"+40","code":"RO"},{"name":"Rwanda","dial_code":"+250","code":"RW"},{"name":"Samoa","dial_code":"+685","code":"WS"},{"name":"San Marino","dial_code":"+378","code":"SM"},{"name":"Saudi Arabia","dial_code":"+966","code":"SA"},{"name":"Senegal","dial_code":"+221","code":"SN"},{"name":"Serbia","dial_code":"+381","code":"RS"},{"name":"Seychelles","dial_code":"+248","code":"SC"},{"name":"Sierra Leone","dial_code":"+232","code":"SL"},{"name":"Singapore","dial_code":"+65","code":"SG"},{"name":"Slovakia","dial_code":"+421","code":"SK"},{"name":"Slovenia","dial_code":"+386","code":"SI"},{"name":"Solomon Islands","dial_code":"+677","code":"SB"},{"name":"South Africa","dial_code":"+27","code":"ZA"},{"name":"South Georgia and the South Sandwich Islands","dial_code":"+500","code":"GS"},{"name":"Spain","dial_code":"+34","code":"ES"},{"name":"Sri Lanka","dial_code":"+94","code":"LK"},{"name":"Sudan","dial_code":"+249","code":"SD"},{"name":"Suriname","dial_code":"+597","code":"SR"},{"name":"Swaziland","dial_code":"+268","code":"SZ"},{"name":"Sweden","dial_code":"+46","code":"SE"},{"name":"Switzerland","dial_code":"+41","code":"CH"},{"name":"Tajikistan","dial_code":"+992","code":"TJ"},{"name":"Thailand","dial_code":"+66","code":"TH"},{"name":"Togo","dial_code":"+228","code":"TG"},{"name":"Tokelau","dial_code":"+690","code":"TK"},{"name":"Tonga","dial_code":"+676","code":"TO"},{"name":"Trinidad and Tobago","dial_code":"+1 868","code":"TT"},{"name":"Tunisia","dial_code":"+216","code":"TN"},{"name":"Turkey","dial_code":"+90","code":"TR"},{"name":"Turkmenistan","dial_code":"+993","code":"TM"},{"name":"Turks and Caicos Islands","dial_code":"+1 649","code":"TC"},{"name":"Tuvalu","dial_code":"+688","code":"TV"},{"name":"Uganda","dial_code":"+256","code":"UG"},{"name":"Ukraine","dial_code":"+380","code":"UA"},{"name":"United Arab Emirates","dial_code":"+971","code":"AE"},{"name":"United Kingdom","dial_code":"+44","code":"GB"},{"name":"United States","dial_code":"+1","code":"US"},{"name":"Uruguay","dial_code":"+598","code":"UY"},{"name":"Uzbekistan","dial_code":"+998","code":"UZ"},{"name":"Vanuatu","dial_code":"+678","code":"VU"},{"name":"Wallis and Futuna","dial_code":"+681","code":"WF"},{"name":"Yemen","dial_code":"+967","code":"YE"},{"name":"Zambia","dial_code":"+260","code":"ZM"},{"name":"Zimbabwe","dial_code":"+263","code":"ZW"},{"name":"land Islands","dial_code":"","code":"AX"},{"name":"Antarctica","dial_code":null,"code":"AQ"},{"name":"Bolivia, Plurinational State of","dial_code":"+591","code":"BO"},{"name":"Brunei Darussalam","dial_code":"+673","code":"BN"},{"name":"Cocos (Keeling) Islands","dial_code":"+61","code":"CC"},{"name":"Congo, The Democratic Republic of the","dial_code":"+243","code":"CD"},{"name":"Cote d'Ivoire","dial_code":"+225","code":"CI"},{"name":"Falkland Islands (Malvinas)","dial_code":"+500","code":"FK"},{"name":"Guernsey","dial_code":"+44","code":"GG"},{"name":"Holy See (Vatican City State)","dial_code":"+379","code":"VA"},{"name":"Hong Kong","dial_code":"+852","code":"HK"},{"name":"Iran, Islamic Republic of","dial_code":"+98","code":"IR"},{"name":"Isle of Man","dial_code":"+44","code":"IM"},{"name":"Jersey","dial_code":"+44","code":"JE"},{"name":"Korea, Democratic People's Republic of","dial_code":"+850","code":"KP"},{"name":"Korea, Republic of","dial_code":"+82","code":"KR"},{"name":"Lao People's Democratic Republic","dial_code":"+856","code":"LA"},{"name":"Libyan Arab Jamahiriya","dial_code":"+218","code":"LY"},{"name":"Macao","dial_code":"+853","code":"MO"},{"name":"Macedonia, The Former Yugoslav Republic of","dial_code":"+389","code":"MK"},{"name":"Micronesia, Federated States of","dial_code":"+691","code":"FM"},{"name":"Moldova, Republic of","dial_code":"+373","code":"MD"},{"name":"Mozambique","dial_code":"+258","code":"MZ"},{"name":"Palestinian Territory, Occupied","dial_code":"+970","code":"PS"},{"name":"Pitcairn","dial_code":"+872","code":"PN"},{"name":"Réunion","dial_code":"+262","code":"RE"},{"name":"Russia","dial_code":"+7","code":"RU"},{"name":"Saint Barthélemy","dial_code":"+590","code":"BL"},{"name":"Saint Helena, Ascension and Tristan Da Cunha","dial_code":"+290","code":"SH"},{"name":"Saint Kitts and Nevis","dial_code":"+1 869","code":"KN"},{"name":"Saint Lucia","dial_code":"+1 758","code":"LC"},{"name":"Saint Martin","dial_code":"+590","code":"MF"},{"name":"Saint Pierre and Miquelon","dial_code":"+508","code":"PM"},{"name":"Saint Vincent and the Grenadines","dial_code":"+1 784","code":"VC"},{"name":"Sao Tome and Principe","dial_code":"+239","code":"ST"},{"name":"Somalia","dial_code":"+252","code":"SO"},{"name":"Svalbard and Jan Mayen","dial_code":"+47","code":"SJ"},{"name":"Syrian Arab Republic","dial_code":"+963","code":"SY"},{"name":"Taiwan, Province of China","dial_code":"+886","code":"TW"},{"name":"Tanzania, United Republic of","dial_code":"+255","code":"TZ"},{"name":"Timor-Leste","dial_code":"+670","code":"TL"},{"name":"Venezuela, Bolivarian Republic of","dial_code":"+58","code":"VE"},{"name":"Viet Nam","dial_code":"+84","code":"VN"},{"name":"Virgin Islands, British","dial_code":"+1 284","code":"VG"},{"name":"Virgin Islands, U.S.","dial_code":"+1 340","code":"VI"}
+		 
+			]
+			const menu=[];
+			phoneprefix.forEach(({name,dial_code,code}) => {
+			menu.push(<Option value={code}>{`${name}  ${dial_code}`}</Option>);
+		})
       const prefixSelector = getFieldDecorator('prefix', {
-        initialValue: '213',
+      initialValue: 'India +91',
       })(
         <Select>
-    <Option data-countryCode="DZ" value="213">Algeria (+213)</Option>
-		<Option data-countryCode="AD" value="376">Andorra (+376)</Option>
-		<Option data-countryCode="AO" value="244">Angola (+244)</Option>
-		<Option data-countryCode="AI" value="1264">Anguilla (+1264)</Option>
-		<Option data-countryCode="AG" value="1268">Antigua &amp; Barbuda (+1268)</Option>
-		<Option data-countryCode="AR" value="54">Argentina (+54)</Option>
-		<Option data-countryCode="AM" value="374">Armenia (+374)</Option>
-		<Option data-countryCode="AW" value="297">Aruba (+297)</Option>
-		<Option data-countryCode="AU" value="61">Australia (+61)</Option>
-		<Option data-countryCode="AT" value="43">Austria (+43)</Option>
-		<Option data-countryCode="AZ" value="994">Azerbaijan (+994)</Option>
-		<Option data-countryCode="BS" value="1242">Bahamas (+1242)</Option>
-		<Option data-countryCode="BH" value="973">Bahrain (+973)</Option>
-		<Option data-countryCode="BD" value="880">Bangladesh (+880)</Option>
-		<Option data-countryCode="BB" value="1246">Barbados (+1246)</Option>
-		<Option data-countryCode="BY" value="375">Belarus (+375)</Option>
-		<Option data-countryCode="BE" value="32">Belgium (+32)</Option>
-		<Option data-countryCode="BZ" value="501">Belize (+501)</Option>
-		<Option data-countryCode="BJ" value="229">Benin (+229)</Option>
-		<Option data-countryCode="BM" value="1441">Bermuda (+1441)</Option>
-		<Option data-countryCode="BT" value="975">Bhutan (+975)</Option>
-		<Option data-countryCode="BO" value="591">Bolivia (+591)</Option>
-		<Option data-countryCode="BA" value="387">Bosnia Herzegovina (+387)</Option>
-		<Option data-countryCode="BW" value="267">Botswana (+267)</Option>
-		<Option data-countryCode="BR" value="55">Brazil (+55)</Option>
-		<Option data-countryCode="BN" value="673">Brunei (+673)</Option>
-		<Option data-countryCode="BG" value="359">Bulgaria (+359)</Option>
-		<Option data-countryCode="BF" value="226">Burkina Faso (+226)</Option>
-		<Option data-countryCode="BI" value="257">Burundi (+257)</Option>
-		<Option data-countryCode="KH" value="855">Cambodia (+855)</Option>
-		<Option data-countryCode="CM" value="237">Cameroon (+237)</Option>
-		<Option data-countryCode="CA" value="1">Canada (+1)</Option>
-		<Option data-countryCode="CV" value="238">Cape Verde Islands (+238)</Option>
-		<Option data-countryCode="KY" value="1345">Cayman Islands (+1345)</Option>
-		<Option data-countryCode="CF" value="236">Central African Republic (+236)</Option>
-		<Option data-countryCode="CL" value="56">Chile (+56)</Option>
-		<Option data-countryCode="CN" value="86">China (+86)</Option>
-		<Option data-countryCode="CO" value="57">Colombia (+57)</Option>
-		<Option data-countryCode="KM" value="269">Comoros (+269)</Option>
-		<Option data-countryCode="CG" value="242">Congo (+242)</Option>
-		<Option data-countryCode="CK" value="682">Cook Islands (+682)</Option>
-		<Option data-countryCode="CR" value="506">Costa Rica (+506)</Option>
-		<Option data-countryCode="HR" value="385">Croatia (+385)</Option>
-		<Option data-countryCode="CU" value="53">Cuba (+53)</Option>
-		<Option data-countryCode="CY" value="90392">Cyprus North (+90392)</Option>
-		<Option data-countryCode="CY" value="357">Cyprus South (+357)</Option>
-		<Option data-countryCode="CZ" value="42">Czech Republic (+42)</Option>
-		<Option data-countryCode="DK" value="45">Denmark (+45)</Option>
-		<Option data-countryCode="DJ" value="253">Djibouti (+253)</Option>
-		<Option data-countryCode="DM" value="1809">Dominica (+1809)</Option>
-		<Option data-countryCode="DO" value="1809">Dominican Republic (+1809)</Option>
-		<Option data-countryCode="EC" value="593">Ecuador (+593)</Option>
-		<Option data-countryCode="EG" value="20">Egypt (+20)</Option>
-		<Option data-countryCode="SV" value="503">El Salvador (+503)</Option>
-		<Option data-countryCode="GQ" value="240">Equatorial Guinea (+240)</Option>
-		<Option data-countryCode="ER" value="291">Eritrea (+291)</Option>
-		<Option data-countryCode="EE" value="372">Estonia (+372)</Option>
-		<Option data-countryCode="ET" value="251">Ethiopia (+251)</Option>
-		<Option data-countryCode="FK" value="500">Falkland Islands (+500)</Option>
-		<Option data-countryCode="FO" value="298">Faroe Islands (+298)</Option>
-		<Option data-countryCode="FJ" value="679">Fiji (+679)</Option>
-		<Option data-countryCode="FI" value="358">Finland (+358)</Option>
-		<Option data-countryCode="FR" value="33">France (+33)</Option>
-		<Option data-countryCode="GF" value="594">French Guiana (+594)</Option>
-		<Option data-countryCode="PF" value="689">French Polynesia (+689)</Option>
-		<Option data-countryCode="GA" value="241">Gabon (+241)</Option>
-		<Option data-countryCode="GM" value="220">Gambia (+220)</Option>
-		<Option data-countryCode="GE" value="7880">Georgia (+7880)</Option>
-		<Option data-countryCode="DE" value="49">Germany (+49)</Option>
-		<Option data-countryCode="GH" value="233">Ghana (+233)</Option>
-		<Option data-countryCode="GI" value="350">Gibraltar (+350)</Option>
-		<Option data-countryCode="GR" value="30">Greece (+30)</Option>
-		<Option data-countryCode="GL" value="299">Greenland (+299)</Option>
-		<Option data-countryCode="GD" value="1473">Grenada (+1473)</Option>
-		<Option data-countryCode="GP" value="590">Guadeloupe (+590)</Option>
-		<Option data-countryCode="GU" value="671">Guam (+671)</Option>
-		<Option data-countryCode="GT" value="502">Guatemala (+502)</Option>
-		<Option data-countryCode="GN" value="224">Guinea (+224)</Option>
-		<Option data-countryCode="GW" value="245">Guinea - Bissau (+245)</Option>
-		<Option data-countryCode="GY" value="592">Guyana (+592)</Option>
-		<Option data-countryCode="HT" value="509">Haiti (+509)</Option>
-		<Option data-countryCode="HN" value="504">Honduras (+504)</Option>
-		<Option data-countryCode="HK" value="852">Hong Kong (+852)</Option>
-		<Option data-countryCode="HU" value="36">Hungary (+36)</Option>
-		<Option data-countryCode="IS" value="354">Iceland (+354)</Option>
-		<Option data-countryCode="IN" value="91">India (+91)</Option>
-		<Option data-countryCode="ID" value="62">Indonesia (+62)</Option>
-		<Option data-countryCode="IR" value="98">Iran (+98)</Option>
-		<Option data-countryCode="IQ" value="964">Iraq (+964)</Option>
-		<Option data-countryCode="IE" value="353">Ireland (+353)</Option>
-		<Option data-countryCode="IL" value="972">Israel (+972)</Option>
-		<Option data-countryCode="IT" value="39">Italy (+39)</Option>
-		<Option data-countryCode="JM" value="1876">Jamaica (+1876)</Option>
-		<Option data-countryCode="JP" value="81">Japan (+81)</Option>
-		<Option data-countryCode="JO" value="962">Jordan (+962)</Option>
-		<Option data-countryCode="KZ" value="7">Kazakhstan (+7)</Option>
-		<Option data-countryCode="KE" value="254">Kenya (+254)</Option>
-		<Option data-countryCode="KI" value="686">Kiribati (+686)</Option>
-		<Option data-countryCode="KP" value="850">Korea North (+850)</Option>
-		<Option data-countryCode="KR" value="82">Korea South (+82)</Option>
-		<Option data-countryCode="KW" value="965">Kuwait (+965)</Option>
-		<Option data-countryCode="KG" value="996">Kyrgyzstan (+996)</Option>
-		<Option data-countryCode="LA" value="856">Laos (+856)</Option>
-		<Option data-countryCode="LV" value="371">Latvia (+371)</Option>
-		<Option data-countryCode="LB" value="961">Lebanon (+961)</Option>
-		<Option data-countryCode="LS" value="266">Lesotho (+266)</Option>
-		<Option data-countryCode="LR" value="231">Liberia (+231)</Option>
-		<Option data-countryCode="LY" value="218">Libya (+218)</Option>
-		<Option data-countryCode="LI" value="417">Liechtenstein (+417)</Option>
-		<Option data-countryCode="LT" value="370">Lithuania (+370)</Option>
-		<Option data-countryCode="LU" value="352">Luxembourg (+352)</Option>
-		<Option data-countryCode="MO" value="853">Macao (+853)</Option>
-		<Option data-countryCode="MK" value="389">Macedonia (+389)</Option>
-		<Option data-countryCode="MG" value="261">Madagascar (+261)</Option>
-		<Option data-countryCode="MW" value="265">Malawi (+265)</Option>
-		<Option data-countryCode="MY" value="60">Malaysia (+60)</Option>
-		<Option data-countryCode="MV" value="960">Maldives (+960)</Option>
-		<Option data-countryCode="ML" value="223">Mali (+223)</Option>
-		<Option data-countryCode="MT" value="356">Malta (+356)</Option>
-		<Option data-countryCode="MH" value="692">Marshall Islands (+692)</Option>
-		<Option data-countryCode="MQ" value="596">Martinique (+596)</Option>
-		<Option data-countryCode="MR" value="222">Mauritania (+222)</Option>
-		<Option data-countryCode="YT" value="269">Mayotte (+269)</Option>
-		<Option data-countryCode="MX" value="52">Mexico (+52)</Option>
-		<Option data-countryCode="FM" value="691">Micronesia (+691)</Option>
-		<Option data-countryCode="MD" value="373">Moldova (+373)</Option>
-		<Option data-countryCode="MC" value="377">Monaco (+377)</Option>
-		<Option data-countryCode="MN" value="976">Mongolia (+976)</Option>
-		<Option data-countryCode="MS" value="1664">Montserrat (+1664)</Option>
-		<Option data-countryCode="MA" value="212">Morocco (+212)</Option>
-		<Option data-countryCode="MZ" value="258">Mozambique (+258)</Option>
-		<Option data-countryCode="MN" value="95">Myanmar (+95)</Option>
-		<Option data-countryCode="NA" value="264">Namibia (+264)</Option>
-		<Option data-countryCode="NR" value="674">Nauru (+674)</Option>
-		<Option data-countryCode="NP" value="977">Nepal (+977)</Option>
-		<Option data-countryCode="NL" value="31">Netherlands (+31)</Option>
-		<Option data-countryCode="NC" value="687">New Caledonia (+687)</Option>
-		<Option data-countryCode="NZ" value="64">New Zealand (+64)</Option>
-		<Option data-countryCode="NI" value="505">Nicaragua (+505)</Option>
-		<Option data-countryCode="NE" value="227">Niger (+227)</Option>
-		<Option data-countryCode="NG" value="234">Nigeria (+234)</Option>
-		<Option data-countryCode="NU" value="683">Niue (+683)</Option>
-		<Option data-countryCode="NF" value="672">Norfolk Islands (+672)</Option>
-		<Option data-countryCode="NP" value="670">Northern Marianas (+670)</Option>
-		<Option data-countryCode="NO" value="47">Norway (+47)</Option>
-		<Option data-countryCode="OM" value="968">Oman (+968)</Option>
-		<Option data-countryCode="PW" value="680">Palau (+680)</Option>
-		<Option data-countryCode="PA" value="507">Panama (+507)</Option>
-		<Option data-countryCode="PG" value="675">Papua New Guinea (+675)</Option>
-		<Option data-countryCode="PY" value="595">Paraguay (+595)</Option>
-		<Option data-countryCode="PE" value="51">Peru (+51)</Option>
-		<Option data-countryCode="PH" value="63">Philippines (+63)</Option>
-		<Option data-countryCode="PL" value="48">Poland (+48)</Option>
-		<Option data-countryCode="PT" value="351">Portugal (+351)</Option>
-		<Option data-countryCode="PR" value="1787">Puerto Rico (+1787)</Option>
-		<Option data-countryCode="QA" value="974">Qatar (+974)</Option>
-		<Option data-countryCode="RE" value="262">Reunion (+262)</Option>
-		<Option data-countryCode="RO" value="40">Romania (+40)</Option>
-		<Option data-countryCode="RU" value="7">Russia (+7)</Option>
-		<Option data-countryCode="RW" value="250">Rwanda (+250)</Option>
-		<Option data-countryCode="SM" value="378">San Marino (+378)</Option>
-		<Option data-countryCode="ST" value="239">Sao Tome &amp; Principe (+239)</Option>
-		<Option data-countryCode="SA" value="966">Saudi Arabia (+966)</Option>
-		<Option data-countryCode="SN" value="221">Senegal (+221)</Option>
-		<Option data-countryCode="CS" value="381">Serbia (+381)</Option>
-		<Option data-countryCode="SC" value="248">Seychelles (+248)</Option>
-		<Option data-countryCode="SL" value="232">Sierra Leone (+232)</Option>
-		<Option data-countryCode="SG" value="65">Singapore (+65)</Option>
-		<Option data-countryCode="SK" value="421">Slovak Republic (+421)</Option>
-		<Option data-countryCode="SI" value="386">Slovenia (+386)</Option>
-		<Option data-countryCode="SB" value="677">Solomon Islands (+677)</Option>
-		<Option data-countryCode="SO" value="252">Somalia (+252)</Option>
-		<Option data-countryCode="ZA" value="27">South Africa (+27)</Option>
-		<Option data-countryCode="ES" value="34">Spain (+34)</Option>
-		<Option data-countryCode="LK" value="94">Sri Lanka (+94)</Option>
-		<Option data-countryCode="SH" value="290">St. Helena (+290)</Option>
-		<Option data-countryCode="KN" value="1869">St. Kitts (+1869)</Option>
-		<Option data-countryCode="SC" value="1758">St. Lucia (+1758)</Option>
-		<Option data-countryCode="SD" value="249">Sudan (+249)</Option>
-		<Option data-countryCode="SR" value="597">Suriname (+597)</Option>
-		<Option data-countryCode="SZ" value="268">Swaziland (+268)</Option>
-		<Option data-countryCode="SE" value="46">Sweden (+46)</Option>
-		<Option data-countryCode="CH" value="41">Switzerland (+41)</Option>
-		<Option data-countryCode="SI" value="963">Syria (+963)</Option>
-		<Option data-countryCode="TW" value="886">Taiwan (+886)</Option>
-		<Option data-countryCode="TJ" value="7">Tajikstan (+7)</Option>
-		<Option data-countryCode="TH" value="66">Thailand (+66)</Option>
-		<Option data-countryCode="TG" value="228">Togo (+228)</Option>
-		<Option data-countryCode="TO" value="676">Tonga (+676)</Option>
-		<Option data-countryCode="TT" value="1868">Trinidad &amp; Tobago (+1868)</Option>
-		<Option data-countryCode="TN" value="216">Tunisia (+216)</Option>
-		<Option data-countryCode="TR" value="90">Turkey (+90)</Option>
-		<Option data-countryCode="TM" value="7">Turkmenistan (+7)</Option>
-		<Option data-countryCode="TM" value="993">Turkmenistan (+993)</Option>
-		<Option data-countryCode="TC" value="1649">Turks &amp; Caicos Islands (+1649)</Option>
-		<Option data-countryCode="TV" value="688">Tuvalu (+688)</Option>
-		<Option data-countryCode="UG" value="256">Uganda (+256)</Option>
-	  <Option data-countryCode="GB" value="44">UK (+44)</Option>
-		<Option data-countryCode="UA" value="380">Ukraine (+380)</Option>
-		<Option data-countryCode="AE" value="971">United Arab Emirates (+971)</Option>
-		<Option data-countryCode="UY" value="598">Uruguay (+598)</Option>
-		<Option data-countryCode="US" value="1">USA (+1)</Option> 
-		<Option data-countryCode="UZ" value="7">Uzbekistan (+7)</Option>
-		<Option data-countryCode="VU" value="678">Vanuatu (+678)</Option>
-		<Option data-countryCode="VA" value="379">Vatican City (+379)</Option>
-		<Option data-countryCode="VE" value="58">Venezuela (+58)</Option>
-		<Option data-countryCode="VN" value="84">Vietnam (+84)</Option>
-		<Option data-countryCode="VG" value="84">Virgin Islands - British (+1284)</Option>
-		<Option data-countryCode="VI" value="84">Virgin Islands - US (+1340)</Option>
-		<Option data-countryCode="WF" value="681">Wallis &amp; Futuna (+681)</Option>
-		<Option data-countryCode="YE" value="969">Yemen (North)(+969)</Option>
-		<Option data-countryCode="YE" value="967">Yemen (South)(+967)</Option>
-		<Option data-countryCode="ZM" value="260">Zambia (+260)</Option>
-		<Option data-countryCode="ZW" value="263">Zimbabwe (+263)</Option>
-    </Select>
-      );
+					{menu}
+    		</Select>
+				);
 
       return (
         <Fragment>
 							 {msg ? <Alert message={msg} type='error' /> : null}
-							 {(registrationDone&&!msg)?<Alert message="Registration Successfull" type="success" />: null}
+							 {(status===200&&!msg)?<Alert message="Registration Successfull" type="success" />: null}
               
           <Text strong style={{ fontSize: 40 }}>Register Your Business With Us</Text>
           <Form {...formItemLayout} style={{ paddingTop: 40 }} onSubmit={this.handleSubmit}>
@@ -379,7 +174,7 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
 	error: state.error,
-	registrationDone: state.vendor.registrationDone
+	status: state.vendor.status
 });
 
 export default connect(

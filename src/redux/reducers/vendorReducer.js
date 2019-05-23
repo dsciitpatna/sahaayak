@@ -1,7 +1,7 @@
 import { REGISTER_BUSINESS_SUCCESS } from '../actions/type';
 
 const initialState = {
-  registrationDone: false
+  status: null
 }
 
 export default function (state = initialState, action) {
@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
     case REGISTER_BUSINESS_SUCCESS:
       return {
         ...state,
-       registrationDone: true
+       status:action.payload
       }
     default:
       return state;
