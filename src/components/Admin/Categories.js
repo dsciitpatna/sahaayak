@@ -76,9 +76,9 @@ class Categories extends Component {
       key="action"
       render={(text, record) => (
         <span>
-          <a >Update</a>
+          <a href="/">Update</a>
           <Divider type="vertical" />
-          <a >Delete</a>
+          <a href="/">Delete</a>
         </span>
       )}
     />
