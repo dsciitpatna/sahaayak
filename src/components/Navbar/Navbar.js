@@ -122,7 +122,7 @@ class Navbar extends Component {
                 <Route exact path="/" component={Slideshow} />
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
-                <Route exact path="/categoryWiseServices" component={CategoryWiseServices} />
+                <Route exact path="/categoryWiseServices/:categoryName" component={CategoryWiseServices} />
                 <Route
                   exact
                   path="/vendorDashboard"

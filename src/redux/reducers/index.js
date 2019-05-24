@@ -4,6 +4,7 @@ import AuthReducer from './authReducer';
 import ErrorReducer from './errorReducer';
 import UserReducer from './userReducer';
 import CategoryReducer from './categoryReducer';
+import ServiceReducer from './serviceReducer';
 
 
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
   error: ErrorReducer,
   user: UserReducer,
   vendor: vendorReducer,
-  category: CategoryReducer
+  category: CategoryReducer,
+  service: ServiceReducer
 });
