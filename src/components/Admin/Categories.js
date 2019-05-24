@@ -25,8 +25,6 @@ class Categories extends Component {
 
   state = { visible: false }
   
-
-
   showModal = () => {
     this.setState({
       visible: true,
@@ -34,19 +32,16 @@ class Categories extends Component {
   }
 
   handleOk = (e) => {
-    console.log(e);
     this.setState({
       visible: false,
     });
   }
 
   handleCancel = (e) => {
-    console.log(e);
     this.setState({
       visible: false,
     });
   }
-
 
   render() {
     const { isAuthenticated, user } = this.props;
@@ -68,21 +63,21 @@ class Categories extends Component {
                <Input placeholder="Enter the name of the category" />
            </Modal>
            <Table dataSource={data}>
-      <Column title="Category Name" dataIndex="Name" key="Name" />
-      <Column title="Number" dataIndex="number" key="number" />
+            <Column title="Category Name" dataIndex="Name" key="Name" />
+            <Column title="Number" dataIndex="number" key="number" />
 
-    <Column
-      title="Action"
-      key="action"
-      render={(text, record) => (
-        <span>
-          <a href="/">Update</a>
-          <Divider type="vertical" />
-          <a href="/">Delete</a>
-        </span>
-      )}
-    />
-  </Table>
+            <Column
+              title="Action"
+              key="action"
+              render={(text, record) => (
+                <span>
+                  <a href="/">Update</a>
+                  <Divider type="vertical" />
+                  <a href="/">Delete</a>
+                </span>
+              )}
+            />
+          </Table>
         </Fragment>
       )
     }
