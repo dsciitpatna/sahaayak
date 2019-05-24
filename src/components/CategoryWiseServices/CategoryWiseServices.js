@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { Card } from 'antd';
+import { Card, Spin } from 'antd';
 import 'antd/dist/antd.css';
 
 import { getCategoryWiseServices } from "../../redux/actions/serviceActions";
@@ -16,8 +16,9 @@ export class CategoryWiseServices extends Component {
     render() {
 
         const serviceList=!this.props.service.pending ? ( this.props.service.services.map((service)=>{
+            console.log(service);
             return(
-                <Card title="Default size card" extra={<a href="#">More</a>} style={{ width: '100%' }} key={service._id} >
+                <Card title="Default size card" extra={<a href="#">More</a>} style={{ width: '80%', margin: '10px' }} key={service._id} >
                 <p>Category Name: {service.categoryName}</p>
                 <p>Service Name: {service.name}</p>
                 <p>Vendor Name: {service.vendor.name}</p>
@@ -25,12 +26,14 @@ export class CategoryWiseServices extends Component {
             )
           })
           ) : (
-            <div>Loading...</div>
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <Spin tip="Loading..." size="large" ></Spin>
+            </div>
           )
 
         return (
             <div>
-                <div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     { serviceList }
                 </div>
             </div>

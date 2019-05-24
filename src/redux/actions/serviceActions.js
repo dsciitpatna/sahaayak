@@ -9,7 +9,6 @@ export const getCategoryWiseServices = (categoryName) => (dispatch) => {
       })   
     axios.get(`${url}/services/categoryName/`+categoryName)
     .then(res =>{
-      console.log("action",res.data.services);
       dispatch({
         type: GET_CATEGORY_WISE_SERVICES_SUCCESS,
         payload: res.data.services
