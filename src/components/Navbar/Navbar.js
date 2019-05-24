@@ -19,6 +19,7 @@ import Categories from "../Admin/Categories";
 import Slideshow from "../Slideshow/Slideshow";
 import CategoryWiseServices from "../CategoryWiseServices/CategoryWiseServices";
 import Service from "../Service/Service";
+import TopVendors from "../topVendors/topvendors";
 
 const { Header, Content } = Layout;
 
@@ -119,8 +120,9 @@ class Navbar extends Component {
                 minHeight: 280
               }}
             >
+              <Route exact path="/" component={Slideshow} />
+              <Route exact path="/" component={TopVendors} />
               <Switch>
-                <Route exact path="/" component={Slideshow} />
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
                 <Route exact path="/categoryWiseServices/:categoryName" component={CategoryWiseServices} />

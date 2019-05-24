@@ -1,0 +1,33 @@
+h1 {
+  font-size: 30px;
+}
+
+.Vendor-info {
+  text-align: center;
+}
+
+.ant-card-cover img {
+  border-radius: 160px;
+}
+
+.ant-card {
+  float: left;
+  padding: 10px;
+  margin: 10px 33px;
+}
+
+@media (max-width: 500px) {
+  .ant-card-cover {
+    height: 160px;
+  }
+
+  .ant-card-cover img {
+    width: 150px;
+    transform: translateX(+34px);
+  }
+
+  .ant-card-body {
+    font-size: 10px;
+    padding: 0px;
+  }
+}
