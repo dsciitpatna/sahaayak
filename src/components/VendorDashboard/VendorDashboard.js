@@ -1,16 +1,27 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './Vendordashboard.css';
 import { connect } from 'react-redux';
-import { Typography, Icon, Row, Col, Button, PageHeader, Table,Divider,Tag } from 'antd';
+import { Typography, Icon, Row, Col, Button, PageHeader, Table, Divider } from 'antd';
+import { getServices } from '../../redux/actions/vendorActions';
 const { Title } = Typography;
 
 class VendorDashboard extends Component {
-  
+
   state = {
     loading: false,
     iconLoading: false,
   };
+  runGetServices = (id) => {
+    this.props.getServices(id);
+  }
+  componentDidMount() {
+    const { id } = this.props.user;
+    this.runGetServices(id);
+
+
+  }
 
   enterLoading = () => {
     this.setState({ loading: true });
@@ -37,54 +48,54 @@ class VendorDashboard extends Component {
         dataIndex: 'address',
         key: 'address',
       },
-      
+
       {
         title: 'Action',
         key: 'action',
         render: (text, record) => (
           <span>
-            <a href="javascript:;">Edit</a>
+            <Link to="/VendorSalesPage">Edit</Link>
             <Divider type="vertical" />
-            <a href="javascript:;">Delete</a>
+            <Link to="/VendorSalesPage">Delete</Link>
           </span>
         ),
       },
     ];
-    
-    const data = [
-      {
-        key: '1',
-        servicename: 'John Brown',
-        phone: 32456789,
-        address: 'New York No. 1 Lake Park',
-      },
-      {
-        key: '2',
-        servicename: 'Jim Green',
-        phone: 421234512,
-        address: 'London No. 1 Lake Park',
-      },
-      {
-        key: '3',
-        servicename: 'Joe Black',
-        phone: 3221324354,
-        address: 'Sidney No. 1 Lake Park',
-      },
-    ];
-    
-    const { isAuthenticated, user } = this.props;
+
+
+
+    const { isAuthenticated, user, services } = this.props;
+
     if (isAuthenticated && user.isVendor === true) {
+      const lenght = services.length;
+      var data = [];
+      // Adding elements to the data array
+      var i = 0;
+      if (lenght) {
+      data  = services.map(({ name, detail }) => {
+          return {
+            key: (i++).toString(),
+            servicename: name,
+            phone: detail.contact,
+            address: detail.location
+          }
+        })
+  
+      }
+
       return (
         <Fragment>
-          <div className="container">
+          <div className="v-dashboard-container">
             <Row gutter={300} type="flex" justify="space-around" align="middle">
               <Col className="gutter-row" span={6}>
                 <img
                   src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=150&w=150"
 
                   alt=""
+                  className="image1"
                 />
-                 <Button
+                <Button
+                  className="v-dashboard-btn"
                   type="primary"
                   icon="camera"
                   size="large"
@@ -98,18 +109,22 @@ class VendorDashboard extends Component {
 
               <Col className="gutter-row" span={18}>
                 <div className="gutter-box">
-                  <Title style={{ textAlign: "center" }}>Vendor:      Rajeev Ahuja</Title>
+                  <Title style={{ textAlign: "center" }}>Welcome: Rajeev Ahuja</Title>
                   <hr />
                 </div>
               </Col>
 
             </Row>
             <div className="content">
-              <PageHeader onBack={()=>null} title="Your Listings" subTitle="Your Listings upto now" />
+              <PageHeader onBack={() => null} title="Your Listings" subTitle="Your Listings upto now" />
+              <Table columns={columns} dataSource={data} pagination={false} />
+              <Link to='/VendorSalespage'>
+                <Button type="primary" size="large"
+                  className="v-dashboard-btn"
+                >
+                  <Icon type="folder-add" /><span>Add new service</span></Button>
+              </Link>
             </div>
-            <Table columns={columns} dataSource={data} pagination={false} />
-            <Button type="primary" size="large" >
-            <Icon type="folder-add" /><span>Add new service</span></Button>
           </div>
         </Fragment>
       )
@@ -126,10 +141,11 @@ class VendorDashboard extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
+  user: state.auth.user,
+  services: state.vendor.services
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  { getServices }
 )(VendorDashboard);

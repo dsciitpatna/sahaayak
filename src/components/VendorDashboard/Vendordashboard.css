@@ -2,16 +2,16 @@
   background: transparent;
   border: 0;
 }
-img {
+.image1 {
   border-radius: 50%;
   width: 320px;
   height: 320px;
   border: solid 2px black;
 }
-.container{
+ .v-dashboard-container{
   margin: 60px 10%;
 }
-.ant-btn{
+.v-dashboard-btn{
   margin: 30px 45px;
   text-align: center;
   font-size: 20px;
