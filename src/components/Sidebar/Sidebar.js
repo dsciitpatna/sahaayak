@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './Sidebar.css'
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu, Icon, Spin } from "antd";
 
 import { getAllCategories } from "../../redux/actions/categoryActions";
 
@@ -26,7 +26,9 @@ class SideBar extends Component {
         )
       })
       ) : (
-        <div>Loading...</div>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Spin tip="Loading..." size="small" ></Spin>
+        </div>
       )
 
     return (
