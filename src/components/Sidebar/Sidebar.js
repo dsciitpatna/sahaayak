@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
@@ -33,7 +33,7 @@ class SideBar extends Component {
 
     return (
       <div className="wrapper">
-      <Fragment style={{position: 'relative'}}>
+      <div style={{position: 'relative'}}>
         <Sider
           style={{ overflow: 'auto', height: '100vh', left: 0 }}
           trigger={null}
@@ -46,7 +46,7 @@ class SideBar extends Component {
             { categoryList }
           </Menu>
         </Sider>
-      </Fragment>
+      </div>
       </div>
     );
   }
