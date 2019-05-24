@@ -1,7 +1,5 @@
 import { GET_CATEGORY_WISE_SERVICES_PENDING, GET_CATEGORY_WISE_SERVICES_SUCCESS } from './type';
 import axios from "axios";
-import {returnErrors} from './errorActions';
-import { tokenConfig } from './authActions';
 
 const url = "http://localhost:5000";
 

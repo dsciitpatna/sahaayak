@@ -2,8 +2,7 @@ import { GET_CATEGORY_WISE_SERVICES_PENDING, GET_CATEGORY_WISE_SERVICES_SUCCESS 
 
 const initialState = {
   pending: false,
-  services: [],
-  error: null
+  services: []
 }
 
 export default function (state = initialState, action) {

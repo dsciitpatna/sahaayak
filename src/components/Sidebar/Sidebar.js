@@ -10,20 +10,14 @@ import { getAllCategories } from "../../redux/actions/categoryActions";
 const { Sider } = Layout;
 
 class SideBar extends Component {
-  state = {
-    categories: null
-  }
 
   componentDidMount() {
     this.props.getAllCategories();
-    this.setState({
-      categories: this.props.categories
-    })
   }
 
   render() {
 
-      const categoryList=this.state.categories ? ( this.state.categories.map((category)=>{
+      const categoryList=!this.props.category.pending ? ( this.props.category.categories.map((category)=>{
         return(
           <Menu.Item key={category._id}>
             <Icon type="form" />
@@ -58,7 +52,7 @@ class SideBar extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  categories: state.category.categories
+  category: state.category
 });
 
 export default connect(
