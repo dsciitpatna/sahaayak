@@ -18,7 +18,6 @@ class SideBar extends Component {
           collapsedWidth={0}
           collapsed={this.props.collapseProp}
         >
-          <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
               <Icon type="form" />
