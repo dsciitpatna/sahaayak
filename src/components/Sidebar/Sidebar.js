@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import './Sidebar.css'
 
@@ -10,7 +10,7 @@ class SideBar extends Component {
   render() {
     return (
       <div className="wrapper">
-      <Fragment style={{position: 'relative'}}>
+      <div style={{position: 'relative'}}>
         <Sider
           style={{ overflow: 'auto', height: '100vh', left: 0 }}
           trigger={null}
@@ -81,7 +81,7 @@ class SideBar extends Component {
             </Menu.Item>
           </Menu>
         </Sider>
-      </Fragment>
+      </div>
       </div>
     );
   }
