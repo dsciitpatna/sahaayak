@@ -27,7 +27,7 @@ class SideBar extends Component {
       })
       ) : (
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <Spin tip="Loading..." size="small" ></Spin>
+            <Spin tip="Loading..." size="large" ></Spin>
         </div>
       )
 
