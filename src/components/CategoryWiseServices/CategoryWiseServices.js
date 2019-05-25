@@ -1,33 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { Card, Spin, Row, Col, Icon } from 'antd';
+import { Card, Spin, Row, Col, Icon, Alert } from 'antd';
 import 'antd/dist/antd.css';
 
-import { getCategoryWiseServices } from "../../redux/actions/serviceActions";
+import { getCategoryWiseServices } from "../../redux/actions/categoryServiceActions";
+import "./CategoryWiseServices.css";
 
 const { Meta } = Card;
 
 class CategoryWiseServices extends Component {
+
+    state={
+        msg: null
+    }
     
     componentDidMount() {
         const category=this.props.match.params.categoryName;
         this.props.getCategoryWiseServices(category);
     }
 
+    componentDidUpdate(prevProps){
+        const {error} = this.props;
+        if(error !== prevProps.error){
+            if(error.id === "CATEGORYWISESERVICES_FETCH_FAIL"){
+                this.setState({
+                    msg : error.msg
+                });
+            }
+            else{
+                this.setState({
+                    msg : null
+                });
+            }			
+        }
+    }    
+
     render() {
 
-        const serviceList=!this.props.service.pending ? ( this.props.service.services.map((service)=>{
-            console.log(service);
+        const {msg}=this.state;
+        const serviceList=!this.props.categoryService.pending ? ( this.props.categoryService.services.map((service)=>{
             return(
-                <Card title={service.name} extra={<Link to={`/service/${service._id}`}><Icon type="step-forward" /> More Details</Link>} style={{ width: '80%', margin: '10px' }} key={service._id} >
+                <Card className="containerCard" title={service.name} extra={<Link to={`/service/${service._id}`}><Icon type="step-forward" /> More Details</Link>} key={service._id} >
                      <Row>
                         <Col xs={24} sm={24} md={8}>
                             <Card
                                 hoverable
-                                style={{ width: '100%' }}
-                                cover={<img alt="example" src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />}
+                                style={{ width: 'auto'}}
                             >
+                                <img alt="example" src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="100%" height="100%"/>
                                 <Meta title={service.categoryName} description="www.instagram.com" />
                             </Card>
                         </Col>
@@ -69,6 +90,7 @@ class CategoryWiseServices extends Component {
 
         return (
             <div>
+                {msg ? <Alert message={msg} type='error' /> : null}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     { serviceList }
                 </div>
@@ -78,7 +100,7 @@ class CategoryWiseServices extends Component {
 }
 
 const mapStateToProps = state => ({
-    service: state.service
+    categoryService: state.categoryService
   });
   
   export default connect(

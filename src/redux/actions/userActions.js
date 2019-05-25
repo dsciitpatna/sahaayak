@@ -7,7 +7,7 @@ import axios from 'axios';
 import { returnErrors } from './errorActions';
 import { tokenConfig } from './authActions';
 
-const url = "https://secure-falls-92714.herokuapp.com";
+import {url} from '../../helper/url';
 
 export const updateUser = ({updatedUser, userId}) => (dispatch, getState) => {
   axios.patch(`${url}/users/`+userId, updatedUser, tokenConfig(getState))
