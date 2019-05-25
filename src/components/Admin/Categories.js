@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import { Button,Modal,Input,Table, Divider } from 'antd';
-import {fetchCategory} from "../../redux/actions/adminCategoryActions";
+import {fetchCategory} from "../../redux/actions/adminActions";
 
 class Categories extends Component {
 
