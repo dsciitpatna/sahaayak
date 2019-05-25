@@ -11,53 +11,60 @@ const { Meta } = Card;
 
 class CategoryWiseServices extends Component {
 
-    state={
+    state = {
         msg: null
     }
-    
+
     componentDidMount() {
-        const category=this.props.match.params.categoryName;
+        const category = this.props.match.params.categoryName;
         this.props.getCategoryWiseServices(category);
     }
 
-    componentDidUpdate(prevProps){
-        const {error} = this.props;
-        if(error !== prevProps.error){
-            if(error.id === "CATEGORYWISESERVICES_FETCH_FAIL"){
+    componentDidUpdate(prevProps) {
+
+        const category = this.props.match.params.categoryName;
+        if (category !== prevProps.match.params.categoryName) {
+            this.props.getCategoryWiseServices(category);
+        }
+
+        const { error } = this.props;
+
+        if (error !== prevProps.error) {
+            if (error.id === "CATEGORYWISESERVICES_FETCH_FAIL") {
                 this.setState({
-                    msg : error.msg
+                    msg: error.msg
                 });
             }
-            else{
+            else {
                 this.setState({
-                    msg : null
+                    msg: null
                 });
-            }			
+            }
         }
-    }    
+    }
 
     render() {
 
-        const {msg}=this.state;
-        const serviceList=!this.props.categoryService.pending ? ( this.props.categoryService.services.map((service)=>{
-            return(
+        const { msg } = this.state;
+        const serviceList = !this.props.categoryService.pending ? (this.props.categoryService.services.map((service) => {
+            return (
                 <Card className="containerCard" title={service.name} extra={<Link to={`/service/${service._id}`}><Icon type="step-forward" /> More Details</Link>} key={service._id} >
-                     <Row>
+                    <Row>
                         <Col xs={24} sm={24} md={8}>
                             <Card
                                 hoverable
-                                style={{ width: 'auto'}}
+                                style={{ width: 'auto' }}
                             >
-                                <img alt="example" src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="100%" height="100%"/>
+                                <img alt="example" src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="100%" height="100%" />
                                 <Meta title={service.categoryName} description="www.instagram.com" />
                             </Card>
                         </Col>
                         <Col xs={24} sm={24} md={16}>
                             <Row>
                                 <Col xs={24} sm={12}>
-                                    <Card 
-                                        title="Service Details" 
-                                        bordered={false} 
+                                    <Card
+                                        title="Service Details"
+                                        bordered={false}
                                         style={{ height: '100%' }}
                                     >
                                         <p><Icon type="setting" theme="twoTone" /> Service : {service.name}</p>
@@ -68,9 +75,9 @@ class CategoryWiseServices extends Component {
                                     </Card>
                                 </Col>
                                 <Col xs={24} sm={12}>
-                                    <Card 
-                                        title="Vendor Details" 
-                                        bordered={false} 
+                                    <Card
+                                        title="Vendor Details"
+                                        bordered={false}
                                         style={{ height: '100%' }}
                                     >
                                         <p><Icon type="smile" theme="twoTone" /> Name: {service.vendor.name}</p>
@@ -81,18 +88,18 @@ class CategoryWiseServices extends Component {
                     </Row>
                 </Card>
             )
-          })
-          ) : (
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Spin tip="Loading..." size="large" ></Spin>
-            </div>
-          )
+        })
+        ) : (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Spin tip="Loading..." size="large" ></Spin>
+                </div>
+            )
 
         return (
             <div>
                 {msg ? <Alert message={msg} type='error' /> : null}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    { serviceList }
+                    {serviceList}
                 </div>
             </div>
         )
@@ -101,10 +108,10 @@ class CategoryWiseServices extends Component {
 
 const mapStateToProps = state => ({
     categoryService: state.categoryService
-  });
-  
-  export default connect(
+});
+
+export default connect(
     mapStateToProps,
     { getCategoryWiseServices }
-  )(CategoryWiseServices);
-  
+)(CategoryWiseServices);
+
