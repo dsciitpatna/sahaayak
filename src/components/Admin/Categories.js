@@ -2,24 +2,7 @@ import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import { Button,Modal,Input,Table, Divider } from 'antd';
-
-const data = [
-  {
-    key: '1',
-    Name: 'Mechanic',
-    number: 32,
-  },
-  {
-    key: '2',
-    Name: 'Plumber',
-    number: 42,
-  },
-  {
-    key: '3',
-    Name: 'Electrician',
-    number: 32,
-  },
-];
+import {fetchCategory} from "../../redux/actions/adminActions";
 
 class Categories extends Component {
 
@@ -43,6 +26,10 @@ class Categories extends Component {
     });
   }
 
+  componentWillMount(){
+    this.props.fetchCategory();
+  }
+
   render() {
     const { isAuthenticated, user } = this.props;
     const { Column } = Table;
@@ -62,9 +49,9 @@ class Categories extends Component {
           >
                <Input placeholder="Enter the name of the category" />
            </Modal>
-           <Table dataSource={data}>
-            <Column title="Category Name" dataIndex="Name" key="Name" />
-            <Column title="Number" dataIndex="number" key="number" />
+           <Table dataSource={this.props.cat}>
+            <Column title="Category Name" dataIndex="title" key="title" />
+            <Column title="Number" dataIndex="id" key="id" />
 
             <Column
               title="Action"
@@ -91,10 +78,11 @@ class Categories extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
+  user: state.auth.user,
+  cat:state.categorylist.category,
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  {fetchCategory}
 )(Categories);
