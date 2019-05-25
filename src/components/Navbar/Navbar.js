@@ -78,39 +78,33 @@ class Navbar extends Component {
                 </Menu.Item>
               </Menu>
             ) : (
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                style={{ lineHeight: "60px" }}
-              >
-                <Menu.Item key="1" className="left">
-                  <Icon
-                    className="trigger"
-                    type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                    onClick={this.toggle}
-                  />
-                </Menu.Item>
-                <Menu.Item key="2" className="left">
-                  <Link to="/">Sahaayak</Link>
-                </Menu.Item>
-                <Menu.Item key="3" className="right">
-                  <Button type="primary" onClick={this.openLoginModal}>
-                    Login
+                <Menu
+                  theme="dark"
+                  mode="horizontal"
+                  style={{ lineHeight: "60px" }}
+                >
+                  <Menu.Item key="1" className="left">
+                    <Icon
+                      className="trigger"
+                      type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
+                      onClick={this.toggle}
+                    />
+                  </Menu.Item>
+                  <Menu.Item key="2" className="left">
+                    <Link to="/">Sahaayak</Link>
+                  </Menu.Item>
+                  <Menu.Item key="3" className="right">
+                    <Button type="primary" onClick={this.openLoginModal}>
+                      Login
                   </Button>
-                  {openloginModal ? <LoginModal /> : null}
-                  {openregisterModal ? <RegisterModal /> : null}
-                </Menu.Item>
-              </Menu>
-            )}
+                    {openloginModal ? <LoginModal /> : null}
+                    {openregisterModal ? <RegisterModal /> : null}
+                  </Menu.Item>
+                </Menu>
+              )}
           </Header>
           <Layout>
-            <Route
-              exact
-              path="/"
-              component={props => (
-                <SideBar {...props} collapseProp={this.state.collapsed} />
-              )}
-            />
+            <SideBar collapseProp={this.state.collapsed} />
             <Route path="/admin" component={AdminNavbar} />
             <Content
               style={{

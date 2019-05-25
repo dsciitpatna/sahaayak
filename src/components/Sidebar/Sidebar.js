@@ -11,47 +11,46 @@ const { Sider } = Layout;
 
 class SideBar extends Component {
 
-  state={
-    msg: null
+  state = {
+    msg: null,
+    pending: true,
   }
 
   componentDidMount() {
     this.props.getAllCategories();
+    this.setState({
+      pending: false,
+    })
   }
-  componentDidUpdate(prevProps){
-    const {error} = this.props;
-    if(error !== prevProps.error){
-        if(error.id === "CATEGORIES_FETCH_FAIL"){
-            this.setState({
-                msg : error.msg
-            });
-        }
-        else{
-            this.setState({
-                msg : null
-            });
-        }			
+  componentDidUpdate(prevProps) {
+    const { error } = this.props;
+    if (error !== prevProps.error) {
+      if (error.id === "CATEGORIES_FETCH_FAIL") {
+        this.setState({
+          msg: error.msg
+        });
+      }
+      else {
+        this.setState({
+          msg: null
+        });
+      }
     }
-  } 
+  }
   render() {
-    const {msg}=this.state;
-    const categoryList=!this.props.categoryService.pending ? ( this.props.categoryService.categories.map((category)=>{
-        return(
-          <Menu.Item key={category._id}>
-            <Icon type="form" />
-            <span><Link to={`/categoryWiseServices/${category.name}`} style={{ color: 'white' }} >{category.name}</Link></span>
-          </Menu.Item>
-        )
-      })
-      ) : (
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <Spin tip="Loading..." size="large" ></Spin>
-        </div>
+    const { msg, pending } = this.state;
+    const categoryList = this.props.categoryService.categories.map(category => {
+      return (
+        <Menu.Item key={category._id}>
+          <Icon type="form" />
+          <span><Link to={`/categoryWiseServices/${category.name}`} style={{ color: 'white' }} >{category.name}</Link></span>
+        </Menu.Item>
       )
+    });
 
     return (
       <div className="wrapper">
-        <div style={{position: 'relative'}}>
+        <div style={{ position: 'relative' }}>
           {msg ? <Alert message={msg} type='error' /> : null}
           <Sider
             style={{ overflow: 'auto', height: '100vh', left: 0 }}
@@ -62,7 +61,12 @@ class SideBar extends Component {
           >
             <div className="logo" />
             <Menu theme="dark" mode="inline">
-              { categoryList }
+              {categoryList}
+              {pending &&
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Spin tip="Loading..." size="large" ></Spin>
+                </div>
+              }
             </Menu>
           </Sider>
         </div>
