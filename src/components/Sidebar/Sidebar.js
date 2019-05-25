@@ -1,13 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './Sidebar.css'
+import { Layout, Menu, Icon, Spin } from "antd";
 
-import { Layout, Menu, Icon } from "antd";
+import { getAllCategories } from "../../redux/actions/categoryActions";
 
 const { Sider } = Layout;
 
 class SideBar extends Component {
+
+  componentDidMount() {
+    this.props.getAllCategories();
+  }
+
   render() {
+
+      const categoryList=!this.props.category.pending ? ( this.props.category.categories.map((category)=>{
+        return(
+          <Menu.Item key={category._id}>
+            <Icon type="form" />
+            <span><Link to={`/categoryWiseServices/${category.name}`} style={{ color: 'white' }} >{category.name}</Link></span>
+          </Menu.Item>
+        )
+      })
+      ) : (
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Spin tip="Loading..." size="large" ></Spin>
+        </div>
+      )
+
     return (
       <div className="wrapper">
       <div style={{position: 'relative'}}>
@@ -18,67 +41,9 @@ class SideBar extends Component {
           collapsedWidth={0}
           collapsed={this.props.collapseProp}
         >
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-            <Menu.Item key="1">
-              <Icon type="form" />
-              <span>Plumber</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="form" />
-              <span>Washerman</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="form" />
-              <span>Electrician</span>
-            </Menu.Item>
-            <Menu.Item key="4">
-              <Icon type="form" />
-              <span>Maid</span>
-            </Menu.Item>
-            <Menu.Item key="5">
-              <Icon type="form" />
-              <span>Mason</span>
-            </Menu.Item>
-            <Menu.Item key="6">
-              <Icon type="form" />
-              <span>Carpenter</span>
-            </Menu.Item>
-            <Menu.Item key="7">
-              <Icon type="form" />
-              <span>Painter</span>
-            </Menu.Item>
-            <Menu.Item key="8">
-              <Icon type="form" />
-              <span>Regular Repair Man</span>
-            </Menu.Item>
-            <Menu.Item key="9">
-              <Icon type="form" />
-              <span>Beautician</span>
-            </Menu.Item>
-            <Menu.Item key="10">
-              <Icon type="form" />
-              <span>Person 1</span>
-            </Menu.Item>
-            <Menu.Item key="11">
-              <Icon type="form" />
-              <span>Person 2</span>
-            </Menu.Item>
-            <Menu.Item key="12">
-              <Icon type="form" />
-              <span>Person 3</span>
-            </Menu.Item>
-            <Menu.Item key="13">
-              <Icon type="form" />
-              <span>Person 4</span>
-            </Menu.Item>
-            <Menu.Item key="14">
-              <Icon type="form" />
-              <span>Person 5</span>
-            </Menu.Item>
-            <Menu.Item key="15">
-              <Icon type="form" />
-              <span>Person 6</span>
-            </Menu.Item>
+          <div className="logo" />
+          <Menu theme="dark" mode="inline">
+            { categoryList }
           </Menu>
         </Sider>
       </div>
@@ -87,4 +52,12 @@ class SideBar extends Component {
   }
 }
 
-export default SideBar;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  category: state.category
+});
+
+export default connect(
+  mapStateToProps,
+  { getAllCategories }
+)(SideBar);
