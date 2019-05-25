@@ -15,7 +15,7 @@ import {
 import axios from "axios";
 import { returnErrors } from "./errorActions";
 
-const url = "https://secure-falls-92714.herokuapp.com";
+import {url} from '../../helper/url';
 
 export const loaduser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
