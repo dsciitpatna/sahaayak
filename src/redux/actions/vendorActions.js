@@ -1,4 +1,4 @@
-import { REGISTER_BUSINESS_SUCCESS } from './type';
+import { REGISTER_BUSINESS_SUCCESS,GET_VENDOR_SERVICES } from './type';
 import axios from "axios";
 import {returnErrors} from './errorActions';
 import { tokenConfig } from './authActions';
@@ -25,4 +25,18 @@ export const registerBusiness = ({businessname,description,residence,phone}) => 
       dispatch(returnErrors(err.response.data,err.response.status,'REGISTER_BUSINESS_FAIL'));
     }
     );
+};
+
+export const getServices = (id)=>(dispatch,getState)=>{
+
+  axios.get(`${url}/services/vendors/${id}`,tokenConfig(getState))
+        .then(res=>{
+          dispatch({
+            type: GET_VENDOR_SERVICES,
+            payload: res.data
+          })
+        })
+        .catch(err=>{
+          dispatch(returnErrors(err.response.data,err.response.data,'GET_VENDOR_SERVICES_FAIL'));
+        })
 };
