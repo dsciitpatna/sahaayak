@@ -44,17 +44,13 @@ class VendorSalesPage extends Component {
     });
   }
 
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
   onChange = (value) => {
     console.log(value);
   }
 
 
   render() {
-    const { isAuthenticated, user,status } = this.props;
+    const { isAuthenticated, user, status, categories } = this.props;
     const { msg} = this.state;
     if (isAuthenticated && user.isVendor === true) {
       const { getFieldDecorator } = this.props.form;
@@ -95,7 +91,13 @@ class VendorSalesPage extends Component {
         <Select>
 					{menu}
     		</Select>
-				);
+        );
+
+    const categoryList = categories.map(category => {
+      return (
+        <Option value={category.name} key={category._id}>{category.name}</Option>
+      )
+    });
 
       return (
         <Fragment>
@@ -104,6 +106,17 @@ class VendorSalesPage extends Component {
               
           <Text strong style={{ fontSize: 40 }}>Register Your Business With Us</Text>
           <Form {...formItemLayout} style={{ paddingTop: 40 }} onSubmit={this.handleSubmit}>
+            <Form.Item 
+              label="Category" 
+            >
+              {getFieldDecorator('categoryName', {
+                rules: [{ required: true, message: 'Please select a category!' }],
+              })(
+                <Select placeholder="Select a category">
+                  {categoryList}
+                </Select>
+              )}
+            </Form.Item>
             <Form.Item
               label={(
                 <span>
@@ -174,7 +187,8 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
 	error: state.error,
-	status: state.vendor.status
+  status: state.vendor.status,
+  categories: state.categoryService.categories
 });
 
 export default connect(

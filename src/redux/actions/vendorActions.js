@@ -5,13 +5,13 @@ import { tokenConfig } from './authActions';
 
 import {url} from '../../helper/url';
 
-export const registerBusiness = ({businessname,description,residence,phone}) => (dispatch, getState) => {
+export const registerBusiness = ({businessname, description, residence, phone, categoryName}) => (dispatch, getState) => {
   const detail = {
     description: description,
     location: residence,
     contact: phone
   };
-  const body = JSON.stringify({ name:businessname, detail });
+  const body = JSON.stringify({ name:businessname, categoryName, detail });
   const config = tokenConfig(getState);
   axios
     .post(`${url}/services`, body,config)
