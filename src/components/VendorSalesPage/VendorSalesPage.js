@@ -198,15 +198,6 @@ class VendorSalesPage extends Component {
                 <Input placeholder="Enter Website" />
               )}
           </Form.Item>
-          <Form.Item
-              label="Register your website"
-            >
-              {getFieldDecorator('website', {
-                rules: [{ required: false, whitespace: true }],
-              })(
-                <Input placeholder="Enter Website" />
-              )}
-          </Form.Item>
           <Form.Item label="Opening Time">
           {getFieldDecorator('openingTime',{
             rules: [{required:true}],
