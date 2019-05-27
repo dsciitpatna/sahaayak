@@ -1,4 +1,4 @@
-import {FETCH_CATEGORY,DELETE_CATEGORY,ADD_CATEGORY} from './type';
+import {FETCH_CATEGORY,DELETE_CATEGORY,ADD_CATEGORY,UPDATE_CATEGORY} from './type';
 import axios from 'axios';
 
 export const fetchCategory =()=>{
@@ -32,6 +32,19 @@ export const addCategory =(e)=>{
                 dispatch({
                     type:ADD_CATEGORY,
                     payload: e,
+                })
+            })
+    }
+};
+
+export const updateCategory =(newName,e)=>{
+    return dispatch =>{
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(res=>{
+                dispatch({
+                    type:UPDATE_CATEGORY,
+                    payload: e,
+                    newName:newName,
                 })
             })
     }
