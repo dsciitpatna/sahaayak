@@ -67,6 +67,11 @@ class LoginModal extends Component {
 
     this.props.login(user);
   };
+  validateKey = (e)=>{
+    if(e.key === 'Enter'){
+      this.handleSubmit(e)
+    }
+  }
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -86,7 +91,7 @@ class LoginModal extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Form layout="vertical" className="login-form" onSubmit={this.handleSubmit}>
+        <Form layout="vertical" className="login-form" onSubmit={this.handleSubmit} onKeyPress={this.validateKey}>
         <Modal
           visible={visible}
           title="Login"
