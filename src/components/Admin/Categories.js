@@ -2,11 +2,14 @@ import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import { Button,Modal,Input,Table, Divider } from 'antd';
-import {fetchCategory} from "../../redux/actions/adminActions";
+import {fetchCategory,deleteCategory,addCategory} from "../../redux/actions/adminActions";
 
 class Categories extends Component {
 
-  state = { visible: false }
+  state = { 
+    visible: false,
+    newCategoryName:''
+   }
   
   showModal = () => {
     this.setState({
@@ -14,16 +17,33 @@ class Categories extends Component {
     });
   }
 
+  handleChange=(e)=>{
+    this.setState({
+      newCategoryName:e.target.value
+    })
+  }
+  
   handleOk = (e) => {
+    const newCategory= {
+      userId:12,
+      id: this.props.cat.length+1,
+      title:this.state.newCategoryName
+    }
+    this.props.addCategory(newCategory);
     this.setState({
       visible: false,
-    });
+      newCategoryName:''    });
   }
 
   handleCancel = (e) => {
     this.setState({
       visible: false,
+      newCategoryName:'' 
     });
+  }
+
+  handleDelete=(e)=>{
+    this.props.deleteCategory(e);
   }
 
   componentWillMount(){
@@ -47,20 +67,18 @@ class Categories extends Component {
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
-               <Input placeholder="Enter the name of the category" />
+               <Input onChange={(value)=>{this.handleChange(value)}} placeholder="Enter the name of the category" />
            </Modal>
            <Table dataSource={this.props.cat}>
             <Column title="Category Name" dataIndex="title" key="title" />
-            <Column title="Number" dataIndex="id" key="id" />
-
             <Column
               title="Action"
-              key="action"
+              key="id"
               render={(text, record) => (
                 <span>
-                  <a href="/">Update</a>
+                  <span>Update</span>
                   <Divider type="vertical" />
-                  <a href="/">Delete</a>
+                  <span onClick={()=>{this.handleDelete(record.id)}}>Delete</span>
                 </span>
               )}
             />
@@ -84,5 +102,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {fetchCategory}
+  {fetchCategory,deleteCategory,addCategory}
 )(Categories);

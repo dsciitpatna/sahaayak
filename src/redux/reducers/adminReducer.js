@@ -1,4 +1,4 @@
-import {FETCH_CATEGORY} from '../actions/type';
+import {FETCH_CATEGORY,DELETE_CATEGORY,ADD_CATEGORY} from '../actions/type';
 
 const initState={
     category:[],
@@ -11,6 +11,12 @@ const fetchCategory=(state=initState,action)=>{
                 ...state,
                 category:action.payload
             }
+        case ADD_CATEGORY:
+            return {category :state.category.concat(action.payload)}
+        case DELETE_CATEGORY :
+            return { category: state.category.filter(catname =>
+                catname.id !== action.payload
+             )}
         default: return state;
     }
 
