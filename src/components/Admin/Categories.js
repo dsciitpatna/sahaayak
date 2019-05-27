@@ -46,7 +46,7 @@ class Categories extends Component {
     this.props.deleteCategory(e);
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.fetchCategory();
   }
 
