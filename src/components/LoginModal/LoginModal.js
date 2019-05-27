@@ -67,7 +67,7 @@ class LoginModal extends Component {
 
     this.props.login(user);
   };
-  validateKey = (e)=>{
+  onEnterKeyPress = (e)=>{
     if(e.key === 'Enter'){
       this.handleSubmit(e)
     }
@@ -91,7 +91,7 @@ class LoginModal extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Form layout="vertical" className="login-form" onSubmit={this.handleSubmit} onKeyPress={this.validateKey}>
+        <Form layout="vertical" className="login-form" onSubmit={this.handleSubmit} onKeyPress={this.onEnterKeyPress}>
         <Modal
           visible={visible}
           title="Login"
