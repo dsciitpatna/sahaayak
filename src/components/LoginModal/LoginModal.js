@@ -10,7 +10,7 @@ import {
   openRegisterModal
 } from "../../redux/actions/authActions";
 import { clearErrors } from "../../redux/actions/errorActions";
-import { Modal, Form, Input, Icon, Alert } from "antd";
+import { Modal, Form, Input, Icon, Alert, Button } from "antd";
 
 class LoginModal extends Component {
   state = {
@@ -93,6 +93,14 @@ class LoginModal extends Component {
           okText="Login"
           onCancel={this.handleCancel}
           onOk={this.handleSubmit}
+          footer={[
+            <Button key="back" onClick={this.handleCancel}>
+              Cancel
+            </Button>,
+            <Button key="submit" type="primary" loading={this.props.isLoading} onClick={this.handleSubmit}>
+              Login
+            </Button>,
+          ]}
         >
           {msg ? <Alert message={msg} type="error" /> : null}
           
@@ -131,6 +139,7 @@ class LoginModal extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  isLoading: state.auth.isLoading,
   error: state.error,
   openloginModal: state.auth.openloginModal
 });

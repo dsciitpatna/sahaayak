@@ -65,6 +65,7 @@ export const login = ({ email, password }) => dispatch => {
     }
   };
   const body = JSON.stringify({ email, password });
+  dispatch({ type: USER_LOADING });
   axios
     .post(`${url}/users/login`, body, config)
     .then(res =>
