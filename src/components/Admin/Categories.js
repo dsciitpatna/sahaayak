@@ -11,7 +11,7 @@ class Categories extends Component {
     newCategoryName:'',
     visibleUpdate:false,
     updatedCategoryName:'',
-    updatedCatObj:'',
+    updatedCatId:'',
    }
   
   showModalForm = () => {
@@ -23,7 +23,7 @@ class Categories extends Component {
   showModalUpdate = (e) => {
     this.setState({
       visibleUpdate: true,
-      updatedCatObj:e
+      updatedCatId:e
     });
   }
 
@@ -40,23 +40,18 @@ class Categories extends Component {
   }
   
   handleOkForm = () => {
-    const newCategory= {
-      userId:12,
-      id: this.props.cat.length+1,
-      title:this.state.newCategoryName
-    }
-    this.props.addCategory(newCategory);
+    this.props.addCategory(this.state.newCategoryName);
     this.setState({
       visibleForm: false,
       newCategoryName:''    });
   }
 
   handleOkUpdate = () => {
-    this.props.updateCategory(this.state.updatedCategoryName,this.state.updatedCatObj);
+    this.props.updateCategory(this.state.updatedCategoryName,this.state.updatedCatId);
     this.setState({
       visibleUpdate: false,
       updatedCategoryName:'', 
-      updatedCatObj:''
+      updatedCatId:''
     });
   }
 
@@ -66,7 +61,7 @@ class Categories extends Component {
       newCategoryName:'',
       visibleUpdate:false,
       updatedCategoryName:'',
-      updatedCatObj:'' 
+      updatedCatId:'' 
     });
   }
 
@@ -97,14 +92,14 @@ class Categories extends Component {
           >
                <Input onChange={(value)=>{this.handleChangeForm(value)}} placeholder="Enter the name of the category" />
            </Modal>
-           <Table dataSource={this.props.cat} rowKey='id'>
-            <Column title="Category Name" dataIndex="title" key="title" />
+           <Table dataSource={this.props.cat} rowKey='_id'>
+            <Column title="Category Name" dataIndex="name" key="name" />
             <Column
               title="Action"
-              key="id"
-              render={(text, record) => (
+              key="_id"
+              render={(record) => (
                 <span>
-                  <span onClick={() => this.showModalUpdate(record)}>Update</span>
+                  <span onClick={() => this.showModalUpdate(record._id)}>Update</span>
                   <Modal
                     title="Add a new category"
                     visible={this.state.visibleUpdate}
@@ -114,7 +109,7 @@ class Categories extends Component {
                       <Input onChange={(value)=>{this.handleChangeUpdate(value)}} placeholder="Enter the name of the category" />
                   </Modal>
                   <Divider type="vertical" />
-                  <span onClick={()=>{this.handleDelete(record.id)}}>Delete</span>
+                  <span onClick={()=>{this.handleDelete(record._id)}}>Delete</span>
                 </span>
               )}
             />
