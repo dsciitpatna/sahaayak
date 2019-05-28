@@ -28,6 +28,12 @@ class AdminNavbar extends Component {
                   <span>Categories</span>
                 </Link>
               </Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/admin/users">
+                  <Icon type="form" />
+                  <span>Users</span>
+                </Link>
+              </Menu.Item>
             </Menu>
           </Sider>
         </Fragment>
