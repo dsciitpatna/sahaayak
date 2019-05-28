@@ -68,7 +68,7 @@ class CategoryWiseServices extends Component {
                                         style={{ height: '100%' }}
                                     >
                                         <p><Icon type="setting" theme="twoTone" /> Service : {service.name}</p>
-                                        <p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Description: {service.detail.descriptiom}</p>
+                                        <p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Description: {service.detail.description}</p>
                                         <p><Icon type="heat-map" /> Location: {service.detail.location}</p>
                                         <p><Icon type="phone" theme="twoTone" /> Contact: {service.detail.contact}</p>
                                         <p><Icon type="star" theme="twoTone" /> Rating: {service.rating}</p>
