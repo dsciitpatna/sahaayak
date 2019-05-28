@@ -16,6 +16,7 @@ import VendorDashboard from "../VendorDashboard/VendorDashboard";
 import VendorSalesPage from "../VendorSalesPage/VendorSalesPage";
 import AdminNavbar from "../Admin/AdminNavbar";
 import Categories from "../Admin/Categories";
+import Users from "../Admin/Users";
 import Slideshow from "../Slideshow/Slideshow";
 import CategoryWiseServices from "../CategoryWiseServices/CategoryWiseServices";
 import Service from "../Service/Service";
@@ -121,17 +122,10 @@ class Navbar extends Component {
                 <Route exact path="/userDashboard" component={UserDashboard} />
                 <Route exact path="/categoryWiseServices/:categoryName" component={CategoryWiseServices} />
                 <Route exact path="/service/:serviceId" component={Service} />
-                <Route
-                  exact
-                  path="/vendorDashboard"
-                  component={VendorDashboard}
-                />
-                <Route
-                  exact
-                  path="/vendorSalesPage"
-                  component={VendorSalesPage}
-                />
+                <Route exact path="/vendorDashboard" component={VendorDashboard} />
+                <Route exact path="/vendorSalesPage" component={VendorSalesPage} />
                 <Route exact path="/admin/categories" component={Categories} />
+                <Route exact path="/admin/users" component={Users} />
               </Switch>
             </Content>
           </Layout>
