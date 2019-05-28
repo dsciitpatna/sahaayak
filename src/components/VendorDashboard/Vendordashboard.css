@@ -1,0 +1,21 @@
+.gutter-example .ant-row > div {
+  background: transparent;
+  border: 0;
+}
+.image1 {
+  border-radius: 50%;
+  width: 320px;
+  height: 320px;
+  border: solid 2px black;
+}
+.v-dashboard-container{
+  margin: 60px 10%;
+}
+.v-dashboard-btn{
+  margin: 30px 45px;
+  text-align: center;
+  font-size: 20px;
+}
+.ant-col .ant-typography{
+  font-family: monospace;
+} 
