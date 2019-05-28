@@ -87,7 +87,7 @@ class VendorDashboard extends Component {
                </Col>
               <Col className="gutter-row" span={18}>
                 <div className="gutter-box">
-                  <Title style={{ textAlign: "center" }}>Welcome: Rajeev Ahuja</Title>
+                  <Title style={{ textAlign: "center" }}>Welcome:  {user.name}</Title>
                   <hr />
                 </div>
               </Col>
