@@ -8,10 +8,6 @@ import { getServices } from '../../redux/actions/vendorActions';
 const { Title } = Typography;
 
 class VendorDashboard extends Component {
-  state = {
-    loading: false,
-    iconLoading: false,
-  };
   getVendorServices = (id) => {
     this.props.getServices(id);
   }
@@ -19,14 +15,6 @@ class VendorDashboard extends Component {
     const { id } = this.props.user;
     this.getVendorServices(id);
   }
-
-  enterLoading = () => {
-    this.setState({ loading: true });
-  };
-
-  enterIconLoading = () => {
-    this.setState({ iconLoading: true });
-  };
 
   render() {
     const columns = [
@@ -93,21 +81,16 @@ class VendorDashboard extends Component {
                   type="primary"
                   icon="camera"
                   size="large"
-                  loading={this.state.iconLoading}
-                  onClick={this.enterIconLoading}
                 >
                   Change Profile Pic
                </Button>
-
-              </Col>
-
+               </Col>
               <Col className="gutter-row" span={18}>
                 <div className="gutter-box">
                   <Title style={{ textAlign: "center" }}>Welcome: Rajeev Ahuja</Title>
                   <hr />
                 </div>
               </Col>
-
             </Row>
             <div className="content">
               <PageHeader onBack={() => null} title="Your Listings" subTitle="Your Listings upto now" />
@@ -142,3 +125,5 @@ export default connect(
   mapStateToProps,
   { getServices }
 )(VendorDashboard);
+
+
