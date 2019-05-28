@@ -37,9 +37,17 @@ class VendorSalesPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll((err, fieldvalues) => {
       if (!err) {
-				this.handleRegister(values)
+        const values = {
+          ...fieldvalues,
+          'openingTime': fieldvalues['openingTime'].format('h:mm a'),
+          'closingTime': fieldvalues['closingTime'].format('h:mm a')
+      }
+			this.handleRegister(values)
+      }
+      else{
+        return;
       }
     });
   }
@@ -168,7 +176,7 @@ class VendorSalesPage extends Component {
             <Form.Item 
               label="Establishment Year" 
             >
-              {getFieldDecorator('established year', {
+              {getFieldDecorator('establishedYear', {
                 rules: [{ required: true, message: 'Please select an year!' }],
               })(
                 <Select placeholder="Select an Year">
