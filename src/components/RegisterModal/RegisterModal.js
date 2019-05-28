@@ -104,6 +104,11 @@ class RegisterModal extends Component {
   captchaLoad = () => {
     console.log("Captcha loaded");
   }
+  onEnterKeyPress = (e)=>{
+    if(e.key === 'Enter'){
+      this.handleSubmit(e)
+    }
+  }
   verifyCaptcha = (response) => {
     if (response) {
       this.setState({
@@ -118,7 +123,7 @@ class RegisterModal extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Form layout="vertical" className="register-form" onSubmit={this.handleSubmit}>
+        <Form layout="vertical" className="register-form" onSubmit={this.handleSubmit} onKeyPress ={this.onEnterKeyPress}>
           <Modal
             visible={visible}
             title="Register"
