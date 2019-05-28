@@ -128,7 +128,7 @@ class Categories extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
-  cat:state.categorylist.category,
+  cat:state.admin.category,
 });
 
 export default connect(

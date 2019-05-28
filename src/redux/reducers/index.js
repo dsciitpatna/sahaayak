@@ -13,5 +13,5 @@ export default combineReducers({
   user: UserReducer,
   vendor: vendorReducer,
   categoryService: CategoryServiceReducer,
-  categorylist:AdminReducer,
+  admin:AdminReducer,
 });
