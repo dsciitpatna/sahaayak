@@ -5,33 +5,31 @@ const initState={
 }
 
 const fetchCategory=(state=initState,action)=>{
-    switch(action.type){
-        case FETCH_CATEGORY:
+	switch(action.type){
+		case FETCH_CATEGORY:
+    	return {
+      	...state,
+        category:action.payload
+      }
+    case ADD_CATEGORY :
+      return {category :state.category.concat(action.payload)}
+		case DELETE_CATEGORY :
+      return { category: state.category.filter(catname => catname._id !== action.payload )}
+    case UPDATE_CATEGORY :
+      return{
+      	category :state.category.map(item=>{
+          if(item._id===action.payload)
             return {
-                ...state,
-                category:action.payload
+							_id:action.payload,
+              name:action.newCategory.name,
+              register_date:action.newCategory.register_date
             }
-        case ADD_CATEGORY:
-            return {category :state.category.concat(action.payload)}
-        case DELETE_CATEGORY :
-            return { category: state.category.filter(catname =>
-                catname._id !== action.payload
-             )}
-        case UPDATE_CATEGORY:
-            return{
-                category :state.category.map(item=>{
-                    if(item._id===action.payload)
-                    return {
-                        _id:action.payload,
-                        name:action.newCategory.name,
-                        register_date:action.newCategory.register_date
-                    }
-                    else
-                    return item
-                })
-            }
-        default: return state;
-    }
-
+          else
+            return item
+       })
+      }
+    	default: return state;
+  }
 }
+
 export default fetchCategory; 
