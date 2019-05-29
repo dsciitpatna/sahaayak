@@ -1,8 +1,9 @@
-import { REGISTER_BUSINESS_SUCCESS,GET_VENDOR_SERVICES } from '../actions/type';
+import { REGISTER_BUSINESS_SUCCESS,GET_VENDOR_SERVICES,ADD_REVIEW_SUCCESS } from '../actions/type';
 
 const initialState = {
   status: null,
-  services: []
+  services: [],
+  review: {}
 }
 
 export default function (state = initialState, action) {
@@ -16,6 +17,11 @@ export default function (state = initialState, action) {
       return{
         ...state,
         services: action.payload.services
+      }
+      case ADD_REVIEW_SUCCESS:
+      return{
+        ...state,
+        review: action.payload.review
       }
     default:
       return state;

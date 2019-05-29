@@ -1,4 +1,4 @@
-import { REGISTER_BUSINESS_SUCCESS,GET_VENDOR_SERVICES } from './type';
+import { REGISTER_BUSINESS_SUCCESS,GET_VENDOR_SERVICES,ADD_REVIEW_SUCCESS,ADD_REVIEW_FAIL } from './type';
 import axios from "axios";
 import {returnErrors} from './errorActions';
 import { tokenConfig } from './authActions';
@@ -40,3 +40,17 @@ export const getServices = (id)=>(dispatch,getState)=>{
           dispatch(returnErrors(err.response.data,err.response.data,'GET_VENDOR_SERVICES_FAIL'));
         })
 };
+
+export const addReview = ({rating,review,serviceId})=>(dispatch,getState)=>{
+  const body = JSON.stringify({rating,review})
+    axios.post(`${url}/reviews/${serviceId}`,body,tokenConfig(getState))
+    .then(res=>{
+      dispatch({
+        type: ADD_REVIEW_SUCCESS,
+        payload: res.data
+      })
+    })
+    .catch(err=>{
+      dispatch(returnErrors(err.response.data,err.response.status,'ADD_REVIEW_FAIL'))
+    })
+}

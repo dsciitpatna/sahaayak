@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { Card, Spin, Row, Col, Icon, Alert } from 'antd';
 import 'antd/dist/antd.css';
 
+
 import { getCategoryWiseServices } from "../../redux/actions/categoryServiceActions";
 import "./CategoryWiseServices.css";
+import Ratings from '../Rating/Ratings';
 
 const { Meta } = Card;
 
@@ -101,6 +103,7 @@ class CategoryWiseServices extends Component {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     {serviceList}
                 </div>
+                <Ratings />
             </div>
         )
     }
