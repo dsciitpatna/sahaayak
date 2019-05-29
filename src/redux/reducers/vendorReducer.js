@@ -21,6 +21,7 @@ export default function (state = initialState, action) {
       case ADD_REVIEW_SUCCESS:
       return{
         ...state,
+        status: 200,
         review: action.payload.review
       }
     default:

@@ -1,4 +1,4 @@
-import { REGISTER_BUSINESS_SUCCESS,GET_VENDOR_SERVICES,ADD_REVIEW_SUCCESS,ADD_REVIEW_FAIL } from './type';
+import { REGISTER_BUSINESS_SUCCESS,GET_VENDOR_SERVICES,ADD_REVIEW_SUCCESS } from './type';
 import axios from "axios";
 import {returnErrors} from './errorActions';
 import { tokenConfig } from './authActions';

@@ -13,7 +13,7 @@ class Ratings extends Component {
   state = {
     value: 3,
     visible: false,
-    id: "5cee8aa8f2a49620161cdf14"
+    id: "5cee8aa8f2a49620161cdf14",
   };
 
   handleChange = value => {
@@ -55,9 +55,11 @@ class Ratings extends Component {
   if(isAuthenticated){
     const { getFieldDecorator } = this.props.form;
     const { value, visible, confirmLoading } = this.state;
+    const {status} = this.props
     return (
       <Fragment>
-        {error.msg != ''?<Alert type="error" message={error.msg} />:null}
+        {error.msg !== ''?<Alert type="error" message={error.msg} />:null}
+        {status === 200 && error.msg === '' ?<Alert type='success' message="Reviewed successfully" />:null}
         <div className="ratingwrapper">
           <Title>Rate This Vendor</Title>
           <Paragraph>Tell others what you think</Paragraph>
@@ -128,7 +130,8 @@ class Ratings extends Component {
 }
 const mapStatetoProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
+  status: state.vendor.status
 });
 export default compose(
   connect(mapStatetoProps,{addReview}),
