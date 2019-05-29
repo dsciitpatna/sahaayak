@@ -24,9 +24,6 @@
 .trigger:hover {
   color: #1890ff;
 }
-.anticon-menu-unfold,.anticon-menu-fold{
-  font-size: 30px!important;
-}
 
 @media only screen and (max-width: 600px) {
   .right {
