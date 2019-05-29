@@ -36,6 +36,7 @@ export const loaduser = () => (dispatch, getState) => {
 };
 
 export const register = ({ name, email, password, isVendor }) => dispatch => {
+  dispatch({ type: USER_LOADING });
   const config = {
     headers: {
       "Content-Type": "application/json"

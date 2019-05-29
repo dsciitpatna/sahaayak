@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import './RegisterModal.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Modal, Form, Input, Alert, Switch, Icon } from 'antd';
+import { Modal, Form, Input, Alert, Switch, Icon, Button } from 'antd';
 import {
   register,
   openLoginModal,
@@ -130,6 +130,14 @@ class RegisterModal extends Component {
             okText="Register"
             onCancel={this.handleCancel}
             onOk={this.handleSubmit}
+            footer={[
+              <Button key="back" onClick={this.handleCancel}>
+                Cancel
+              </Button>,
+              <Button key="submit" type="primary" loading={this.props.isLoading} onClick={this.handleSubmit}>
+                Register
+              </Button>,
+            ]}
           >
             {msg ? <Alert message={msg} type="error" /> : null}
             <Form.Item>
@@ -186,6 +194,7 @@ class RegisterModal extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  isLoading: state.auth.isLoading,
   error: state.error,
   openregisterModal: state.auth.openregisterModal
 });
