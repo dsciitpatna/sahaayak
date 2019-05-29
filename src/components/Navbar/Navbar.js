@@ -54,7 +54,7 @@ class Navbar extends Component {
       <Router>
         <Layout>
           <Header
-            style={{ position: "fixed", zIndex: 1, width: "100%" }}
+            style={{ position: "fixed", zIndex: 99, width: "100%" }}
             className="header"
           >
             {isAuthenticated ? (
