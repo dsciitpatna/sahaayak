@@ -1,0 +1,35 @@
+.ratingwrapper .ant-typography{
+  font-family: monospace;
+  padding: 2px;
+  }
+  .ratingwrapper h1 {
+    font-size: 30px;
+    font-weight: 600;
+  }
+  .ratingwrapper div{
+  font-size: 20px;
+  }
+  .ant-rate-text{
+    font-size: 20px;
+    text-transform: capitalize;
+    font-family: monospace;
+  }
+  .ratingwrapper .offset{
+    padding: 20px 2px;
+  }
+  .ratingwrapper .ant-btn-primary{
+    font-size: 20px;
+    display: block;
+    font-family: monospace;
+  }
+  .ant-modal-body .ant-typography{
+    font-family: monospace;
+  padding: 2px;
+  }
+  .ant-modal-body  h1 {
+    font-size: 30px;
+    font-weight: 600;
+  }
+  .ant-modal-body  div{
+  font-size: 20px;
+  }
