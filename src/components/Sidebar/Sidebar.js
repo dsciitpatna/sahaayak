@@ -57,9 +57,9 @@ class SideBar extends Component {
             trigger={null}
             collapsible
             collapsedWidth={0}
+            width={250}
             collapsed={this.props.collapseProp}
           >
-            <div className="logo" />
             <Menu theme="dark" mode="inline">
               {categoryList}
               {pending &&
