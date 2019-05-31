@@ -90,16 +90,16 @@ class CategoryWiseServices extends Component {
             )
         })
         ) : (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                [<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Spin tip="Loading..." size="large" ></Spin>
-                </div>
+                </div>]
             )
 
         return (
             <div>
                 {msg ? <Alert message={msg} type='error' /> : null}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    {serviceList}
+                    {serviceList.length ? serviceList : <Alert message="No services found!" type='warning' />}
                 </div>
             </div>
         )
