@@ -65,7 +65,6 @@ class Service extends Component {
                 <Card
                 style={{ width: '100%' }}
                 title={service.name}
-                extra={<a href="#">More</a>}
                 tabList={tabList}
                 activeTabKey={this.state.key}
                 onTabChange={key => {
@@ -84,6 +83,34 @@ class Service extends Component {
                                     >
                                         <img alt="example" src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="100%" height="100%" />
                                         <Meta title={service.categoryName} description="www.instagram.com" />
+                                    </Card>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={24} sm={12}>
+                                    <Card
+                                        title="Service Details"
+                                        bordered={true}
+                                        style={{ width: '100%' }}
+                                    >
+                                        <p><Icon type="setting" theme="twoTone" /> Service : {service.name}</p>
+                                        <p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Description: {service.detail.description}</p>
+                                        <p><Icon type="heat-map" /> Location: {service.detail.location}</p>
+                                        <p><Icon type="phone" theme="twoTone" /> Contact: {service.detail.contact}</p>
+                                        <p><Icon type="star" theme="twoTone" /> Rating: {service.rating}</p>
+                                    </Card>
+                                </Col>
+                                <Col xs={24} sm={12}>
+                                    <Card
+                                        title="More Details"
+                                        bordered={true}
+                                        style={{ width: '100%' }}
+                                    >
+                                        <p><Icon type="setting" theme="twoTone" /> Data</p>
+                                        <p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Data</p>
+                                        <p><Icon type="heat-map" /> Data</p>
+                                        <p><Icon type="phone" theme="twoTone" /> Data</p>
+                                        <p><Icon type="star" theme="twoTone" /> Data</p>
                                     </Card>
                                 </Col>
                             </Row>
@@ -130,8 +157,29 @@ class Service extends Component {
                                     </Card>
                                 </Col>
                             </Row>
-                            <Row style={{marginTop: '50px'}}>
-                                dewgvfvv
+                            <Row>
+                                <Col xs={24} sm={12}>
+                                    <Card
+                                        title="Vendor Details"
+                                        bordered={true}
+                                        style={{ width: '100%' }}
+                                    >
+                                        <p><Icon type="smile" theme="twoTone" /> Name: {service.vendor.name}</p>
+                                    </Card>
+                                </Col>
+                                <Col xs={24} sm={12}>
+                                    <Card
+                                        title="More Details"
+                                        bordered={true}
+                                        style={{ width: '100%' }}
+                                    >
+                                        <p><Icon type="setting" theme="twoTone" /> Data</p>
+                                        <p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Data</p>
+                                        <p><Icon type="heat-map" /> Data</p>
+                                        <p><Icon type="phone" theme="twoTone" /> Data</p>
+                                        <p><Icon type="star" theme="twoTone" /> Data</p>
+                                    </Card>
+                                </Col>
                             </Row>
                         </div>
                     ),
