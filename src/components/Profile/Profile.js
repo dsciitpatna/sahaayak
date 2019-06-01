@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import {compose} from 'redux'
 import {Form,Input,Button,Row,Col,Icon,message,Alert,Typography,Modal} from "antd";
 import { clearErrors } from "../../redux/actions/errorActions";
-import { updateUser,updateUserNoPass } from "../../redux/actions/userActions";
+import { updateUser } from "../../redux/actions/userActions";
 import "./Profile.css";
 const { Title, Paragraph } = Typography;
 
@@ -45,15 +45,6 @@ class UserProfile extends Component {
 
     // Property used for uploading image
     loading: false
-  };
-
-  static propTypes = {
-    isAuthenticated: PropTypes.bool,
-    error: PropTypes.object.isRequired,
-    clearErrors: PropTypes.func.isRequired,
-    updateUser: PropTypes.func.isRequired,
-    authUser: PropTypes.object.isRequired,
-    userUser: PropTypes.object.isRequired
   };
 
   componentDidUpdate(prevProps) {
@@ -109,12 +100,14 @@ class UserProfile extends Component {
   changeData = () =>{
     const {id} = this.props.authUser;
     const {username,email,isVendor} = this.state;
-  this.props.updateUserNoPass({name:username,email,isVendor},id);
+    const updatedUser = {name:username,email,isVendor};
+  this.props.updateUser({updatedUser,userId:id});
   }
   handleOk = e => {
     this.setState({
       visible: false
     });
+    this.handleSubmit(e);
   };
 
   handleCancel = e => {
@@ -133,10 +126,12 @@ class UserProfile extends Component {
       if (!err) {
         if(values['password']===values['confirmpassword'])
         {
-          console.log(values['password']);
-          return 1;
+          const {id} = this.props.authUser;
+          const {username,email,isVendor} = this.state;
+          const updatedUser = {name:username,email,isVendor,password:values['password']};
+          console.log(updatedUser);
+        this.props.updateUser({updatedUser,userId:id});
         }
-        return 0;
       }
     });
   };
@@ -150,13 +145,14 @@ class UserProfile extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated,userStatus } = this.props;
     const { getFieldDecorator } = this.props.form;
     const { username,email,isVendor } = this.state;
     const imageUrl = this.state.imageUrl;
     if (isAuthenticated) {
       return (
         <Fragment>
+          { userStatus === 200 ? <Alert type="success" message="Successfully Changed" /> : null}
           <div className="v-dashboard-container">
             <Row gutter={300} type="flex" justify="space-around" align="middle">
               <Col className="gutter-row" span={6}>
@@ -261,6 +257,7 @@ class UserProfile extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  error: state.error,
   user: state.auth.user,
   authUser: state.auth.user,
   userUser: state.user.user,
@@ -269,6 +266,6 @@ const mapStateToProps = state => ({
 });
 
 export default compose(
-  connect(mapStateToProps,{ updateUser,clearErrors,updateUserNoPass }),
+  connect(mapStateToProps,{ updateUser,clearErrors }),
   Form.create({ name: 'Change Password' })
 )(UserProfile);
