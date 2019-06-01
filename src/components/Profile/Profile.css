@@ -2,3 +2,60 @@
     width: 228px;
     height: 328px;
   }
+  /* Us */
+  .gutter-example .ant-row > div {
+    background: transparent;
+    border: 0;
+  }
+  .image1 {
+    border-radius: 50%;
+    width: 320px;
+    height: 320px;
+    border: solid 2px black;
+  }
+  .v-dashboard-container{
+    margin: 60px 10%;
+  }
+  .v-dashboard-btn{
+    margin: 30px 45px;
+    text-align: center;
+    font-size: 20px;
+  }
+  .ant-col .ant-typography{
+    font-family: monospace;
+  } 
+  .content .description {
+    display: table;
+    padding: 20px 
+  }
+  .description-object{
+    padding: 30px 0;
+    font-family: monospace;
+    text-align: right;
+  }
+  .description .term {
+    display: table-cell;
+    white-space: nowrap;
+    font-size: 40px;
+    font-family: monospace
+  }
+  .description .term:after {
+    position: relative;
+    top: -0.5px;
+    margin: 0 8px 0 2px;
+    content: ":";
+  }
+  .description .detail {
+    display: table-cell;
+    padding-bottom: 8px;
+    width: 100%;
+    line-height: 20px;
+    font-size: 40px;
+    font-family: monospace;
+  }
+  .description-object .ant-typography{
+    font-size: 30px;
+  }
+  .description-object span {
+    font-size: 20px;
+  }

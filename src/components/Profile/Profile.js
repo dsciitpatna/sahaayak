@@ -1,31 +1,50 @@
-
 import React, { Component, Fragment } from "react";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import PropTypes from 'prop-types';
-import { Form, Input, Button, Row, Col, Upload, Icon, message, Alert } from "antd";
-
+import PropTypes from "prop-types";
+import {
+  Form,
+  Input,
+  Button,
+  Row,
+  Col,
+  Upload,
+  Icon,
+  message,
+  Alert,
+  Typography,
+  Descriptions
+} from "antd";
 import { clearErrors } from "../../redux/actions/errorActions";
 import { updateUser } from "../../redux/actions/userActions";
 import "./Profile.css";
+const { Title, Paragraph } = Typography;
 
 function getBase64(img, callback) {
   const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
+  reader.addEventListener("load", () => callback(reader.result));
   reader.readAsDataURL(img);
 }
 
 function beforeUpload(file) {
-  const isJPG = file.type === 'image/jpeg';
+  const isJPG = file.type === "image/jpeg";
   if (!isJPG) {
-    message.error('You can only upload JPG file!');
+    message.error("You can only upload JPG file!");
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
+    message.error("Image must smaller than 2MB!");
   }
   return isJPG && isLt2M;
 }
+const Description = ({ term, children, span = 12 }) => (
+  <Col span={span}>
+    <div className="description">
+      <div className="term">{term}</div>
+      <div className="detail">{children}</div>
+    </div>
+  </Col>
+);
 
 class UserProfile extends Component {
   state = {
@@ -39,7 +58,7 @@ class UserProfile extends Component {
     phone: "",
     // Property used for uploading image
     loading: false
-  }
+  };
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
@@ -54,17 +73,17 @@ class UserProfile extends Component {
     const { error } = this.props;
     if (error !== prevProps.error) {
       if (error.id === "USER_UPDATE_FAIL") {
-        if(error.msg!==Object(error.msg)) {
+        if (error.msg !== Object(error.msg)) {
           this.setState({
             msg: error.msg
           });
         } else {
-          let message="";
-          if(error.msg.name && error.msg.name.message!=="") {
-            message+=error.msg.name.message+" ";
+          let message = "";
+          if (error.msg.name && error.msg.name.message !== "") {
+            message += error.msg.name.message + " ";
           }
-          if(error.msg.email && error.msg.email.message!=="") {
-            message+=error.msg.email.message;
+          if (error.msg.email && error.msg.email.message !== "") {
+            message += error.msg.email.message;
           }
           this.setState({
             msg: message
@@ -82,75 +101,96 @@ class UserProfile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   // Function is used for uploading picture
-  handleChange = (info) => {
-    if (info.file.status === 'uploading') {
+  handleChange = info => {
+    if (info.file.status === "uploading") {
       this.setState({ loading: true });
       return;
     }
-    if (info.file.status === 'done') {
+    if (info.file.status === "done") {
       // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl => this.setState({
-        imageUrl,
-        loading: false,
-      }));
+      getBase64(info.file.originFileObj, imageUrl =>
+        this.setState({
+          imageUrl,
+          loading: false
+        })
+      );
     }
-  }
-
+  };
   handleSubmit = e => {
     e.preventDefault();
-    if ( this.state.newpassword!=="" && this.state.confnewpassword==="" ) {
+    if (this.state.newpassword !== "" && this.state.confnewpassword === "") {
       this.setState({
         confPwdError: "Please confirm your password !!!",
         pwdError: ""
-      })
+      });
       return;
     }
-    if ( this.state.newpassword==="" && this.state.confnewpassword!=="" ) {
+    if (this.state.newpassword === "" && this.state.confnewpassword !== "") {
       this.setState({
         pwdError: "Please enter both password fields !!!",
         confPwdError: ""
-      })
+      });
       return;
     }
-    if ( this.state.newpassword!==this.state.confnewpassword ) {
+    if (this.state.newpassword !== this.state.confnewpassword) {
       this.setState({
         pwdError: "Passwords do not match !!!",
         confPwdError: "Passwords do not match !!!"
-      })
+      });
       return;
     }
-    let body={};
-    if ( this.state.name!=="" && this.state.name!==this.props.authUser.name ) {
-      body.name=this.state.name;
+    let body = {};
+    if (
+      this.state.name !== "" &&
+      this.state.name !== this.props.authUser.name
+    ) {
+      body.name = this.state.name;
     }
-    if ( this.state.email!=="" && this.state.email!==this.props.authUser.email ) {
-      body.email=this.state.email;
+    if (
+      this.state.email !== "" &&
+      this.state.email !== this.props.authUser.email
+    ) {
+      body.email = this.state.email;
     }
-    if ( this.state.newpassword!=="" && this.state.newpassword===this.state.confnewpassword ) {
-      body.password=this.state.newpassword;
+    if (
+      this.state.newpassword !== "" &&
+      this.state.newpassword === this.state.confnewpassword
+    ) {
+      body.password = this.state.newpassword;
     }
     this.setState({
       pwdError: "",
       confPwdError: "",
       newpassword: "",
       confnewpassword: ""
-    })
-    if(body==={}) {
+    });
+    if (body === {}) {
       return;
     }
-    const update={
+    const update = {
       updatedUser: body,
       userId: this.props.authUser.id
-    }
+    };
     this.props.updateUser(update);
-  }
+  };
 
   render() {
     const { isAuthenticated } = this.props;
-    const { name, email, newpassword, confnewpassword, phone, pwdError, confPwdError, msg } = this.state;
+    const { user } = this.props;
+    const {
+      name,
+      email,
+      newpassword,
+      confnewpassword,
+      phone,
+      pwdError,
+      confPwdError,
+      msg
+    } = this.state;
+    console.log(user);
     const uploadButton = (
       <div>
-        <Icon type={this.state.loading ? 'loading' : 'plus'} />
+        <Icon type={this.state.loading ? "loading" : "plus"} />
         <div className="ant-upload-text">Upload</div>
       </div>
     );
@@ -158,102 +198,62 @@ class UserProfile extends Component {
     if (isAuthenticated) {
       return (
         <Fragment>
-          <Form layout="vertical" onSubmit={this.handleSubmit}>
-          {msg && this.props.userStatus!==200 ? <Alert message={msg} type="error" /> : null}
-          {this.props.userStatus===200 ? <Alert message="Profile Updated" type="success" showIcon /> : null}
-            <Row>
-              <h1>Profile Page</h1>
-              <hr></hr>
-            </Row>
-            <Row>
-              <Col span={8}>
-                <p>Here is a pic</p>
-                <Upload
-                  name="avatar"
-                  listType="picture-card"
-                  className="avatar-uploader"
-                  showUploadList={false}
-                  action="//jsonplaceholder.typicode.com/posts/"
-                  beforeUpload={beforeUpload}
-                  onChange={this.handleChange}
+          <div className="v-dashboard-container">
+            <Row gutter={300} type="flex" justify="space-around" align="middle">
+              <Col className="gutter-row" span={6}>
+                <img
+                  src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=150&w=150"
+                  alt=""
+                  className="image1"
+                />
+                <Button
+                  className="v-dashboard-btn"
+                  type="primary"
+                  icon="camera"
+                  size="large"
                 >
-                  {imageUrl ? <img src={imageUrl} alt="avatar" /> : uploadButton}
-                </Upload>
-
+                  Change Profile Pic
+                </Button>
               </Col>
-              <Col span={16}>
-                <Form.Item label="Username">
-                  <Input
-                    type="text"
-                    name="name"
-                    value={name}
-                    onChange={this.onChange}
-                  />
-                </Form.Item>
-                <Form.Item label="E-mail Id">
-                  <Input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                  />
-                </Form.Item>
-                <Form.Item 
-                  label="New Password"
-                  validateStatus={pwdError ? "error" : null}
-                  help={pwdError ? pwdError : null}
-                >
-                  <Input
-                    type="password"
-                    name="newpassword"
-                    value={newpassword}
-                    onChange={this.onChange}
-                  />
-                </Form.Item>
-                <Form.Item 
-                  label="Confirm New Password"
-                  validateStatus={confPwdError ? "error" : null}
-                  help={confPwdError ? confPwdError : null}
-                >
-                  <Input
-                    type="password"
-                    name="confnewpassword"
-                    value={confnewpassword}
-                    onChange={this.onChange}
-                  />
-                </Form.Item>
-                <Form.Item label="Phone Number">
-                  <Input
-                    type="text"
-                    name="phone"
-                    value={phone}
-                    onChange={this.onChange}
-                  />
-                </Form.Item>
-                <Button type="primary" onClick={this.handleSubmit}>UPDATE</Button>
+              <Col className="gutter-row" span={18}>
+                <div className="gutter-box">
+                  <Title style={{ textAlign: "center", fontSize: "70px" }}>
+                    Welcome: {user.name}
+                  </Title>
+                  <hr />
+                  <div className="description-object" span={18}>
+                  <span>Username is </span>
+                  <Paragraph editable={true}>{user.name}</Paragraph>
+                  <span>
+                  Email is </span>
+                  <Paragraph editable={true}>{user.email}</Paragraph>
+                  <span>Registered as a</span>
+                  <Paragraph>{user.isVendor ? "Vendor":"User"}</Paragraph>
+                  <Button type="primary" title="Update Changes" size="large">Update changes</Button>
+                  </div>
+                </div>
               </Col>
             </Row>
-
-          </Form>
+          </div>
         </Fragment>
-      )
-    }
-    else {
+      );
+    } else {
       return (
         <Fragment>
           <p>Please login to view user Profile.</p>
         </Fragment>
-      )
+      );
     }
   }
 }
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
   authUser: state.auth.user,
   userUser: state.user.user,
   userStatus: state.user.status,
-  error: state.error,
+  error: state.error
 });
 
 export default connect(
