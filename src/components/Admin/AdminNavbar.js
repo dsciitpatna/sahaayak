@@ -14,7 +14,7 @@ class AdminNavbar extends Component {
       return (
         <Fragment>
           <Sider
-            style={{ overflow: 'auto', height: '100vh', left: 0, marginTop: '63px' }}
+            style={{ left: 0, overflow: 'auto', minHeight: '100vh', marginTop: '63px' }}
           >
             <h2 style={{ color: 'white', textAlign: 'center', paddingTop: '10px' }}>Admin Panel</h2>
             <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
