@@ -2,21 +2,10 @@ import React, { Component, Fragment } from "react";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  Form,
-  Input,
-  Button,
-  Row,
-  Col,
-  Upload,
-  Icon,
-  message,
-  Alert,
-  Typography,
-  Descriptions
-} from "antd";
+import {compose} from 'redux'
+import {Form,Input,Button,Row,Col,Icon,message,Alert,Typography,Modal} from "antd";
 import { clearErrors } from "../../redux/actions/errorActions";
-import { updateUser } from "../../redux/actions/userActions";
+import { updateUser,updateUserNoPass } from "../../redux/actions/userActions";
 import "./Profile.css";
 const { Title, Paragraph } = Typography;
 
@@ -49,13 +38,11 @@ const Description = ({ term, children, span = 12 }) => (
 class UserProfile extends Component {
   state = {
     msg: null,
-    pwdError: "",
-    confPwdError: "",
-    name: this.props.authUser.name,
-    email: this.props.authUser.email,
-    newpassword: "",
-    confnewpassword: "",
-    phone: "",
+    visible: false,
+    username:this.props.authUser.name,
+    email : this.props.authUser.email,
+    isVendor: this.props.authUser.isVendor,
+
     // Property used for uploading image
     loading: false
   };
@@ -97,9 +84,6 @@ class UserProfile extends Component {
     }
   }
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
   // Function is used for uploading picture
   handleChange = info => {
     if (info.file.status === "uploading") {
@@ -116,84 +100,59 @@ class UserProfile extends Component {
       );
     }
   };
+
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+  changeData = () =>{
+    const {id} = this.props.authUser;
+    const {username,email,isVendor} = this.state;
+  this.props.updateUserNoPass({name:username,email,isVendor},id);
+  }
+  handleOk = e => {
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleCancel = e => {
+    this.setState({
+      visible: false
+    });
+  };
+  onEnterKeyPress = (e)=>{
+    if(e.key === 'Enter'){
+      this.handleSubmit(e)
+    }
+  }
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.newpassword !== "" && this.state.confnewpassword === "") {
-      this.setState({
-        confPwdError: "Please confirm your password !!!",
-        pwdError: ""
-      });
-      return;
-    }
-    if (this.state.newpassword === "" && this.state.confnewpassword !== "") {
-      this.setState({
-        pwdError: "Please enter both password fields !!!",
-        confPwdError: ""
-      });
-      return;
-    }
-    if (this.state.newpassword !== this.state.confnewpassword) {
-      this.setState({
-        pwdError: "Passwords do not match !!!",
-        confPwdError: "Passwords do not match !!!"
-      });
-      return;
-    }
-    let body = {};
-    if (
-      this.state.name !== "" &&
-      this.state.name !== this.props.authUser.name
-    ) {
-      body.name = this.state.name;
-    }
-    if (
-      this.state.email !== "" &&
-      this.state.email !== this.props.authUser.email
-    ) {
-      body.email = this.state.email;
-    }
-    if (
-      this.state.newpassword !== "" &&
-      this.state.newpassword === this.state.confnewpassword
-    ) {
-      body.password = this.state.newpassword;
-    }
-    this.setState({
-      pwdError: "",
-      confPwdError: "",
-      newpassword: "",
-      confnewpassword: ""
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        if(values['password']===values['confirmpassword'])
+        {
+          console.log(values['password']);
+          return 1;
+        }
+        return 0;
+      }
     });
-    if (body === {}) {
-      return;
-    }
-    const update = {
-      updatedUser: body,
-      userId: this.props.authUser.id
-    };
-    this.props.updateUser(update);
   };
+  onChangeName = (name)=>{
+    console.log(name);
+    this.setState({username:name})
+  }
+  onChangeEmail = (email)=>{
+    console.log(email);
+    this.setState({email:email})
+  }
 
   render() {
     const { isAuthenticated } = this.props;
-    const { user } = this.props;
-    const {
-      name,
-      email,
-      newpassword,
-      confnewpassword,
-      phone,
-      pwdError,
-      confPwdError,
-      msg
-    } = this.state;
-    console.log(user);
-    const uploadButton = (
-      <div>
-        <Icon type={this.state.loading ? "loading" : "plus"} />
-        <div className="ant-upload-text">Upload</div>
-      </div>
-    );
+    const { getFieldDecorator } = this.props.form;
+    const { username,email,isVendor } = this.state;
     const imageUrl = this.state.imageUrl;
     if (isAuthenticated) {
       return (
@@ -218,21 +177,74 @@ class UserProfile extends Component {
               <Col className="gutter-row" span={18}>
                 <div className="gutter-box">
                   <Title style={{ textAlign: "center", fontSize: "70px" }}>
-                    Welcome: {user.name}
+                    Welcome: {username}
                   </Title>
                   <hr />
                   <div className="description-object" span={18}>
-                  <span>Username is </span>
-                  <Paragraph editable={true}>{user.name}</Paragraph>
-                  <span>
-                  Email is </span>
-                  <Paragraph editable={true}>{user.email}</Paragraph>
-                  <span>Registered as a</span>
-                  <Paragraph>{user.isVendor ? "Vendor":"User"}</Paragraph>
-                  <Button type="primary" title="Update Changes" size="large">Update changes</Button>
+                    <span>Username is </span>
+                    <Paragraph  editable={{ onChange: this.onChangeName }}>{username}</Paragraph>
+                    <span>Email is </span>
+                    <Paragraph  editable={{ onChange: this.onChangeEmail }}>{email}</Paragraph>
+                    <span>Registered as a</span>
+                    <Paragraph>{isVendor ? "Vendor" : "User"}</Paragraph>
+                    <Button type="primary" title="Update Changes" size="large" onClick={this.changeData}>
+                      Update changes
+                    </Button>
+                    <a onClick={this.showModal}>Update Password</a>
                   </div>
                 </div>
               </Col>
+              <Form onSubmit={this.handleSubmit} className="login-form" onKeyPress={this.onEnterKeyPress}>
+                <Modal
+                  title="Basic Modal"
+                  visible={this.state.visible}
+                  onOk={this.handleOk}
+                  onCancel={this.handleCancel}
+                >
+                  <Form.Item>
+                    {getFieldDecorator("password", {
+                      rules: [
+                        {
+                          required: true,
+                          message: "Please input your new Password!"
+                        }
+                      ]
+                    })(
+                      <Input
+                        prefix={
+                          <Icon
+                            type="lock"
+                            style={{ color: "rgba(0,0,0,.25)" }}
+                          />
+                        }
+                        type="password"
+                        placeholder="Add a new Password"
+                      />
+                    )}
+                  </Form.Item>
+                  <Form.Item>
+                    {getFieldDecorator("confirmpassword", {
+                      rules: [
+                        {
+                          required: true,
+                          message: "Please input your Password again!"
+                        },
+                      ]
+                    })(
+                      <Input
+                        prefix={
+                          <Icon
+                            type="lock"
+                            style={{ color: "rgba(0,0,0,.25)" }}
+                          />
+                        }
+                        type="password"
+                        placeholder="Confirm Password"
+                      />
+                    )}
+                  </Form.Item>
+                </Modal>
+              </Form>
             </Row>
           </div>
         </Fragment>
@@ -256,7 +268,7 @@ const mapStateToProps = state => ({
   error: state.error
 });
 
-export default connect(
-  mapStateToProps,
-  { updateUser, clearErrors }
+export default compose(
+  connect(mapStateToProps,{ updateUser,clearErrors,updateUserNoPass }),
+  Form.create({ name: 'Change Password' })
 )(UserProfile);

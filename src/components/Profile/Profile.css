@@ -59,3 +59,9 @@
   .description-object span {
     font-size: 20px;
   }
+  .description-object a {
+    display: block;
+    font-size: 20px;
+    text-align:right;
+    padding: 10px;
+  }
