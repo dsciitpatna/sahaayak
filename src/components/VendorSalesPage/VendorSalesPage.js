@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
+import TimePicker from 'react-time-picker';
 import {
-  Form, Input, Select, Button, Typography,Alert,TimePicker
+  Form, Input, Select, Button, Typography,Alert
 } from 'antd';
 import {registerBusiness} from '../../redux/actions/vendorActions';
 const Option  = Select.Option;
@@ -13,7 +14,8 @@ class VendorSalesPage extends Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
-		msg:  '',
+    msg:  '',
+    closeTimeEnable: true
   };
   componentDidUpdate(prevProps){
     const {error} = this.props;
@@ -39,12 +41,7 @@ class VendorSalesPage extends Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, fieldvalues) => {
       if (!err) {
-        const values = {
-          ...fieldvalues,
-          'openingTime': fieldvalues['openingTime'].format('h:mm a'),
-          'closingTime': fieldvalues['closingTime'].format('h:mm a')
-      }
-			this.handleRegister(values)
+			this.handleRegister(fieldvalues)
       }
       else{
         return;
@@ -54,6 +51,8 @@ class VendorSalesPage extends Component {
 
   onChange = (value) => {
     console.log(value);
+    this.setState({closeTimeEnable: false})
+
   }
 
 
@@ -198,7 +197,7 @@ class VendorSalesPage extends Component {
           })(<Input />)}
           </Form.Item>
           <Form.Item
-              label="Register your website"
+              label="Link your website"
             >
               {getFieldDecorator('website', {
                 rules: [{ required: false, whitespace: true }],
@@ -209,17 +208,14 @@ class VendorSalesPage extends Component {
           <Form.Item label="Opening Time">
           {getFieldDecorator('openingTime',{
             rules: [{required:true}],
-          })( <TimePicker use12Hours format="h:mm a"  />)}
+          })( <TimePicker format="h:m a" onChange = {this.onChange}/>)}
           </Form.Item>
           <Form.Item label="Closing Time">
           {getFieldDecorator('closingTime',{
             rules: [{required:true}],
-          })( <TimePicker use12Hours format="h:mm a"  />)}
+          })( <TimePicker disabled={this.state.closeTimeEnable} format="h:m a"  />)}
           </Form.Item>
-         
-
-
-            <Form.Item {...tailFormItemLayout}>
+         <Form.Item {...tailFormItemLayout}>
               <Button type="primary" block htmlType="submit">Register Your Business</Button>
             </Form.Item>
           </Form>
