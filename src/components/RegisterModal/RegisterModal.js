@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import './RegisterModal.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Modal, Form, Input, Alert, Switch, Icon, Button } from 'antd';
+import { Modal, Form, Input, Switch, Icon, Button, notification } from 'antd';
 import {
   register,
   openLoginModal,
@@ -17,7 +17,6 @@ class RegisterModal extends Component {
   state = {
     visible: this.props.openregisterModal,
     isVendor: false,
-    msg: null,
     captchaVerified: false
   };
 
@@ -35,12 +34,9 @@ class RegisterModal extends Component {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       if (error.id === "REGISTER_FAIL") {
-        this.setState({
-          msg: error.msg
-        });
-      } else {
-        this.setState({
-          msg: null
+        notification['error']({
+          message: 'Error Processing your request',
+          description: error.msg,
         });
       }
     }
@@ -75,8 +71,12 @@ class RegisterModal extends Component {
     };
     if (captchaVerified)
       this.props.register(newUser);
-    else
-      alert("Please verify that you are a human !!!");
+    else {
+      notification['error']({
+        message: 'Error Processing your request',
+        description: 'Please verify you are a human',
+      });
+    }
   };
 
   handleSubmit = e => {
@@ -104,8 +104,8 @@ class RegisterModal extends Component {
   captchaLoad = () => {
     console.log("Captcha loaded");
   }
-  onEnterKeyPress = (e)=>{
-    if(e.key === 'Enter'){
+  onEnterKeyPress = (e) => {
+    if (e.key === 'Enter') {
       this.handleSubmit(e)
     }
   }
@@ -119,11 +119,11 @@ class RegisterModal extends Component {
 
 
   render() {
-    const { visible, msg } = this.state;
+    const { visible } = this.state;
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Form layout="vertical" className="register-form" onSubmit={this.handleSubmit} onKeyPress ={this.onEnterKeyPress}>
+        <Form layout="vertical" className="register-form" onSubmit={this.handleSubmit} onKeyPress={this.onEnterKeyPress}>
           <Modal
             visible={visible}
             title="Register"
@@ -139,7 +139,6 @@ class RegisterModal extends Component {
               </Button>,
             ]}
           >
-            {msg ? <Alert message={msg} type="error" /> : null}
             <Form.Item>
               {getFieldDecorator('name', {
                 rules: [{ required: true, message: 'Please input your name!' }],

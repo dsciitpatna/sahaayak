@@ -1,4 +1,4 @@
-import { GET_ERRORS, CLEAR_ERRORS} from '../actions/type';
+import { GET_ERRORS, CLEAR_ERRORS } from '../actions/type';
 
 const initialState = {
   msg: '',
