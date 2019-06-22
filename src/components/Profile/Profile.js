@@ -3,7 +3,7 @@ import React, { Component, Fragment } from "react";
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
-import { Form, Input, Button, Row, Col, Upload, Icon, message, Alert } from "antd";
+import { Form, Input, Button, Row, Col, Upload, Icon, message, notification } from "antd";
 
 import { clearErrors } from "../../redux/actions/errorActions";
 import { updateUser } from "../../redux/actions/userActions";
@@ -29,7 +29,6 @@ function beforeUpload(file) {
 
 class UserProfile extends Component {
   state = {
-    msg: null,
     pwdError: "",
     confPwdError: "",
     name: this.props.authUser.name,
@@ -38,7 +37,7 @@ class UserProfile extends Component {
     confnewpassword: "",
     phone: "",
     // Property used for uploading image
-    loading: false
+    loading: false,
   }
 
   static propTypes = {
@@ -54,27 +53,16 @@ class UserProfile extends Component {
     const { error } = this.props;
     if (error !== prevProps.error) {
       if (error.id === "USER_UPDATE_FAIL") {
-        if(error.msg!==Object(error.msg)) {
-          this.setState({
-            msg: error.msg
-          });
-        } else {
-          let message="";
-          if(error.msg.name && error.msg.name.message!=="") {
-            message+=error.msg.name.message+" ";
-          }
-          if(error.msg.email && error.msg.email.message!=="") {
-            message+=error.msg.email.message;
-          }
-          this.setState({
-            msg: message
-          });
-        }
-      } else {
-        this.setState({
-          msg: null
+        notification['error']({
+          message: 'Error Processing your request',
+          description: error.msg,
         });
       }
+    }
+    if (this.props.userUser !== prevProps.userUser) {
+      notification['success']({
+        message: 'Profile Updated',
+      });
     }
   }
 
@@ -98,36 +86,36 @@ class UserProfile extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    if ( this.state.newpassword!=="" && this.state.confnewpassword==="" ) {
+    if (this.state.newpassword !== "" && this.state.confnewpassword === "") {
       this.setState({
         confPwdError: "Please confirm your password !!!",
         pwdError: ""
       })
       return;
     }
-    if ( this.state.newpassword==="" && this.state.confnewpassword!=="" ) {
+    if (this.state.newpassword === "" && this.state.confnewpassword !== "") {
       this.setState({
         pwdError: "Please enter both password fields !!!",
         confPwdError: ""
       })
       return;
     }
-    if ( this.state.newpassword!==this.state.confnewpassword ) {
+    if (this.state.newpassword !== this.state.confnewpassword) {
       this.setState({
         pwdError: "Passwords do not match !!!",
         confPwdError: "Passwords do not match !!!"
       })
       return;
     }
-    let body={};
-    if ( this.state.name!=="" && this.state.name!==this.props.authUser.name ) {
-      body.name=this.state.name;
+    let body = {};
+    if (this.state.name !== "" && this.state.name !== this.props.authUser.name) {
+      body.name = this.state.name;
     }
-    if ( this.state.email!=="" && this.state.email!==this.props.authUser.email ) {
-      body.email=this.state.email;
+    if (this.state.email !== "" && this.state.email !== this.props.authUser.email) {
+      body.email = this.state.email;
     }
-    if ( this.state.newpassword!=="" && this.state.newpassword===this.state.confnewpassword ) {
-      body.password=this.state.newpassword;
+    if (this.state.newpassword !== "" && this.state.newpassword === this.state.confnewpassword) {
+      body.password = this.state.newpassword;
     }
     this.setState({
       pwdError: "",
@@ -135,10 +123,10 @@ class UserProfile extends Component {
       newpassword: "",
       confnewpassword: ""
     })
-    if(body==={}) {
+    if (body === {}) {
       return;
     }
-    const update={
+    const update = {
       updatedUser: body,
       userId: this.props.authUser.id
     }
@@ -147,7 +135,7 @@ class UserProfile extends Component {
 
   render() {
     const { isAuthenticated } = this.props;
-    const { name, email, newpassword, confnewpassword, phone, pwdError, confPwdError, msg } = this.state;
+    const { name, email, newpassword, confnewpassword, phone, pwdError, confPwdError } = this.state;
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -159,8 +147,6 @@ class UserProfile extends Component {
       return (
         <Fragment>
           <Form layout="vertical" onSubmit={this.handleSubmit}>
-          {msg && this.props.userStatus!==200 ? <Alert message={msg} type="error" /> : null}
-          {this.props.userStatus===200 ? <Alert message="Profile Updated" type="success" showIcon /> : null}
             <Row>
               <h1>Profile Page</h1>
               <hr></hr>
@@ -198,7 +184,7 @@ class UserProfile extends Component {
                     onChange={this.onChange}
                   />
                 </Form.Item>
-                <Form.Item 
+                <Form.Item
                   label="New Password"
                   validateStatus={pwdError ? "error" : null}
                   help={pwdError ? pwdError : null}
@@ -210,7 +196,7 @@ class UserProfile extends Component {
                     onChange={this.onChange}
                   />
                 </Form.Item>
-                <Form.Item 
+                <Form.Item
                   label="Confirm New Password"
                   validateStatus={confPwdError ? "error" : null}
                   help={confPwdError ? confPwdError : null}
@@ -252,7 +238,6 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   authUser: state.auth.user,
   userUser: state.user.user,
-  userStatus: state.user.status,
   error: state.error,
 });
 

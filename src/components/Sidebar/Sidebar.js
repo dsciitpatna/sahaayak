@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './Sidebar.css'
-import { Layout, Menu, Icon, Spin, Alert } from "antd";
+import { Layout, Menu, Icon, Spin, notification } from "antd";
 
 import { getAllCategories } from "../../redux/actions/categoryServiceActions";
 
@@ -12,7 +12,6 @@ const { Sider } = Layout;
 class SideBar extends Component {
 
   state = {
-    msg: null,
     pending: true,
   }
 
@@ -25,20 +24,14 @@ class SideBar extends Component {
   componentDidUpdate(prevProps) {
     const { error } = this.props;
     if (error !== prevProps.error) {
-      if (error.id === "CATEGORIES_FETCH_FAIL") {
-        this.setState({
-          msg: error.msg
-        });
-      }
-      else {
-        this.setState({
-          msg: null
-        });
-      }
+      notification['error']({
+        message: 'Error Processing your request',
+        description: error.msg,
+      });
     }
   }
   render() {
-    const { msg, pending } = this.state;
+    const { pending } = this.state;
     const categoryList = this.props.categoryService.categories.map(category => {
       return (
         <Menu.Item key={category._id}>
@@ -51,7 +44,6 @@ class SideBar extends Component {
     return (
       <div className="wrapper">
         <div style={{ position: 'relative' }}>
-          {msg ? <Alert message={msg} type='error' /> : null}
           <Sider
             style={{ overflow: 'auto', height: '100vh', left: 0 }}
             trigger={null}
