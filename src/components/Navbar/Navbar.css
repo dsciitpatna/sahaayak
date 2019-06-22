@@ -2,6 +2,7 @@
   font-size: 32px;
   font-weight: 500;
   display: inline-block;
+  padding: 0px !important;
 }
 
 .ant-menu-item-selected {
@@ -13,10 +14,11 @@
   font-size: 24px;
   margin-right: 15px;
 }
+
 .trigger {
-  font-size: 30px;
+  font-size: 25px !important;
   line-height: 60px;
-  padding: 0 20px;
+  padding-left: 10px;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -36,9 +38,14 @@
     float: left;
     font-size: 18px;
     font-weight: 500;
+    padding: 0px !important;
   }
 
   .header {
     padding: 0 !important;
+  }
+
+  .trigger {
+    font-size: 20px !important;
   }
 }
