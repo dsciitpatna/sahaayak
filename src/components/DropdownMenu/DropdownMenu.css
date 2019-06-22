@@ -4,38 +4,21 @@
 }
 
 .dropdown-margin{
-  margin: 20px 30px;
+  margin: 20px 0px;
   font-size: 30px;
 }
+
 .ant-dropdown-menu-item{
   font-size: 20px;
-  font-family: monospace;
+  font-family: sans-serif;
   font-weight: 500;
 }
-.ant-dropdown-menu{
-  padding: 10px;
-}
 
-.ant-avatar {
-  position: relative;
-  font-size: 20px;
-  font-family: monospace;
-  background-color: #2f5ec4;
-  text-transform: uppercase;
-  width: 50px;
-  height: 45px;
-  
-}
-.ant-avatar span{
-position: absolute;
-top: 20%;
-left: 50%;
-transform: translate(-50%,-50%);
-}
 .anticon-more svg{
   width: 2rem;
   height: 2rem;
   position: absolute;
+  top: 30%;
+}
 
-  top: 30%;}
 

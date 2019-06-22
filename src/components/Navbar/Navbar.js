@@ -69,7 +69,6 @@ class Navbar extends Component {
                     className="trigger"
                     type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
                     onClick={this.toggle}
-                    style={{fontSize: "30px",color: "#ffffff"}}
                   />
                 </Menu.Item>
                 <Menu.Item key="2" className="left">
