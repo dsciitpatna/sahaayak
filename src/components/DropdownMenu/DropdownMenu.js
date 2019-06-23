@@ -17,14 +17,8 @@ const DropdownMenu = (props) => {
           Home
         </Link>
       </Menu.Item>
-      <Menu.Item key="2">
-        <Link to="/Profile">
-          <Icon type="edit" style={{ paddingRight: 10 }} />
-          Profile
-        </Link>
-      </Menu.Item>
       {isVendor ? (
-        <Menu.Item key="3">
+        <Menu.Item key="2">
           <Link to="/vendorDashboard">
             <Icon type="idcard" style={{ paddingRight: 10 }} />
             Dashboard
@@ -32,7 +26,7 @@ const DropdownMenu = (props) => {
         </Menu.Item>
       ) : null}
       {isVendor ? (
-        <Menu.Item key="4">
+        <Menu.Item key="3">
           <Link to="/vendorSalesPage">
             <Icon type="idcard" style={{ paddingRight: 10 }} />
             List Your Bussiness
@@ -40,7 +34,7 @@ const DropdownMenu = (props) => {
         </Menu.Item>
       ) : null}
       {!isVendor ? (
-        <Menu.Item key="5">
+        <Menu.Item key="4">
           <Link to="/userDashboard">
             <Icon type="idcard" style={{ paddingRight: 10 }} />
             Dashboard
@@ -48,13 +42,19 @@ const DropdownMenu = (props) => {
         </Menu.Item>
       ) : null}
       {isAdmin && !isVendor ? (
-        <Menu.Item key="6">
+        <Menu.Item key="5">
           <Link to="/admin">
             <Icon type="idcard" style={{ paddingRight: 10 }} />
             Admin
           </Link>
         </Menu.Item>
       ) : null}
+      <Menu.Item key="6">
+        <Link to="/settings">
+          <Icon type="edit" style={{ paddingRight: 10 }} />
+          Settings
+        </Link>
+      </Menu.Item>
       <Menu.Item key="7">
         <Logout />
       </Menu.Item>

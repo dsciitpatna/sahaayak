@@ -1,0 +1,12 @@
+.avatar-uploader > .ant-upload {
+    width: 228px;
+    height: 328px;
+  }
+
+.side-menu .ant-card-body {
+  padding: 0px;
+}
+
+.ant-menu {
+  border: 0px;
+}
