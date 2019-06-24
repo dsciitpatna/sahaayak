@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { Card, Spin, Row, Col, Icon, notification, Alert } from 'antd';
+import { Card, Spin, Row, Col, Icon, notification, Alert, Button } from 'antd';
 import 'antd/dist/antd.css';
 
 import { getCategoryWiseServices } from "../../redux/actions/categoryServiceActions";
 import "./CategoryWiseServices.css";
-
-const { Meta } = Card;
 
 class CategoryWiseServices extends Component {
 
@@ -34,44 +32,26 @@ class CategoryWiseServices extends Component {
 	}
 
 	render() {
+		const category = this.props.match.params.categoryName;
 		const serviceList = !this.props.categoryService.pending ? (this.props.categoryService.services.map((service) => {
 			return (
-				<Card className="containerCard" title={service.name} extra={<Link to={`/service/${service._id}`}><Icon type="step-forward" /> More Details</Link>} key={service._id} >
-					<Row>
+				<Card className="containerCard" key={service._id}>
+					<Row gutter={16}>
 						<Col xs={24} sm={24} md={8}>
-							<Card
-								hoverable
-								style={{ width: 'auto' }}
-							>
+							<Card style={{ width: 'auto', padding: '0px' }} className="card-image">
 								<img alt="example" src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="100%" height="100%" />
-								<Meta title={service.categoryName} description="www.instagram.com" />
 							</Card>
 						</Col>
 						<Col xs={24} sm={24} md={16}>
-							<Row>
-								<Col xs={24} sm={12}>
-									<Card
-										title="Service Details"
-										bordered={false}
-										style={{ height: '100%' }}
-									>
-										<p><Icon type="setting" theme="twoTone" /> Service : {service.name}</p>
-										<p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Description: {service.detail.description}</p>
-										<p><Icon type="heat-map" /> Location: {service.detail.location}</p>
-										<p><Icon type="phone" theme="twoTone" /> Contact: {service.detail.contact}</p>
-										<p><Icon type="star" theme="twoTone" /> Rating: {service.rating}</p>
-									</Card>
-								</Col>
-								<Col xs={24} sm={12}>
-									<Card
-										title="Vendor Details"
-										bordered={false}
-										style={{ height: '100%' }}
-									>
-										<p><Icon type="smile" theme="twoTone" /> Name: {service.vendor.name}</p>
-									</Card>
-								</Col>
-							</Row>
+							<h3>{service.name}</h3>
+							Rating: {service.rating}
+							<Link to={`/service/${service._id}`}><Button type="primary" style={{ float: 'right', margin: '-20px 0px' }}>View Details</Button></Link>
+							<hr />
+							<p><Icon type="phone" theme="twoTone" /> Contact: {service.detail.contact}</p>
+							<p><Icon type="setting" theme="twoTone" /> Category : {category}</p>
+							<p><Icon type="heat-map" /> Location: {service.detail.location}</p>
+							<p><Icon type="smile" theme="twoTone" /> Vendor Name: {service.vendor.name}</p>
+							<p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Description: {service.detail.description}</p>
 						</Col>
 					</Row>
 				</Card>

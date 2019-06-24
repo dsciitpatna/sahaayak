@@ -2,6 +2,11 @@
     width: 80%;
     margin: 10px;
 }
+
+.card-image .ant-card-body {
+    padding: 0px;
+}
+
 @media(max-width: 500px) {
     .containerCard{
         width: 90%;
