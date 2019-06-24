@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 //import { Link } from 'react-router-dom';
-import { Card, Spin, Row, Col, Icon, notification, PageHeader, Progress } from 'antd';
+import { Card, Spin, Row, Col, Icon, notification, PageHeader } from 'antd';
 import 'antd/dist/antd.css';
-
+import Gallery from 'react-grid-gallery';
 import { getService } from "../../redux/actions/categoryServiceActions";
 import "./Service.css";
 
@@ -19,6 +19,33 @@ const tabList = [
 		tab: 'Vendor',
 	},
 ];
+
+const IMAGES =
+	[{
+		src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
+		thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
+		thumbnailWidth: 40,
+		thumbnailHeight: 40,
+	},
+	{
+		src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
+		thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
+		thumbnailWidth: 40,
+		thumbnailHeight: 40,
+	},
+	{
+		src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
+		thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
+		thumbnailWidth: 40,
+		thumbnailHeight: 40,
+	},
+	{
+		src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
+		thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
+		thumbnailWidth: 40,
+		thumbnailHeight: 40,
+	}]
+
 
 class Service extends Component {
 
@@ -47,9 +74,10 @@ class Service extends Component {
 
 	render() {
 		const { service, pending } = this.props;
+		console.log(service);
 		const serviceData = !pending && service ? (
 			<div className="card-container">
-				<PageHeader onBack={() => window.history.back()} title="Service" subTitle={`Category: ${service.categoryName}`} />
+				<PageHeader onBack={() => window.history.back()} title={`Category: ${service.categoryName}`} />
 				<Card
 					style={{ width: '100%' }}
 					title={service.name}
@@ -62,102 +90,67 @@ class Service extends Component {
 					{{
 						tab1: (
 							<div>
-								<Row>
-									<Col xs={24}>
-										<Card
-											hoverable
-											bordered={false}
-											style={{ width: 'auto' }}
-										>
-											<img alt="example" src="https://images.pexels.com/photos/556416/pexels-photo-556416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="100%" height="100%" />
-											<Meta title={service.categoryName} description="www.instagram.com" />
-										</Card>
+								<Row gutter={16}>
+									<Col xs={12}>
+										<Gallery images={IMAGES} />
 									</Col>
-								</Row>
-								<Row>
-									<Col xs={24} sm={12}>
+									<Col xs={12} sm={12}>
 										<Card
 											title="Service Details"
 											bordered={true}
 											style={{ width: '100%' }}
 										>
-											<p><Icon type="setting" theme="twoTone" /> Service : {service.name}</p>
-											<p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Description: {service.detail.description}</p>
+											<p><Icon type="setting" theme="twoTone" /> Category : {service.categoryName}</p>
 											<p><Icon type="heat-map" /> Location: {service.detail.location}</p>
 											<p><Icon type="phone" theme="twoTone" /> Contact: {service.detail.contact}</p>
-											<p><Icon type="star" theme="twoTone" /> Rating: {service.rating}</p>
-										</Card>
-									</Col>
-									<Col xs={24} sm={12}>
-										<Card
-											title="More Details"
-											bordered={true}
-											style={{ width: '100%' }}
-										>
-											<p><Icon type="setting" theme="twoTone" /> Data</p>
-											<p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Data</p>
-											<p><Icon type="heat-map" /> Data</p>
-											<p><Icon type="phone" theme="twoTone" /> Data</p>
-											<p><Icon type="star" theme="twoTone" /> Data</p>
+											<h3>Rating details:</h3>
+											<div style={{ display: 'flex' }}>
+												<Icon type="star" theme="twoTone" twoToneColor="#FFD700" />
+												<Icon type="star" theme="twoTone" twoToneColor="#FFD700" />
+												<Icon type="star" theme="twoTone" twoToneColor="#FFD700" />
+												<Icon type="star" />
+												<Icon type="star" />
+											</div>
 										</Card>
 									</Col>
 								</Row>
 								<Row style={{ marginTop: '50px' }}>
 									<Col xs={24} lg={12}>
-										<h3 style={{ textAlign: 'center' }}>Additional details:</h3>
-										<div style={{ width: '90%' }}>
-											<span>Reach</span>
-											<Progress percent={30} />
-											<span>Likes</span>
-											<Progress percent={50} status="active" />
-											<span>Reviews</span>
-											<Progress percent={70} status="exception" />
-											<span>Customer Care</span>
-											<Progress percent={100} />
-											<span>Contact</span>
-											<Progress percent={50} showInfo={false} />
-										</div>
-									</Col>
-									<Col xs={24} lg={12}>
-										<h3 style={{ textAlign: 'center' }}>Rating details:</h3>
-										<div style={{ display: 'flex', justifyContent: 'center' }}>
-											<Icon type="star" theme="twoTone" twoToneColor="#FFD700" />
-											<Icon type="star" theme="twoTone" twoToneColor="#FFD700" />
-											<Icon type="star" theme="twoTone" twoToneColor="#FFD700" />
-											<Icon type="star" />
-											<Icon type="star" />
-										</div>
+										<h3>Description</h3>
+										<div>{service.detail.description}</div>
 									</Col>
 								</Row>
 							</div>
 						),
 						tab2: (
 							<div>
-								<Row>
-									<Col xs={24}>
+								<Row gutter={16}>
+									<Col xs={8}>
 										<Card
 											hoverable
 											bordered={false}
 											style={{ width: 'auto' }}
 										>
 											<img alt="example" src="https://images.pexels.com/photos/1363876/pexels-photo-1363876.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" width="100%" height="100%" />
-											<Meta title={service.categoryName} description="www.instagram.com" />
+											<Meta title={service.categoryName} />
 										</Card>
 									</Col>
-								</Row>
-								<Row>
-									<Col xs={24} sm={12}>
+									<Col xs={24} sm={16}>
 										<Card
 											title="Vendor Details"
 											bordered={true}
 											style={{ width: '100%' }}
 										>
 											<p><Icon type="smile" theme="twoTone" /> Name: {service.vendor.name}</p>
+											<p><Icon type="phone" theme="twoTone" /> Contact: {service.detail.contact}</p>
+											<p><Icon type="smile" theme="twoTone" /> Categories: {service.categoryName}</p>
 										</Card>
 									</Col>
-									<Col xs={24} sm={12}>
+								</Row>
+								<Row>
+									<Col xs={24} sm={24}>
 										<Card
-											title="More Details"
+											title="Other Services"
 											bordered={true}
 											style={{ width: '100%' }}
 										>
