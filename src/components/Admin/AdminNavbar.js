@@ -34,6 +34,12 @@ class AdminNavbar extends Component {
                   <span>Users</span>
                 </Link>
               </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/admin/services">
+                  <Icon type="form" />
+                  <span>Services</span>
+                </Link>
+              </Menu.Item>
             </Menu>
           </Sider>
         </Fragment>
