@@ -1,7 +1,8 @@
-import { GET_ALL_USERS, GET_ALL_USERS_FAIL, DELETE_USER, DELETE_USER_FAIL, DELETED_ALL_SERVICES_OF_VENDOR } from '../actions/type';
+import { GET_ALL_USERS, GET_ALL_USERS_FAIL, DELETE_USER, DELETE_USER_FAIL, GET_ALL_SERVICES, GET_ALL_SERVICES_FAIL, DELETE_SERVICE, DELETE_SERVICE_FAIL, DELETED_ALL_SERVICES_OF_VENDOR } from "../actions/type";
 
 const initialState = {
   users: [],
+  services: [],
   status: null,
   statusType: null
 }
@@ -31,6 +32,30 @@ export default function (state = initialState, action) {
         ...state,
         status: null,
         statusType: "deleteUser"
+      }
+      case GET_ALL_SERVICES:
+      return {
+        services: action.payload,
+        status: 200,
+        statusType: "getAllServices"
+      }
+    case GET_ALL_SERVICES_FAIL:
+      return {
+        ...state,
+        status: null,
+        statusType: "getAllServices"
+      }
+    case DELETE_SERVICE:
+      return {
+        ...state,
+        status: 200,
+        statusType: "deleteService"
+      }
+    case DELETE_SERVICE_FAIL:
+      return {
+        ...state,
+        status: null,
+        statusType: "deleteService"
       }
     case DELETED_ALL_SERVICES_OF_VENDOR:
         return {
