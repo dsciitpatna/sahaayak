@@ -5,7 +5,7 @@ import { Button, Table, Tag, notification, Input, Icon, Alert } from 'antd';
 import Highlighter from 'react-highlight-words';
 
 import { getAllUsers, deleteUser, deleteAllServices } from "../../redux/actions/adminActions";
-import './Users.css';
+import './users.css';
 
 class User extends Component {
 
