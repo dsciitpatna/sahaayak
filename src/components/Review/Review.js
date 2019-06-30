@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import {Typography,Rate,Modal,Button,Input} from "antd";
+import {Rate,Modal,Button,Input} from "antd";
 import './Review.css';
-const { Title } = Typography;
 const {TextArea}  = Input
 
 export default class Review extends Component {

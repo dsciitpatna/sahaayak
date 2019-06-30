@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 //import { Link } from 'react-router-dom';
-import { Card, Spin, Row, Col, Icon, notification, PageHeader, Button } from 'antd';
+import { Card, Spin, Row, Col, Icon, notification, PageHeader } from 'antd';
 import 'antd/dist/antd.css';
 import Gallery from 'react-grid-gallery';
 import { getService } from "../../redux/actions/categoryServiceActions";
