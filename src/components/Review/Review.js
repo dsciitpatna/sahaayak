@@ -42,9 +42,9 @@ export default class Review extends Component {
     render() {
         const { visible, loading } = this.state;
         return (
-          <div>
+          <div className="review">
             <Button type="primary" onClick={this.showModal}  style={{margin:20}}>
-              Open Modal with customized footer
+              Review the Service
             </Button>
             <Modal
               visible={visible}

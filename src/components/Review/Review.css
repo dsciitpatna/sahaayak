@@ -1,6 +1,6 @@
-.ant-rate{
+.review .ant-rate{
     padding-left: 30%;
 }
-.ant-rate >li {
+.review .ant-rate >li {
     padding: 4px;
 }
