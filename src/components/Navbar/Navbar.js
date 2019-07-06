@@ -43,7 +43,6 @@ class Navbar extends Component {
     if(!this.state.collapsed)
     {
       this.toggle()
-      console.log("this runs")
     }
   }
 
@@ -58,12 +57,6 @@ class Navbar extends Component {
       openloginModal,
       openregisterModal
     } = this.props.auth;
-    // const width = window.innerWidth
-    //   || document.documentElement.clientWidth
-    //     || document.body.clientWidth;
-    //     if(width<500){
-    //       this.toggle()
-    //     }
     return (
       <Router>
         <Layout>
