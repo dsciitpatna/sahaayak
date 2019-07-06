@@ -36,4 +36,4 @@ assignees: ''
  - Version [e.g. 22]
 
 **Additional context**
-[Are you working on this?]
+Are you working on this?
