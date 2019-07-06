@@ -37,7 +37,15 @@ class Navbar extends Component {
     this.setState({
       collapsed: !this.state.collapsed
     });
+
   };
+  toggleSidebarResize = ()=>{
+    if(!this.state.collapsed)
+    {
+      this.toggle()
+      console.log("this runs")
+    }
+  }
 
   openLoginModal = () => {
     this.props.openLoginModal();
@@ -50,7 +58,12 @@ class Navbar extends Component {
       openloginModal,
       openregisterModal
     } = this.props.auth;
-
+    // const width = window.innerWidth
+    //   || document.documentElement.clientWidth
+    //     || document.body.clientWidth;
+    //     if(width<500){
+    //       this.toggle()
+    //     }
     return (
       <Router>
         <Layout>
@@ -105,7 +118,7 @@ class Navbar extends Component {
               )}
           </Header>
           <Layout>
-            <SideBar collapseProp={this.state.collapsed} />
+            <SideBar collapseProp={this.state.collapsed} toggle={this.toggleSidebarResize}/>
             <Route path="/admin" component={AdminNavbar} />
             <Content
               style={{

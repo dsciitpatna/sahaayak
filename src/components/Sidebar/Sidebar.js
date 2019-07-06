@@ -30,6 +30,10 @@ class SideBar extends Component {
       });
     }
   }
+  toggleSidebar = (broken)=>{
+    if(broken)
+    this.props.toggle()
+  }
   render() {
     const { pending } = this.state;
     const categoryList = this.props.categoryService.categories.map(category => {
@@ -51,6 +55,8 @@ class SideBar extends Component {
             collapsedWidth={0}
             width={250}
             collapsed={this.props.collapseProp}
+            breakpoint='sm'
+            onBreakpoint={this.toggleSidebar}
           >
             <Menu theme="dark" mode="inline">
               {categoryList}
