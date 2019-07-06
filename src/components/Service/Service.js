@@ -79,9 +79,7 @@ class Service extends Component {
 
 	render() {
 		const { service, pending } = this.props;
-		console.log(service);
-		console.log(this.state.boolReview);
-		const serviceData = !pending && service ? (
+				const serviceData = !pending && service ? (
 			<div className="card-container">
 				<PageHeader onBack={() => window.history.back()} title={`Category: ${service.categoryName}`} />
 				<Card
