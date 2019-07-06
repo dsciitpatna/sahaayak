@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import Gallery from 'react-grid-gallery';
 import { getService } from "../../redux/actions/categoryServiceActions";
 import "./Service.css";
-
+import Review from '../Review/Review';
 const { Meta } = Card;
 
 const tabList = [
@@ -51,12 +51,17 @@ class Service extends Component {
 
 	state = {
 		key: 'tab1',
+		boolReview:false
 	};
 
 	onTabChange = (key, type) => {
 		this.setState({ [type]: key });
 	};
-
+	addReview = ()=>{
+		this.setState({
+			boolReview:true
+		})
+	}
 	componentDidMount() {
 		const serviceId = this.props.match.params.serviceId;
 		this.props.getService(serviceId);
@@ -74,8 +79,7 @@ class Service extends Component {
 
 	render() {
 		const { service, pending } = this.props;
-		console.log(service);
-		const serviceData = !pending && service ? (
+				const serviceData = !pending && service ? (
 			<div className="card-container">
 				<PageHeader onBack={() => window.history.back()} title={`Category: ${service.categoryName}`} />
 				<Card
@@ -111,6 +115,7 @@ class Service extends Component {
 												<Icon type="star" />
 												<Icon type="star" />
 											</div>
+											<Review />
 										</Card>
 									</Col>
 								</Row>

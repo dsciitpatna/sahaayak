@@ -1,0 +1,6 @@
+#Addreview .ant-rate{
+    padding-left: 30%;
+}
+#Addreview .ant-rate >li {
+    padding: 4px;
+}
