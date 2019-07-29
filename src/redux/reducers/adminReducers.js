@@ -1,4 +1,4 @@
-import { GET_ALL_USERS, GET_ALL_USERS_FAIL, DELETE_USER, DELETE_USER_FAIL, DELETED_ALL_SERVICES_OF_VENDOR } from '../actions/type';
+import { GET_ALL_USERS, GET_ALL_USERS_FAIL, DELETE_USER, DELETE_USER_FAIL, DELETED_ALL_SERVICES_OF_VENDOR} from '../actions/type';
 
 const initialState = {
   users: [],
@@ -37,7 +37,7 @@ export default function (state = initialState, action) {
           ...state,
           status: 200,
           statusType: "deleteAllServices"
-        }  
+        }
     default:
       return state;
   }

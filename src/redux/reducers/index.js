@@ -6,6 +6,7 @@ import UserReducer from './userReducer';
 import CategoryServiceReducer from './categoryServiceReducer';
 import AdminReducer from './adminReducers';
 import ReviewReducer from './reviewReducer';
+import CategoryReducer from './categoryReducer';
 
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
   vendor: vendorReducer,
   categoryService: CategoryServiceReducer,
   admin: AdminReducer,
-  review: ReviewReducer
+  review: ReviewReducer,
+  category:CategoryReducer
 });

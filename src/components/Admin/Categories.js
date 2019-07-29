@@ -2,28 +2,22 @@ import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import { Button,Modal,Input,Table, Divider } from 'antd';
-
-const data = [
-  {
-    key: '1',
-    Name: 'Mechanic',
-    number: 32,
-  },
-  {
-    key: '2',
-    Name: 'Plumber',
-    number: 42,
-  },
-  {
-    key: '3',
-    Name: 'Electrician',
-    number: 32,
-  },
-];
+import {fetchCategory,addCategory,deleteCategory,updateCategory} from '../../redux/actions/categoryActions'
 
 class Categories extends Component {
 
-  state = { visible: false }
+  state = { 
+    visible: false ,
+    visibleUpdateModal: false,
+    newCategoryName : '',
+    updateCategoryName : '',
+  }
+
+  onChange = (e) => {
+    this.setState({
+      [e.target.name]:e.target.value
+    })
+  }
   
   showModal = () => {
     this.setState({
@@ -32,16 +26,51 @@ class Categories extends Component {
   }
 
   handleOk = (e) => {
+    this.props.addCategory(this.state.newCategoryName);
     this.setState({
       visible: false,
+      newCategoryName: ''
     });
   }
 
   handleCancel = (e) => {
     this.setState({
       visible: false,
+      newCategoryName: ''
     });
   }
+
+  updateShowModal = () => {
+    this.setState({
+      visibleUpdateModal: true,
+    });
+  }
+
+  handleOkUpdate = (id) => {
+    this.props.updateCategory(this.state.updateCategoryName,id);
+    this.setState({
+      visibleUpdateModal: false,
+      newCategoryName: ''
+    });
+  }
+
+  handleCancelUpdate = (e) => {
+    this.setState({
+      visibleUpdateModal: false,
+      newCategoryName: ''
+    });
+  }
+
+  handleDelete = (id) => {
+    this.props.deleteCategory(id);
+  }
+
+  componentWillMount(){
+    this.props.fetchCategory();
+  }
+  componentDidUpdate(){
+    this.props.fetchCategory();
+  };
 
   render() {
     const { isAuthenticated, user } = this.props;
@@ -60,20 +89,26 @@ class Categories extends Component {
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
-               <Input placeholder="Enter the name of the category" />
+               <Input placeholder="Enter the name of the category" name="newCategoryName" onChange={this.onChange} />
            </Modal>
-           <Table dataSource={data}>
-            <Column title="Category Name" dataIndex="Name" key="Name" />
-            <Column title="Number" dataIndex="number" key="number" />
-
+           <Table dataSource={this.props.cat.categories} rowKey="_id">
+            <Column title="Category Name" dataIndex="name" key="name" />
             <Column
               title="Action"
-              key="action"
+              key="_id"
               render={(text, record) => (
                 <span>
-                  <a href="/">Update</a>
+                  <span onClick={this.updateShowModal}>Update</span>
+                  <Modal
+                    title="Update Modal"
+                    visible={this.state.visibleUpdateModal}
+                    onOk={() => this.handleOkUpdate(record._id)}
+                    onCancel={this.handleCancelUpdate}
+                  >
+                      <Input placeholder="Enter the new name of the category" name="updateCategoryName" onChange={this.onChange} />
+                  </Modal>
                   <Divider type="vertical" />
-                  <a href="/">Delete</a>
+                  <span onClick={()=>{this.handleDelete(record._id)} }>Delete</span>
                 </span>
               )}
             />
@@ -91,10 +126,11 @@ class Categories extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
+  user: state.auth.user,
+  cat: state.category.categories
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  {fetchCategory,addCategory,deleteCategory,updateCategory}
 )(Categories);
