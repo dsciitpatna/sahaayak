@@ -64,7 +64,9 @@ class Categories extends Component {
   handleDelete = (id) => {
     this.props.deleteCategory(id);
   }
-
+  componentDidUpdate(){
+    this.props.fetchCategory();
+  }
   componentWillMount(){
     this.props.fetchCategory();
   }
@@ -89,7 +91,7 @@ class Categories extends Component {
           >
                <Input placeholder="Enter the name of the category" name="newCategoryName" onChange={this.onChange} />
            </Modal>
-           <Table dataSource={this.props.cateogry.categories} rowKey="_id">
+           <Table dataSource={this.props.category.categories} rowKey="_id">
             <Column title="Category Name" dataIndex="name" key="name" />
             <Column
               title="Action"
