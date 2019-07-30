@@ -68,9 +68,7 @@ class Categories extends Component {
   componentWillMount(){
     this.props.fetchCategory();
   }
-  componentDidUpdate(){
-    this.props.fetchCategory();
-  };
+
 
   render() {
     const { isAuthenticated, user } = this.props;
@@ -91,7 +89,7 @@ class Categories extends Component {
           >
                <Input placeholder="Enter the name of the category" name="newCategoryName" onChange={this.onChange} />
            </Modal>
-           <Table dataSource={this.props.cat.categories} rowKey="_id">
+           <Table dataSource={this.props.cateogry.categories} rowKey="_id">
             <Column title="Category Name" dataIndex="name" key="name" />
             <Column
               title="Action"
@@ -127,7 +125,7 @@ class Categories extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
-  cat: state.category.categories
+  category: state.category.categories
 });
 
 export default connect(

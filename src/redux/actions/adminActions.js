@@ -15,7 +15,7 @@ export const getAllUsers = () => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      dispatch( returnErrors(err.response.data,err.response.status,"ADMIN_ACTIONS_ERRORS"));
+      dispatch(returnErrors(err.response.data,err.response.status,"ADMIN_ACTIONS_ERRORS"));
       dispatch({
         type: GET_ALL_USERS_FAIL
       })
@@ -49,5 +49,3 @@ export const deleteUser = (userId) => (dispatch, getState) => {
         dispatch( returnErrors(err.response.data,err.response.status,"ADMIN_ACTIONS_ERRORS"));
       });
     };
-
-
