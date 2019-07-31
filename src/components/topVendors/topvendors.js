@@ -15,7 +15,7 @@ class TopVendors extends Component {
       <div className="Container">
         <h1>Top Vendors</h1>
         <Row type="flex" justify="center">
-          <Col>
+          <Col style={{ margin: '0 20px' }}>
             <Card
               hoverable
               style={{ width: 240 }}
@@ -28,7 +28,7 @@ class TopVendors extends Component {
             </Card>
           </Col>
 
-          <Col>
+          <Col style={{ margin: '0 20px' }}>
             <Card
               hoverable
               style={{ width: 240 }}
@@ -41,7 +41,7 @@ class TopVendors extends Component {
             </Card>
           </Col>
 
-          <Col>
+          <Col style={{ margin: '0 20px' }}>
             <Card
               hoverable
               style={{ width: 240 }}
@@ -54,7 +54,7 @@ class TopVendors extends Component {
             </Card>
           </Col>
 
-          <Col>
+          <Col style={{ margin: '0 20px' }}>
             <Card
               hoverable
               style={{ width: 240 }}
