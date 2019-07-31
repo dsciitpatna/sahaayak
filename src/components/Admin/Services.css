@@ -1,0 +1,32 @@
+.mainHeader{
+    font-size: 26px;
+    color: #111;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.mainHeader::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 200px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 100px);
+}
+
+.mainHeader::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #188ed2;
+    bottom: 0;
+    left: calc(50% - 25px);
+}

@@ -1,32 +1,30 @@
 import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Button, Table, Tag, notification, Input, Icon, Alert } from 'antd';
+import { Button, Table, notification, Input, Icon, Alert } from 'antd';
 import Highlighter from 'react-highlight-words';
 
-import { getAllUsers, deleteUser, deleteAllServices } from "../../redux/actions/adminActions";
-import './Users.css';
+import { getAllServices, deleteService } from "../../redux/actions/adminActions";
+import './Services.css';
 
-class User extends Component {
+class Services extends Component {
 
     state={
-        msg: null,
-        searchText: ''
+      msg: null,
+      searchText: ''
     }
 
-    deleteUser=(userId, isVendor)=> {
-        this.props.deleteUser(userId);
-        if(isVendor) {
-          this.props.deleteAllServices(userId);
-        }
+    deleteService = (serviceId)=> {
+        this.props.deleteService(serviceId);
     }
 
     componentDidMount(){
-        this.props.getAllUsers();
+        this.props.getAllServices();
     }
 
     componentDidUpdate(prevProps) {
-        this.props.getAllUsers();
+        this.props.getAllServices();
+        console.log('comp did update');
         const { error } = this.props;
 
         if (error !== prevProps.error) {
@@ -43,12 +41,12 @@ class User extends Component {
         }
     }
 
-    deleteUserNotification = (stat) => {
+    deleteServiceNotification = (stat) => {
         if(stat===1) {
             notification.open({
                 message: 'Delete Successful',
                 description:
-                  'User Deleted',
+                  'Service Deleted',
                 icon: <Icon type="check-circle" style={{ color: '#108ee9' }} />,
             });
         }
@@ -56,19 +54,8 @@ class User extends Component {
             notification.open({
                 message: 'Delete Failed',
                 description:
-                  'User not deleted',
+                  'Service deletion failed!',
                 icon: <Icon type="closed" style={{ color: '#108ee9' }} />,
-            });
-        }
-      };
-
-      deleteAllServicesNotification = (stat) => {
-        if(stat===1) {
-            notification.open({
-                message: 'Delete Successful',
-                description:
-                  'All Services of vendor deleted',
-                icon: <Icon type="check-circle" style={{ color: '#108ee9' }} />,
             });
         }
       };
@@ -137,29 +124,22 @@ class User extends Component {
         const { msg } = this.state;
         const { isAuthenticated, user, status, statusType } = this.props;
 
-        if(statusType==="deleteUser" && status===200) {
-            this.deleteUserNotification(1);
+        if(statusType==="deleteService" && status===200) {
+            this.deleteServiceNotification(1);
         }
-        if(statusType==="deleteUser" && status==null) {
-            this.deleteUserNotification(-1);  
-        }
-
-        if(statusType==="deleteAllServices" && status===200) {
-          this.deleteAllServicesNotification(1);
+        if(statusType==="deleteService" && status==null) {
+            this.deleteServiceNotification(-1);
         }
 
-        const users=[];
-        if(status===200 && statusType==='getAllUsers'){
-            this.props.users.forEach(user => {
-                const data={
-                    key: user._id,
-                    name: user.name,
-                    email: user.email,
-                    isAdmin: user.isAdmin,
-                    isVendor: user.isVendor
-                }
-                users.push(data);
-            });
+        let services=[];
+        if(status===200 && statusType==='getAllServices'){
+          this.props.services.forEach(service => {
+              const data={
+                  key: service._id,
+                  name: service.name,
+              }
+              services.push(data);
+          });
         }
         
         const columns = [
@@ -170,38 +150,11 @@ class User extends Component {
               ...this.getColumnSearchProps('name'),
             },
             {
-                title: 'Email',
-                dataIndex: 'email',
-                key: 'email',
-                render: text => <a href={`mailto:${text}`} target="_top">{text}</a>,
-                ...this.getColumnSearchProps('email'),
-            },
-            {
-                title: 'Admin',
-                dataIndex: 'isAdmin',
-                key: 'isAdmin',
-                render: tag => (
-                    <span>
-                      { tag ? <Tag color="green">true</Tag> : <Tag color="volcano">false</Tag> }
-                    </span>
-                  ),
-            },
-            {
-              title: 'Vendor',
-              key: 'isVendor',
-              dataIndex: 'isVendor',
-              render: tag => (
-                <span>
-                  { tag ? <Tag color="green">true</Tag> : <Tag color="volcano">false</Tag> }
-                </span>
-              ),
-            },
-            {
               title: 'Action',
               key: 'action',
               render: (text, record) => (
                 <span>
-                  <Button onClick={()=>{this.deleteUser(record.key, record.isVendor)}}>Delete</Button>
+                  <Button onClick={()=>{this.deleteService(record.key)}}>Delete</Button>
                 </span>
               ),
             },
@@ -212,8 +165,8 @@ class User extends Component {
             <Fragment>
                 {msg && status!==200 ? <Alert message={msg} type="error" /> : null}
                 <div>
-                  <h1 className="mainHeader">Users</h1>
-                <Table columns={columns} dataSource={users} bordered />
+                  <h1 className="mainHeader">Services</h1>
+                <Table columns={columns} dataSource={services} bordered />
                 </div>
             </Fragment>
           )
@@ -230,12 +183,12 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
   error: state.error,
-  users: state.admin.users,
+  services: state.admin.services,
   status: state.admin.status,
   statusType: state.admin.statusType
 });
 
 export default connect(
   mapStateToProps,
-  {getAllUsers, deleteUser, deleteAllServices}
-)(User);
+  {getAllServices, deleteService}
+)(Services);
