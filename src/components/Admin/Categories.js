@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Button,Modal,Input,Table, Divider } from 'antd';
+import { Button,Modal,Input,Table, Divider,notification,Icon } from 'antd';
 import {fetchCategory,addCategory,deleteCategory,updateCategory} from '../../redux/actions/categoryActions'
 
 class Categories extends Component {
@@ -64,17 +64,31 @@ class Categories extends Component {
   handleDelete = (id) => {
     this.props.deleteCategory(id);
   }
+
+  sucessfulNotification=(type)=>{
+    notification.open({
+      message: type,
+      description:
+        '',
+      icon: <Icon type="check-circle" style={{ color: '#108ee9' }} />,
+  });
+  }
+
   componentDidUpdate(){
     this.props.fetchCategory();
+    if(this.props.status===200&&this.props.statusType!=='fetchCategory'){
+      this.sucessfulNotification(this.props.statusType);
+    }
   }
-  componentWillMount(){
+  componentDidMount(){
     this.props.fetchCategory();
   }
 
 
   render() {
-    const { isAuthenticated, user } = this.props;
+    const { isAuthenticated, user} = this.props;
     const { Column } = Table;
+
     if (isAuthenticated && user.isVendor === false && user.isAdmin === true) {
       return (
         <Fragment>
@@ -98,7 +112,7 @@ class Categories extends Component {
               key="_id"
               render={(text, record) => (
                 <span>
-                  <span onClick={this.updateShowModal}>Update</span>
+                  <span onClick={this.updateShowModal} style={{cursor:'pointer',color:'blue'}}>Update</span>
                   <Modal
                     title="Update Modal"
                     visible={this.state.visibleUpdateModal}
@@ -108,7 +122,7 @@ class Categories extends Component {
                       <Input placeholder="Enter the new name of the category" name="updateCategoryName" onChange={this.onChange} />
                   </Modal>
                   <Divider type="vertical" />
-                  <span onClick={()=>{this.handleDelete(record._id)} }>Delete</span>
+                  <span onClick={()=>{this.handleDelete(record._id)}} style={{cursor:'pointer',color:'red'}}>Delete</span>
                 </span>
               )}
             />
@@ -127,7 +141,9 @@ class Categories extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
-  category: state.category.categories
+  category: state.category.categories,
+  status:state.category.status,
+  statusType:state.category.statusType,
 });
 
 export default connect(

@@ -25,7 +25,9 @@ export default function (state = initialState, action) {
       return {
         categories: state.categories.categories.filter((category)=>{
           return category._id!==action.payload
-        })
+        }),
+        status:200,
+        statusType:"deleteCategory"
       }
     case UPDATE_CATEGORY_SUCCESS:
       return {
@@ -34,7 +36,9 @@ export default function (state = initialState, action) {
             category.name=action.packet
           }
           return category
-        })
+        }),
+        status:200,
+        statusType:"updateCategory"
       }
     default:
       return state;
