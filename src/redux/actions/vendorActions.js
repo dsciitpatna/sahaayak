@@ -1,4 +1,4 @@
-import { REGISTER_BUSINESS_SUCCESS, GET_VENDOR_SERVICES, REGISTER_BUSINESS_FAIL,REGISTER_BUSINESS_LOADING } from './type';
+import { REGISTER_BUSINESS_SUCCESS, GET_VENDOR_SERVICES, REGISTER_BUSINESS_FAIL,REGISTER_BUSINESS_LOADING,CLEAR_REGISTRATION_STATUS } from './type';
 import axios from "axios";
 import { returnErrors } from './errorActions';
 import { tokenConfig } from './authActions';
@@ -24,7 +24,9 @@ export const registerBusiness = (registerData) => (dispatch, getState) => {
     }
     );
 };
-
+export const clearRegStatus = ()=>(dispatch,getState)=>{
+  dispatch({type:CLEAR_REGISTRATION_STATUS});
+}
 export const getServices = (id) => (dispatch, getState) => {
 
   axios.get(`${url}/services/vendors/${id}`, tokenConfig(getState))

@@ -51,7 +51,6 @@ class VendorDashboard extends Component {
     if (isAuthenticated && user.isVendor === true) {
       let data = [];
         data  = services.map((data,index)=>{
-          console.log(data,index);
           const {location,contact} = data
           const {businessName,building,city,state,street} = location;
           const {mobile} = contact;
@@ -63,8 +62,6 @@ class VendorDashboard extends Component {
             address: building + ", " + street + ", " + city + ", " + state
           };
         });
-      console.log(services);
-
       return (
         <Fragment>
           <div className="v-dashboard-container">

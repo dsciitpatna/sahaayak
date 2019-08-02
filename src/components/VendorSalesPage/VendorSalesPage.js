@@ -7,7 +7,7 @@ import Location from './Location';
 import Contact from './Contact'
 import Business from './Business';
 import ListBusiness from './ListBusiness';
-import {registerBusiness} from '../../redux/actions/vendorActions';
+import {registerBusiness,clearRegStatus} from '../../redux/actions/vendorActions';
 const { Text } = Typography;
 const { Step } = Steps;
 const registerData = {};
@@ -62,6 +62,7 @@ class VendorSalesPage extends Component {
     const {submitStatus} = this.props;
     if(submitStatus!==null){
       registerStatus = submitStatus === "Loading"? this.openNotificationWithIcon('info',"Uploading your service") :submitStatus === 200 ? this.openNotificationWithIcon('success',"Registered your service"):this.openNotificationWithIcon('error',"Some error occured");
+      this.props.clearRegStatus();
     }
     const { isAuthenticated, user } = this.props;
     if (isAuthenticated && user.isVendor === true) {
@@ -118,5 +119,5 @@ const mapStateToProps = state => ({
 });
 
 export default compose(
-  connect(mapStateToProps,{registerBusiness})
+  connect(mapStateToProps,{registerBusiness,clearRegStatus})
 )(WrappedRegistrationForm);
