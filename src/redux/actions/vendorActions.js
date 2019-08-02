@@ -1,20 +1,15 @@
-import { REGISTER_BUSINESS_SUCCESS, GET_VENDOR_SERVICES, REGISTER_BUSINESS_FAIL } from './type';
+import { REGISTER_BUSINESS_SUCCESS, GET_VENDOR_SERVICES, REGISTER_BUSINESS_FAIL,REGISTER_BUSINESS_LOADING } from './type';
 import axios from "axios";
 import { returnErrors } from './errorActions';
 import { tokenConfig } from './authActions';
 
 import { url } from '../../helper/url';
 
-export const registerBusiness = ({ businessname, description, residence, phone, categoryName }) => (dispatch, getState) => {
-  const detail = {
-    description: description,
-    location: residence,
-    contact: phone
-  };
-  const body = JSON.stringify({ name: businessname, categoryName, detail });
+export const registerBusiness = (registerData) => (dispatch, getState) => {
   const config = tokenConfig(getState);
+  dispatch({type: REGISTER_BUSINESS_LOADING});
   axios
-    .post(`${url}/services`, body, config)
+    .post(`${url}/services`, registerData, config)
     .then(res => {
       dispatch({
         type: REGISTER_BUSINESS_SUCCESS,
@@ -23,7 +18,9 @@ export const registerBusiness = ({ businessname, description, residence, phone, 
     }
     )
     .catch(err => {
-      dispatch({ type: REGISTER_BUSINESS_FAIL })
+      dispatch({ type: REGISTER_BUSINESS_FAIL,
+                  payload:err.status
+                 })
     }
     );
 };

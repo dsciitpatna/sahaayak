@@ -4,6 +4,17 @@ import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 
 class Location extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+  componentWillUnmount =()=>{
+    this.props.addDatafunction("location",this.state);
+  }
+  onChange =e=>{
+    this.setState({[e.target.name]: e.target.value});
+  }
   render() {
     const formItemLayout = {
       labelCol: {
@@ -19,41 +30,41 @@ class Location extends Component {
       <Fragment>
         <h3>Location Information</h3>
         <hr />
-        <Form {...formItemLayout}>
+        <Form {...formItemLayout} onSubmit={this.onSubmit}>
           <Form.Item label="Business Name">
-            <Input />
+            <Input name="businessName" onChange={this.onChange} />
           </Form.Item>
           <Form.Item label="Building">
-            <Input />
+            <Input name="building" onChange={this.onChange} />
           </Form.Item>
           <Form.Item label="Street">
-            <Input />
+            <Input name="street" onChange = {this.onChange}/>
           </Form.Item>
           <Form.Item label="Landmark">
-            <Input />
+            <Input name="landmark" onChange={this.onChange} />
           </Form.Item>
           <Form.Item label="Area">
-            <Input />
+            <Input name="area" onChange={this.onChange}/>
           </Form.Item>
           <Form.Item label="City">
-            <Input />
+            <Input name="city" onChange={this.onChange}/>
           </Form.Item>
           <Form.Item label="Pin Code">
-            <Input />
+            <Input name="pinCode" onChange={this.onChange}/>
           </Form.Item>
           <Form.Item label="State">
-            <Input />
+            <Input name="state" onChange = {this.onChange}/>
           </Form.Item>
           <Form.Item label="Country">
-            <Input />
+            <Input name="country" onChange={this.onChange}/>
           </Form.Item>
         </Form>
       </Fragment>
     )
   }
 }
-
+const locationRegForm = Form.create({name: 'location'})(Location);
 export default connect(
   null,
   null
-)(Location);
+)(locationRegForm);

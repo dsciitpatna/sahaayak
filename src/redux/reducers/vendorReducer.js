@@ -1,4 +1,4 @@
-import { REGISTER_BUSINESS_SUCCESS, GET_VENDOR_SERVICES, REGISTER_BUSINESS_FAIL } from '../actions/type';
+import { REGISTER_BUSINESS_SUCCESS, GET_VENDOR_SERVICES, REGISTER_BUSINESS_FAIL, REGISTER_BUSINESS_LOADING } from '../actions/type';
 
 const initialState = {
   status: null,
@@ -20,6 +20,12 @@ export default function (state = initialState, action) {
     case REGISTER_BUSINESS_FAIL:
       return {
         ...state,
+        status: action.payload
+      }
+    case REGISTER_BUSINESS_LOADING:
+      return{
+        ...state,
+        status:"Loading"
       }
     default:
       return state;

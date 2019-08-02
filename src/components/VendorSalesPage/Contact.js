@@ -4,6 +4,17 @@ import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 
 class Contact extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+  componentWillUnmount = ()=>{
+    this.props.addDatafunction("contact", this.state);
+  }
+  onChange = e =>{
+    this.setState({[e.target.name]: e.target.value})
+  }
   render() {
     const formItemLayout = {
       labelCol: {
@@ -23,30 +34,30 @@ class Contact extends Component {
           <Form.Item label="Contact Person">
             <Row gutter={8}>
               <Col span={12}>
-                <Input placeholder="Name" />
+                <Input onChange={this.onChange} placeholder="Name" name="name"/>
               </Col>
               <Col span={12}>
-                <Input placeholder="Designation" />
+                <Input onChange={this.onChange} placeholder="Designation" name="designation"/>
               </Col>
             </Row>
           </Form.Item>
           <Form.Item label="Landline No.">
-            <Input />
+            <Input onChange={this.onChange} name="landline"/>
           </Form.Item>
           <Form.Item label="Mobile No.">
-            <Input />
+            <Input onChange={this.onChange} name="mobile" />
           </Form.Item>
           <Form.Item label="Fax No.">
-            <Input />
+            <Input onChange={this.onChange}  name="fax"/>
           </Form.Item>
           <Form.Item label="Toll Free No.">
-            <Input />
+            <Input onChange={this.onChange} name="tollFree"/>
           </Form.Item>
           <Form.Item label="Email Id">
-            <Input />
+            <Input onChange={this.onChange} name="email" />
           </Form.Item>
           <Form.Item label="Website">
-            <Input />
+            <Input onChange={this.onChange} name="website"/>
           </Form.Item>
         </Form>
       </Fragment>

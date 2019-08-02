@@ -1,18 +1,24 @@
 import React, { Component, Fragment } from 'react';
-import { Form, Input, Row, Col, Radio, Checkbox, TimePicker } from 'antd';
+import { Form, Input, Radio, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
 
 const CheckboxGroup = Checkbox.Group;
 const plainOptions = ['Cash', 'Debit Card', 'Credit Card', 'BHIM UPI'];
-const Days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+//const Days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 class Business extends Component {
-  state = {
-    checkedList: [],
-    checkAll: false,
+  constructor(props){
+    super(props)
+      this.state = {
+        checkedList: [],
+        checkAll: false,
+        displayOperationHours: null
+    }
   }
-
-  onChange = checkedList => {
+  componentWillUnmount = ()=>{
+    this.props.addDatafunction("business",this.state);
+  }
+  onChangePaymentOptions = checkedList => {
     this.setState({
       checkedList,
       checkAll: checkedList.length === plainOptions.length,
@@ -25,7 +31,12 @@ class Business extends Component {
       checkAll: e.target.checked,
     });
   };
-
+  onChangeDisplayHours = e =>{
+     this.setState({displayOperationalHours: e.target.value === 1 ? true: false});
+  }
+  onChange = e =>{
+    this.setState({[e.target.name]: e.target.value})
+  }
   render() {
     const formItemLayout = {
       labelCol: {
@@ -44,20 +55,20 @@ class Business extends Component {
         <div>
           <h5>Hours of Operation</h5>
           <div style={{ marginBottom: '20px' }}>
-            <Radio.Group>
+            <Radio.Group onChange={this.onChangeDisplayHours}>
               <Radio value={1}>Display hours of operation</Radio>
               <Radio value={2}>Do not display hours of operation</Radio>
             </Radio.Group>
           </div>
-          {Days.map(day => {
+          {/* {Days.map(day => {
             return (<div style={{ marginBottom: '10px' }}>
               <Row gutter={8}>
                 <Col span={2}>{day}:</Col>
-                <Col span={7}><TimePicker use12Hours format="h:mm A" size="small" /> to <TimePicker use12Hours format="h:mm A" size="small" /></Col>
+                <Col span={7}><TimePicker use12Hours format="h:mm A" size="small" onChange={this.timeChange}/> to <TimePicker use12Hours format="h:mm A" size="small" /></Col>
                 <Col span={3}><Checkbox>Closed</Checkbox></Col>
               </Row>
             </div>)
-          })}
+          })} */}
         </div>
         <hr />
         <div>
@@ -68,7 +79,7 @@ class Business extends Component {
           <CheckboxGroup
             options={plainOptions}
             value={this.state.checkedList}
-            onChange={this.onChange}
+            onChange={this.onChangePaymentOptions}
           />
         </div>
         <hr />
@@ -76,10 +87,13 @@ class Business extends Component {
           <h5>Company Information</h5>
           <Form {...formItemLayout}>
             <Form.Item label="Year of Establishment">
-              <Input />
+              <Input  name="yearOfEstablishment" onChange={this.onChange}/>
+            </Form.Item>
+            <Form.Item label="category name">
+              <Input  name="categoryName" onChange={this.onChange}/>
             </Form.Item>
             <Form.Item label="Certification">
-              <Input />
+              <Input name="certification" onChange={this.onChange}/>
             </Form.Item>
           </Form>
         </div>
