@@ -81,7 +81,7 @@ class Service extends Component {
 		const { service, pending } = this.props;
 				const serviceData = !pending && service ? (
 			<div className="card-container">
-				<PageHeader onBack={() => window.history.back()} title={`Category: ${service.categoryName}`} />
+				<PageHeader onBack={() => window.history.back()} title={`Category: ${service.business.categoryName}`} />
 				<Card
 					style={{ width: '100%' }}
 					title={service.name}
@@ -104,9 +104,9 @@ class Service extends Component {
 											bordered={true}
 											style={{ width: '100%' }}
 										>
-											<p><Icon type="setting" theme="twoTone" /> Category : {service.categoryName}</p>
-											<p><Icon type="heat-map" /> Location: {service.detail.location}</p>
-											<p><Icon type="phone" theme="twoTone" /> Contact: {service.detail.contact}</p>
+											<p><Icon type="setting" theme="twoTone" /> Category : {service.business.categoryName}</p>
+											<p><Icon type="heat-map" /> Location: {service.location.building}</p>
+											<p><Icon type="phone" theme="twoTone" /> Contact: {service.contact.landline}</p>
 											<h3>Rating details:</h3>
 											<div style={{ display: 'flex' }}>
 												<Icon type="star" theme="twoTone" twoToneColor="#FFD700" />
@@ -122,7 +122,7 @@ class Service extends Component {
 								<Row style={{ marginTop: '50px' }}>
 									<Col xs={24} lg={12}>
 										<h3>Description</h3>
-										<div>{service.detail.description}</div>
+										<div>Some Description</div>
 									</Col>
 								</Row>
 							</div>
@@ -147,8 +147,8 @@ class Service extends Component {
 											style={{ width: '100%' }}
 										>
 											<p><Icon type="smile" theme="twoTone" /> Name: {service.vendor.name}</p>
-											<p><Icon type="phone" theme="twoTone" /> Contact: {service.detail.contact}</p>
-											<p><Icon type="smile" theme="twoTone" /> Categories: {service.categoryName}</p>
+											<p><Icon type="phone" theme="twoTone" /> Contact: {service.contact.landline}</p>
+											<p><Icon type="smile" theme="twoTone" /> Categories: {service.business.categoryName}</p>
 										</Card>
 									</Col>
 								</Row>

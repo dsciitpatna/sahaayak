@@ -43,15 +43,15 @@ class CategoryWiseServices extends Component {
 							</Card>
 						</Col>
 						<Col xs={24} sm={24} md={16}>
-							<h3>{service.name}</h3>
+							<h3>{service.location.businessName}</h3>
 							Rating: {service.rating}
 							<Link to={`/service/${service._id}`}><Button type="primary" style={{ float: 'right', margin: '-20px 0px' }}>View Details</Button></Link>
 							<hr />
-							<p><Icon type="phone" theme="twoTone" /> Contact: {service.detail.contact}</p>
+							<p><Icon type="phone" theme="twoTone" /> Contact: {service.contact.landline}</p>
 							<p><Icon type="setting" theme="twoTone" /> Category : {category}</p>
-							<p><Icon type="heat-map" /> Location: {service.detail.location}</p>
+							<p><Icon type="heat-map" /> Location: {service.location.building}</p>
 							<p><Icon type="smile" theme="twoTone" /> Vendor Name: {service.vendor.name}</p>
-							<p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Description: {service.detail.description}</p>
+							<p><Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> Description: Some Description</p>
 						</Col>
 					</Row>
 				</Card>
