@@ -22,7 +22,14 @@ class Account extends Component {
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
+  onSubmit = ()=>{
+    const name = this.state.username;
+    if(name !== this.props.authUser.name){
+      const {id,email,isVendor,isAdmin} = this.props.authUser;
+      const updatedUser = {name,email,isVendor,isAdmin};
+      this.props.updateUser({updatedUser,userId: id});
+    }
+  }
   render() {
     const { email, username } = this.state;
     return (
@@ -65,7 +72,7 @@ class Account extends Component {
           </Row>
         </InputGroup>
         <br />
-        <Button type="primary">
+        <Button type="primary" onClick={this.onSubmit}>
           Save Changes
         </Button>
         <br />
