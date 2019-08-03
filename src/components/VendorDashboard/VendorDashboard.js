@@ -49,23 +49,19 @@ class VendorDashboard extends Component {
     const { isAuthenticated, user, services } = this.props;
 
     if (isAuthenticated && user.isVendor === true) {
-      const length = services.length;
       let data = [];
-      // Adding elements to the data array
-      if (length) {
-        data = services.map((obj,index) => {
-          const {name,detail} = obj
-          const {contact,location} =detail;
+        data  = services.map((data,index)=>{
+          const {location,contact} = data
+          const {businessName,building,city,state,street} = location;
+          const {mobile} = contact;
 
           return {
             key: index.toString(),
-            servicename: name,
-            phone: contact,
-            address: location
+            servicename: businessName,
+            phone: mobile,
+            address: building + ", " + street + ", " + city + ", " + state
           };
-        })
-      }
-
+        });
       return (
         <Fragment>
           <div className="v-dashboard-container">
