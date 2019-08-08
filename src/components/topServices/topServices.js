@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./topVendors.css";
+import "./topServices.css";
 import "antd/dist/antd.css";
 import { Card, Rate, Row, Col } from "antd";
 
@@ -12,8 +12,8 @@ class TopVendors extends Component {
 
   render() {
     return (
-      <div className="Container">
-        <h1>Top Vendors</h1>
+      <div id="topServices">
+        <h1>Top Services</h1>
         <Row type="flex" justify="center">
           <Col style={{ margin: 20 }}>
             <Card

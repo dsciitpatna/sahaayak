@@ -20,7 +20,7 @@ import Users from "../Admin/Users";
 import Slideshow from "../Slideshow/Slideshow";
 import CategoryWiseServices from "../CategoryWiseServices/CategoryWiseServices";
 import Service from "../Service/Service";
-import TopVendors from "../topVendors/topvendors";
+import TopServices from "../topServices/topServices";
 
 const { Header, Content } = Layout;
 const {Search} = Input
@@ -93,18 +93,18 @@ class Navbar extends Component {
               </Menu>
           </Header>
             <SideBar/>
-          <Layout>
+          <Layout style={{padding:"0 2%"}}>
             <Route path="/admin" component={AdminNavbar} />
             <Content
               style={{
-                marginTop: "50px",
-                padding: 24,
+                marginTop: "10px",
+                padding: " 5px 10px",
                 background: "#fff",
                 minHeight: 280
               }}
             >
               <Route exact path="/" component={Slideshow} />
-              <Route exact path="/" component={TopVendors} />
+              <Route exact path="/" component={TopServices} />
               <Switch>
                 <Route exact path="/settings" component={Settings} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
