@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './Sidebar.css'
-import { Layout, Menu, Icon, Spin, notification } from "antd";
+import { Layout, Menu, Dropdown, Row,Icon, notification,Col } from "antd";
 
 import { getAllCategories } from "../../redux/actions/categoryServiceActions";
 
@@ -32,38 +32,26 @@ class SideBar extends Component {
   }
   render() {
     const { pending } = this.state;
-    const categoryList = this.props.categoryService.categories.map(category => {
-      return (
-        <Menu.Item key={category._id}>
-          <Icon type="form" />
-          <span><Link to={`/categoryWiseServices/${category.name}`} style={{ color: 'white', fontFamily: 'sans-serif' }} >{category.name}</Link></span>
+    const menu = <Menu>
+     {this.props.categoryService.categories.map(category=>{
+      return(
+        <Menu.Item style={{padding:"10px"}}>
+          <span><Link to={`/categoryWiseServices/${category.name}`} style={{color: "black",  fontFamily: 'monospace' }} >{category.name}</Link></span>
         </Menu.Item>
       )
-    });
-
+     }
+      )}
+</Menu>
     return (
-      <div className="wrapper">
-        <div style={{ position: 'relative' }}>
-          <Sider
-            style={{ overflow: 'auto', height: '100vh', left: 0 }}
-            trigger={null}
-            collapsible
-            collapsedWidth={0}
-            width={250}
-            collapsed={this.props.collapseProp}
-          >
-            <Menu theme="dark" mode="inline">
-              {categoryList}
-              {pending &&
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <Spin tip="Loading..." size="large" ></Spin>
-                </div>
-              }
-            </Menu>
-          </Sider>
-        </div>
-      </div>
-    );
+      <React.Fragment>
+      <Dropdown overlay={menu} style={{padding:"10px"}}>
+    <a  href="#">
+      <span style={{background:"white",color:"black",textTransform:"capitalize",letterSpacing:"2px",fontSize:"15px",padding:"5px"}}>See all Categories <Icon type="down" />
+      </span>
+    </a>
+    </Dropdown>
+      </React.Fragment>
+    )
   }
 }
 

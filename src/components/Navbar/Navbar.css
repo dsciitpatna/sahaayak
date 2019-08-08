@@ -5,10 +5,13 @@
   padding: 0px !important;
 }
 
-.ant-menu-item-selected {
+#navbar .ant-menu-item-selected {
   background-color: inherit !important;
+  border: none;
 }
-
+#navbar .ant-menu-item:hover{
+  border: none;
+}
 .right {
   float: right;
   font-size: 24px;
@@ -22,10 +25,13 @@
   cursor: pointer;
   transition: color 0.3s;
 }
-
-.trigger:hover {
-  color: #1890ff;
+#navbar .ant-dropdown-trigger{
+  padding:15px;
+  background: #1890ff;
 }
+/* .trigger:hover {
+  color: #1890ff;
+} */
 
 @media only screen and (max-width: 600px) {
   .right {

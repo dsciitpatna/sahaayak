@@ -1,18 +1,8 @@
-.wrapper{
-  position: fixed;
-  top: 64px;
-  left: 0;
-  z-index: 99;
+.categoryStyles{
+  padding: 20px;
+  background: #1890ff;
 }
+.categoryStyles a {
+  color: white;
 
-.wrapper .ant-menu-item{
-  font-size: 20px;
-  font-family: 'Courier New', Courier, monospace;
-  text-transform: capitalize;
-  color: grey;
-  font-weight: 200;
-  letter-spacing: 1px;
-}
-.wrapper .anticon{
-  font-size: 20px;
 }

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
-import { Layout, Menu, Icon, Button } from "antd";
+import { Layout, Menu, Button,Input } from "antd";
 import SideBar from "../Sidebar/Sidebar";
 import { openLoginModal } from "../../redux/actions/authActions";
 import Settings from "../Settings/Settings";
@@ -23,6 +23,7 @@ import Service from "../Service/Service";
 import TopVendors from "../topVendors/topvendors";
 
 const { Header, Content } = Layout;
+const {Search} = Input
 
 class Navbar extends Component {
   static propTypes = {
@@ -53,47 +54,26 @@ class Navbar extends Component {
 
     return (
       <Router>
-        <Layout>
-          <Header
-            style={{ position: "fixed", zIndex: 99, width: "100%" }}
-            className="header"
-          >
-            {isAuthenticated ? (
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                style={{ lineHeight: "60px" }}
-              >
-                <Menu.Item key="1" className="left">
-                  <Icon
-                    className="trigger"
-                    type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                    onClick={this.toggle}
-                  />
-                </Menu.Item>
-                <Menu.Item key="2" className="left">
-                  <Link to="/">Sahaayak</Link>
-                </Menu.Item>
-                <Menu.Item key="3" className="right">
-                  <DropdownMenu username={user.name} />
-                </Menu.Item>
-              </Menu>
-            ) : (
-                <Menu
-                  theme="dark"
+        <Layout id="navbar">
+          <Header style={{background: "white"}}>
+          <Menu
+                  theme="light"
                   mode="horizontal"
                   style={{ lineHeight: "60px" }}
                 >
-                  <Menu.Item key="1" className="left">
-                    <Icon
-                      className="trigger"
-                      type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                      onClick={this.toggle}
-                    />
+                  <Menu.Item key="1" className="">
                   </Menu.Item>
                   <Menu.Item key="2" className="left">
                     <Link to="/">Sahaayak</Link>
                   </Menu.Item>
+          {isAuthenticated ? (
+
+                <Menu.Item key="3" className="">
+                  <DropdownMenu username={user.name} />
+                </Menu.Item>
+
+            ) : (
+
                   <Menu.Item key="3" className="right">
                     <Button type="primary" onClick={this.openLoginModal}>
                       Login
@@ -101,11 +81,19 @@ class Navbar extends Component {
                     {openloginModal ? <LoginModal /> : null}
                     {openregisterModal ? <RegisterModal /> : null}
                   </Menu.Item>
-                </Menu>
+              
               )}
+                              <Menu.Item key="4" className="right">
+                <Search
+                  placeholder="input search text"
+                  onSearch={value => console.log(value)}
+                  style={{ width: 200 }}
+                />
+                </Menu.Item>
+              </Menu>
           </Header>
+            <SideBar/>
           <Layout>
-            <SideBar collapseProp={this.state.collapsed} />
             <Route path="/admin" component={AdminNavbar} />
             <Content
               style={{
