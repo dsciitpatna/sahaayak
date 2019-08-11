@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./topServices.css";
 import "antd/dist/antd.css";
-import { Card, Rate, Row, Col } from "antd";
+import { Card, Rate, Col } from "antd";
 import {getAllServices} from '../../redux/actions/servicesActions';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';

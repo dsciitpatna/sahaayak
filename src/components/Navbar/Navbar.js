@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
-import { Layout, Menu, Button,Input } from "antd";
+import { Layout, Menu, Button } from "antd";
 import CategoryList from "../CategoryList/CategoryList";
 import { openLoginModal } from "../../redux/actions/authActions";
 import Settings from "../Settings/Settings";
@@ -17,7 +17,6 @@ import VendorSalesPage from "../VendorSalesPage/VendorSalesPage";
 import AdminNavbar from "../Admin/AdminNavbar";
 import Categories from "../Admin/Categories";
 import Users from "../Admin/Users";
-import Slideshow from "../Slideshow/Slideshow";
 import CategoryWiseServices from "../CategoryWiseServices/CategoryWiseServices";
 import Service from "../Service/Service";
 import TopServices from "../topServices/topServices";
@@ -25,7 +24,6 @@ import NewlyAddedService from '../NewlyAddedService/NewlyAddedService';
 import PageHeader  from '../PageHeader/PageHeader';
 
 const { Header, Content } = Layout;
-const {Search} = Input
 
 class Navbar extends Component {
   static propTypes = {

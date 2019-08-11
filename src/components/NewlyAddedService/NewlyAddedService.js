@@ -5,7 +5,6 @@ import Tables from '../Tables/Tables';
 class NewlyAddedService extends Component {
   render() {
     const {services,status} = this.props;
-    console.log(services,status)
 return  (
     <React.Fragment>
         <Tables services={services} status={status} />

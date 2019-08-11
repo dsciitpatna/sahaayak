@@ -25,10 +25,6 @@
   cursor: pointer;
   transition: color 0.3s;
 }
-#navbar .ant-dropdown-trigger{
-  padding:15px;
-  background: #1890ff;
-}
 /* .trigger:hover {
   color: #1890ff;
 } */

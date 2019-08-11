@@ -10,18 +10,25 @@ height: 600px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #tables .tableBox{
-    padding: 2px 0 2px 0;
     text-transform: capitalize;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    transition: all ;
+    text-align: center;
 
 }
+#tables .tableBox:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
 #tables .imageBox , #tables .descBox{
-    padding: 5px 0 5px 0;
     font-size: 15px;
+}
+#tables .descBox{
+    font-size: 20px;
+    text-transform: capitalize;
+    padding: 20px 0 0 0 ;
+    
 }
 #tables .imageBox img{
     width: 100px;
     height: 100px;
-    padding: 5px;
-    border-radius: 900px
 }

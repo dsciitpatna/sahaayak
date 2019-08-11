@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './CategoryList.css'
-import { Layout,Col,Row, Menu, Dropdown,Icon, notification } from "antd";
+import {Col,Row,Icon, notification } from "antd";
 
 import { getAllCategories } from "../../redux/actions/categoryServiceActions";
 
@@ -28,7 +28,6 @@ class CategoryList extends Component {
     }
   }
   render() {
-    const { pending } = this.state;
     const menu =
      this.props.categoryService.categories.slice(0,6).map(category=>{
       return(
