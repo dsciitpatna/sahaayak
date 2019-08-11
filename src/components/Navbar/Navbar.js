@@ -102,7 +102,7 @@ class Navbar extends Component {
               }}
             >
               <Route exact path="/" component={TopServices} />
-              <Route exact path="/" component={Tables} />
+              {/* <Route exact path="/" component={Tables} /> */}
               <Switch>
                 <Route exact path="/settings" component={Settings} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
