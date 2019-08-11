@@ -5,7 +5,7 @@ const {Search}  = Input;
 const PageHeader = (props) =>{
     return (
         <div id="pageHeader">
-        <h1>Find the person or your work</h1>
+        <h1>Find the person for your work</h1>
         <h2>Get instant access to reliable and affordable services</h2>
         <Search
               placeholder="Search for a service"

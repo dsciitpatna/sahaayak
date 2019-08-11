@@ -21,7 +21,7 @@ import Slideshow from "../Slideshow/Slideshow";
 import CategoryWiseServices from "../CategoryWiseServices/CategoryWiseServices";
 import Service from "../Service/Service";
 import TopServices from "../topServices/topServices";
-import Tables from '../Tables/Tables';
+import NewlyAddedService from '../NewlyAddedService/NewlyAddedService';
 import PageHeader  from '../PageHeader/PageHeader';
 
 const { Header, Content } = Layout;
@@ -63,14 +63,14 @@ class Navbar extends Component {
                   mode="horizontal"
                   style={{ lineHeight: "60px" }}
                 >
-                  <Menu.Item key="1" className="">
+                  <Menu.Item key="1" className="right">
                   </Menu.Item>
                   <Menu.Item key="2" className="left">
                     <Link to="/">Sahaayak</Link>
                   </Menu.Item>
           {isAuthenticated ? (
 
-                <Menu.Item key="3" className="">
+                <Menu.Item key="3" className="right">
                   <DropdownMenu username={user.name} />
                 </Menu.Item>
 
@@ -102,7 +102,7 @@ class Navbar extends Component {
               }}
             >
               <Route exact path="/" component={TopServices} />
-              {/* <Route exact path="/" component={Tables} /> */}
+               <Route exact path="/" component={NewlyAddedService} /> 
               <Switch>
                 <Route exact path="/settings" component={Settings} />
                 <Route exact path="/userDashboard" component={UserDashboard} />

@@ -1,3 +1,27 @@
-#table {
+#tables > .ant-col {
+padding: 40px  0 0 1%;
+height: 600px;
 
+}
+#tables h1{
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#tables .tableBox{
+    padding: 2px 0 2px 0;
+    text-transform: capitalize;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+
+}
+#tables .imageBox , #tables .descBox{
+    padding: 5px 0 5px 0;
+    font-size: 15px;
+}
+#tables .imageBox img{
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    border-radius: 900px
 }
