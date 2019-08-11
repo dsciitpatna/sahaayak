@@ -1,0 +1,26 @@
+#pageHeader {
+    height: 600px;
+    background: linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.3)), url("https://images.pexels.com/photos/2750754/pexels-photo-2750754.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") no-repeat fixed center;
+    background-size: cover;
+    text-align: center;
+    padding: 10px 0 0 0;
+  }
+  #pageHeader h1{
+    color: antiquewhite;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px 0 0 0 ;
+    font-size: 60px;
+    letter-spacing: 4px;
+  
+  }
+  #pageHeader h2 , #pageHeader h3{
+    color: antiquewhite;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px 0 0 0 ;
+    letter-spacing: 3px;
+  }
+  #pageHeader .ant-input-search {
+    margin: 40px 0 0 0 ;
+  }

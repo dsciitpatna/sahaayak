@@ -1,0 +1,13 @@
+#categories{
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 800;
+  background:#f4f4f4
+}
+#categories .ant-col span{
+  padding: 5px;
+  text-align: center;
+}
+#categories .ant-col span a{
+  color: gray;
+}

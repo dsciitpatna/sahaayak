@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import './Sidebar.css'
-import { Layout, Menu, Dropdown, Row,Icon, notification,Col } from "antd";
+import './CategoryList.css'
+import { Layout,Col,Row, Menu, Dropdown,Icon, notification } from "antd";
 
 import { getAllCategories } from "../../redux/actions/categoryServiceActions";
 
-const { Sider } = Layout;
-
-class SideBar extends Component {
-
+class CategoryList extends Component {
   state = {
     pending: true,
   }
@@ -32,25 +29,26 @@ class SideBar extends Component {
   }
   render() {
     const { pending } = this.state;
-    const menu = <Menu>
-     {this.props.categoryService.categories.map(category=>{
+    const menu =
+     this.props.categoryService.categories.slice(0,6).map(category=>{
       return(
-        <Menu.Item style={{padding:"10px"}}>
-          <span><Link to={`/categoryWiseServices/${category.name}`} style={{color: "black",  fontFamily: 'monospace' }} >{category.name}</Link></span>
-        </Menu.Item>
+        <Col xs={8} md={8} lg={4}>
+          <Icon type="file-sync" />
+          <span><Link to={`/categoryWiseServices/${category.name}`}>{category.name}</Link></span>
+        </Col>
       )
      }
-      )}
-</Menu>
+      )
     return (
-      <React.Fragment>
-      <Dropdown overlay={menu} style={{padding:"10px"}}>
+      <Row id="categories">
+      {/* <Dropdown overlay={menu} style={{padding:"10px"}}>
     <a  href="#">
       <span style={{background:"white",color:"black",textTransform:"capitalize",letterSpacing:"2px",fontSize:"15px",padding:"5px"}}>See all Categories <Icon type="down" />
       </span>
     </a>
-    </Dropdown>
-      </React.Fragment>
+    </Dropdown> */}
+    {menu}
+      </Row>
     )
   }
 }
@@ -63,4 +61,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getAllCategories }
-)(SideBar);
+)(CategoryList);

@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import { Layout, Menu, Button,Input } from "antd";
-import SideBar from "../Sidebar/Sidebar";
+import CategoryList from "../CategoryList/CategoryList";
 import { openLoginModal } from "../../redux/actions/authActions";
 import Settings from "../Settings/Settings";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
@@ -21,6 +21,8 @@ import Slideshow from "../Slideshow/Slideshow";
 import CategoryWiseServices from "../CategoryWiseServices/CategoryWiseServices";
 import Service from "../Service/Service";
 import TopServices from "../topServices/topServices";
+import Tables from '../Tables/Tables';
+import PageHeader  from '../PageHeader/PageHeader';
 
 const { Header, Content } = Layout;
 const {Search} = Input
@@ -84,15 +86,11 @@ class Navbar extends Component {
               
               )}
                               <Menu.Item key="4" className="right">
-                <Search
-                  placeholder="input search text"
-                  onSearch={value => console.log(value)}
-                  style={{ width: 200 }}
-                />
                 </Menu.Item>
               </Menu>
           </Header>
-            <SideBar/>
+          <Route exact path="/" component={PageHeader} />
+          <Route exact path="/" component={CategoryList} />
           <Layout style={{padding:"0 2%"}}>
             <Route path="/admin" component={AdminNavbar} />
             <Content
@@ -103,8 +101,8 @@ class Navbar extends Component {
                 minHeight: 280
               }}
             >
-              <Route exact path="/" component={Slideshow} />
               <Route exact path="/" component={TopServices} />
+              <Route exact path="/" component={Tables} />
               <Switch>
                 <Route exact path="/settings" component={Settings} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
