@@ -4,6 +4,7 @@ import "antd/dist/antd.css";
 import { Card, Rate, Row, Col } from "antd";
 import {getAllServices} from '../../redux/actions/servicesActions';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 const { Meta } = Card;
 
 class TopVendors extends Component {
@@ -18,19 +19,20 @@ this.props.getAllServices();
     if(status === "done"){
       const serviceList = services.services.map(service=>{
         return(
+          <Link to={`service/${service._id}`}>
           <Col xs={24} md={8} lg={6} style={{padding:"30px"}}>
             <Card
               hoverable
               style={{ width: 240}}
               cover={<img src="https://picsum.photos/200" alt="Name" />}
-            >
+             >
               <div className="Vendor-info">
                 <Meta title={service.location.businessName} description={service.vendor.name}/>
-                {console.log(service)}
                 <Rate disabled allowHalf value={this.state.values[0]} />
               </div>
             </Card>
           </Col>
+        </Link>
         )
       })
       return(
