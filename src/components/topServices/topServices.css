@@ -1,0 +1,20 @@
+#topServices{
+  height: auto;
+  text-align: center
+}
+#topServices h1{
+  font-size: 30px;
+  font-weight: 800;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#topServices .ant-card-cover:hover{  
+opacity: 0.4;
+}
+#topServices .ant-card-cover{
+  transition: all 0.5s;
+}
+#topServices .ant-card-meta{
+  font-size: 20px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}

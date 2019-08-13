@@ -1,0 +1,34 @@
+#tables > .ant-col {
+padding: 40px  0 0 1%;
+height: 600px;
+
+}
+#tables h1{
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#tables .tableBox{
+    text-transform: capitalize;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    transition: all ;
+    text-align: center;
+
+}
+#tables .tableBox:hover{
+    background: rgba(0, 0, 0, 0.1);
+}
+#tables .imageBox , #tables .descBox{
+    font-size: 15px;
+}
+#tables .descBox{
+    font-size: 20px;
+    text-transform: capitalize;
+    padding: 20px 0 0 0 ;
+    
+}
+#tables .imageBox img{
+    width: 100px;
+    height: 100px;
+}

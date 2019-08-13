@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
-import { Layout, Menu, Icon, Button } from "antd";
-import SideBar from "../Sidebar/Sidebar";
+import { Layout, Menu, Button } from "antd";
+import CategoryList from "../CategoryList/CategoryList";
 import { openLoginModal } from "../../redux/actions/authActions";
 import Settings from "../Settings/Settings";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
@@ -17,10 +17,11 @@ import VendorSalesPage from "../VendorSalesPage/VendorSalesPage";
 import AdminNavbar from "../Admin/AdminNavbar";
 import Categories from "../Admin/Categories";
 import Users from "../Admin/Users";
-import Slideshow from "../Slideshow/Slideshow";
 import CategoryWiseServices from "../CategoryWiseServices/CategoryWiseServices";
 import Service from "../Service/Service";
-import TopVendors from "../topVendors/topvendors";
+import TopServices from "../topServices/topServices";
+import NewlyAddedService from '../NewlyAddedService/NewlyAddedService';
+import PageHeader  from '../PageHeader/PageHeader';
 
 const { Header, Content } = Layout;
 
@@ -53,47 +54,26 @@ class Navbar extends Component {
 
     return (
       <Router>
-        <Layout>
-          <Header
-            style={{ position: "fixed", zIndex: 99, width: "100%" }}
-            className="header"
-          >
-            {isAuthenticated ? (
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                style={{ lineHeight: "60px" }}
-              >
-                <Menu.Item key="1" className="left">
-                  <Icon
-                    className="trigger"
-                    type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                    onClick={this.toggle}
-                  />
-                </Menu.Item>
-                <Menu.Item key="2" className="left">
-                  <Link to="/">Sahaayak</Link>
-                </Menu.Item>
-                <Menu.Item key="3" className="right">
-                  <DropdownMenu username={user.name} />
-                </Menu.Item>
-              </Menu>
-            ) : (
-                <Menu
-                  theme="dark"
+        <Layout id="navbar">
+          <Header style={{background: "white"}}>
+          <Menu
+                  theme="light"
                   mode="horizontal"
                   style={{ lineHeight: "60px" }}
                 >
-                  <Menu.Item key="1" className="left">
-                    <Icon
-                      className="trigger"
-                      type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                      onClick={this.toggle}
-                    />
+                  <Menu.Item key="1" className="right">
                   </Menu.Item>
                   <Menu.Item key="2" className="left">
                     <Link to="/">Sahaayak</Link>
                   </Menu.Item>
+          {isAuthenticated ? (
+
+                <Menu.Item key="3" className="right">
+                  <DropdownMenu username={user.name} />
+                </Menu.Item>
+
+            ) : (
+
                   <Menu.Item key="3" className="right">
                     <Button type="primary" onClick={this.openLoginModal}>
                       Login
@@ -101,22 +81,26 @@ class Navbar extends Component {
                     {openloginModal ? <LoginModal /> : null}
                     {openregisterModal ? <RegisterModal /> : null}
                   </Menu.Item>
-                </Menu>
+              
               )}
+                              <Menu.Item key="4" className="right">
+                </Menu.Item>
+              </Menu>
           </Header>
-          <Layout>
-            <SideBar collapseProp={this.state.collapsed} />
+          <Route exact path="/" component={PageHeader} />
+          <Route exact path="/" component={CategoryList} />
+          <Layout style={{padding:"0 2%"}}>
             <Route path="/admin" component={AdminNavbar} />
             <Content
               style={{
-                marginTop: "50px",
-                padding: 24,
+                marginTop: "10px",
+                padding: " 5px 10px",
                 background: "#fff",
                 minHeight: 280
               }}
             >
-              <Route exact path="/" component={Slideshow} />
-              <Route exact path="/" component={TopVendors} />
+              <Route exact path="/" component={TopServices} />
+               <Route exact path="/" component={NewlyAddedService} /> 
               <Switch>
                 <Route exact path="/settings" component={Settings} />
                 <Route exact path="/userDashboard" component={UserDashboard} />
