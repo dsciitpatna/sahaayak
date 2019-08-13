@@ -1,11 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import './navbar.css'
-
-const { Sider } = Layout;
 
 class AdminNavbar extends Component {
 
