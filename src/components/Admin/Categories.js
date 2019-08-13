@@ -3,7 +3,7 @@ import "antd/dist/antd.css";
 import { connect } from "react-redux";
 import { Button,Modal,Input,Table, Divider,notification,Icon } from 'antd';
 import {fetchCategory,addCategory,deleteCategory,updateCategory} from '../../redux/actions/categoryActions'
-
+import './users.css'
 class Categories extends Component {
 
   state = { 
@@ -92,7 +92,7 @@ class Categories extends Component {
     if (isAuthenticated && user.isVendor === false && user.isAdmin === true) {
       return (
         <Fragment>
-          Categories
+          <h1 className="mainHeader">Categories</h1>
           <br />
           <Button type="primary" onClick={this.showModal}>
           Add Category
