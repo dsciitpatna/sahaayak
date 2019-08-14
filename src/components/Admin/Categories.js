@@ -11,6 +11,7 @@ class Categories extends Component {
     visibleUpdateModal: false,
     newCategoryName : '',
     updateCategoryName : '',
+    categoryNumber: 0,
   }
 
   onChange = (e) => {
@@ -40,24 +41,27 @@ class Categories extends Component {
     });
   }
 
-  updateShowModal = () => {
+  updateShowModal = (id) => {
     this.setState({
       visibleUpdateModal: true,
+      categoryNumber:id
     });
   }
 
-  handleOkUpdate = (id) => {
-    this.props.updateCategory(this.state.updateCategoryName,id);
+  handleOkUpdate = () => {
+    this.props.updateCategory(this.state.updateCategoryName,this.state.categoryNumber);
     this.setState({
       visibleUpdateModal: false,
-      newCategoryName: ''
+      newCategoryName: '',
+      categoryNumber: 0
     });
   }
 
   handleCancelUpdate = (e) => {
     this.setState({
       visibleUpdateModal: false,
-      newCategoryName: ''
+      newCategoryName: '',
+      categoryNumber: 0
     });
   }
 
@@ -112,11 +116,11 @@ class Categories extends Component {
               key="_id"
               render={(text, record) => (
                 <span>
-                  <span onClick={this.updateShowModal} style={{cursor:'pointer',color:'blue'}}>Update</span>
+                  <span onClick={()=> {this.updateShowModal(record._id)}} style={{cursor:'pointer',color:'blue'}}>Update</span>
                   <Modal
                     title="Update Modal"
                     visible={this.state.visibleUpdateModal}
-                    onOk={() => this.handleOkUpdate(record._id)}
+                    onOk={() => {this.handleOkUpdate()}}
                     onCancel={this.handleCancelUpdate}
                   >
                       <Input placeholder="Enter the new name of the category" name="updateCategoryName" onChange={this.onChange} />
