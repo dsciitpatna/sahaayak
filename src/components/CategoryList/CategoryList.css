@@ -1,5 +1,5 @@
 #categories{
-  padding: 20px;
+  padding: 10px 0 10px 0;
   font-size: 20px;
   font-weight: 800;
   background:#f4f4f4
@@ -11,6 +11,16 @@
 #categories .ant-col span a{
   color: gray;
 }
+#categories .ant-col a span{
+  color: gray;
+  font-size: 20px;
+  font-weight: 800;
+}
+#categories .ant-dropdown-menu-item {
+  color: gray;
+  font-size: 20px;
+  font-weight: 800;
+}
 #categories .ant-col {
   transition: all 0.5s;
   padding: 5px;
@@ -20,6 +30,10 @@ background: rgba(0, 0, 0, 0.1)
 }
 @media(max-width:390px){
   #categories .ant-col span{
+    padding: 0;
+    font-size: 8px;
+  }
+  #categories .ant-col a span{
     padding: 0;
     font-size: 8px;
   }

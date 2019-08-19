@@ -23,7 +23,7 @@ import TopServices from "../topServices/topServices";
 import NewlyAddedService from '../NewlyAddedService/NewlyAddedService';
 import PageHeader  from '../PageHeader/PageHeader';
 
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 
 class Navbar extends Component {
   static propTypes = {
@@ -113,6 +113,7 @@ class Navbar extends Component {
               </Switch>
             </Content>
           </Layout>
+          <Footer style={{background:"black",color:"white",height:"100px"}}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
       </Router>
     );

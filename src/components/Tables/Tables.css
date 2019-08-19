@@ -21,6 +21,7 @@ height: 600px;
 }
 #tables .imageBox , #tables .descBox{
     font-size: 15px;
+    font-weight: 900;
 }
 #tables .descBox{
     font-size: 20px;
@@ -29,6 +30,8 @@ height: 600px;
     
 }
 #tables .imageBox img{
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
+    padding: 5px 0 ;
+
 }

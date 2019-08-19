@@ -17,7 +17,7 @@ this.props.getAllServices();
   render() {
     const {services,status} = this.props;
     if(status === "done"){
-      const serviceList = services.services.map(service=>{
+      const serviceList = services.services.slice(0,8).map(service=>{
         return(
           <Link to={`service/${service._id}`}>
           <Col xs={24} md={8} lg={6} style={{padding:"30px"}}>

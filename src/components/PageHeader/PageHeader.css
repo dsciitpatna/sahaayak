@@ -24,3 +24,8 @@
   #pageHeader .ant-input-search {
     margin: 40px 0 0 0 ;
   }
+  @media(max-width:370px){
+    #pageHeader h1{
+      font-size: 40px;
+    }
+  }
