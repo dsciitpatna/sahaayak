@@ -9,6 +9,9 @@
   background-color: inherit !important;
   border: none;
 }
+#navbar .ant-menu-item{
+  border: none;
+}
 #navbar .ant-menu-item:hover{
   border: none;
 }
@@ -34,7 +37,6 @@
   .right {
     float: right;
     font-size: 14px;
-    margin-right: 7px;
   }
 
   .left {
@@ -51,4 +53,8 @@
   .trigger {
     font-size: 20px !important;
   }
+}
+footer {
+  background: black;
+  color: white;
 }

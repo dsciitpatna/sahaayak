@@ -7,7 +7,7 @@ import './Tables.css';
 export default function Tables(props){
   let list = null
   if(props.status === "done"){
-   list = props.services.services.map(service=>{
+   list = props.services.services.slice(0,5).map(service=>{
     return (
       <Row className="tableBox">
               <Col xs={10} sm={10} md={6} lg={6} className="imageBox">

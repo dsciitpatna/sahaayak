@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './CategoryList.css'
-import {Col,Row,Icon, notification } from "antd";
+import {Col,Row,Icon, notification,Menu,Dropdown } from "antd";
 
 import { getAllCategories } from "../../redux/actions/categoryServiceActions";
 
@@ -29,7 +29,7 @@ class CategoryList extends Component {
   }
   render() {
     const menu =
-     this.props.categoryService.categories.slice(0,6).map(category=>{
+     this.props.categoryService.categories.slice(0,5).map(category=>{
       return(
         <Col xs={8} md={8} lg={4}>
           <Icon type="file-sync" />
@@ -38,15 +38,31 @@ class CategoryList extends Component {
       )
      }
       )
+      const categoryList=
+      <Menu>
+     { this.props.categoryService.categories.map(category=>{
+        return(
+          <Menu.Item>
+            <Icon type="file-sync" />
+            <span><Link to={`/categoryWiseServices/${category.name}`} style={{color:"gray",padding:"2px 5px 2px 5px"}}>{category.name}</Link></span>
+            </Menu.Item>
+        )
+       }
+        )}
+        </Menu>
     return (
       <Row id="categories">
-      {/* <Dropdown overlay={menu} style={{padding:"10px"}}>
-    <a  href="#">
-      <span style={{background:"white",color:"black",textTransform:"capitalize",letterSpacing:"2px",fontSize:"15px",padding:"5px"}}>See all Categories <Icon type="down" />
+            {menu}
+        <Col xs={8} md={8} lg={4}>
+      <Dropdown overlay={categoryList} style={{padding:"10px"}} trigger={['click']}>
+
+    <a  href="#d">
+      <span>Categories<Icon type="down" />
       </span>
     </a>
-    </Dropdown> */}
-    {menu}
+    </Dropdown>
+    </Col>
+
       </Row>
     )
   }
