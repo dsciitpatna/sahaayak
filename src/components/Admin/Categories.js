@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import "antd/dist/antd.css";
 import { connect } from "react-redux";
-import { Button,Modal,Input,Table, Divider,notification,Icon } from 'antd';
+import { Button,Modal,Table, Divider,notification,Icon } from 'antd';
 import {fetchCategory,addCategory,deleteCategory,updateCategory} from '../../redux/actions/categoryActions'
 import './users.css'
 class Categories extends Component {
@@ -41,10 +41,11 @@ class Categories extends Component {
     });
   }
 
-  updateShowModal = (id) => {
+  updateShowModal = (id,name) => {
     this.setState({
       visibleUpdateModal: true,
-      categoryNumber:id
+      categoryNumber:id,
+      updateCategoryName:name,
     });
   }
 
@@ -52,7 +53,7 @@ class Categories extends Component {
     this.props.updateCategory(this.state.updateCategoryName,this.state.categoryNumber);
     this.setState({
       visibleUpdateModal: false,
-      newCategoryName: '',
+      updateCategoryName: '',
       categoryNumber: 0
     });
   }
@@ -107,30 +108,32 @@ class Categories extends Component {
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
-               <Input placeholder="Enter the name of the category" name="newCategoryName" onChange={this.onChange} />
+              <input type="text" name="newCategoryName" onChange={this.onChange} />
            </Modal>
-           <Table dataSource={this.props.category.categories} rowKey="_id">
-            <Column title="Category Name" dataIndex="name" key="name" />
-            <Column
-              title="Action"
-              key="_id"
-              render={(text, record) => (
-                <span>
-                  <span onClick={()=> {this.updateShowModal(record._id)}} style={{cursor:'pointer',color:'blue'}}>Update</span>
-                  <Modal
-                    title="Update Modal"
-                    visible={this.state.visibleUpdateModal}
-                    onOk={() => {this.handleOkUpdate()}}
-                    onCancel={this.handleCancelUpdate}
-                  >
-                      <Input placeholder="Enter the new name of the category" name="updateCategoryName" onChange={this.onChange} />
-                  </Modal>
-                  <Divider type="vertical" />
-                  <span onClick={()=>{this.handleDelete(record._id)}} style={{cursor:'pointer',color:'red'}}>Delete</span>
-                </span>
-              )}
-            />
-          </Table>
+           <div className="padding"> 
+            <Table dataSource={this.props.category.categories} rowKey="_id">
+              <Column title="Category Name" dataIndex="name" key="name" />
+              <Column
+                title="Action"
+                key="_id"
+                render={(text, record) => (
+                  <span>
+                    <span onClick={()=> {this.updateShowModal(record._id,record.name)}} style={{cursor:'pointer',color:'blue'}}>Update</span>
+                    <Modal
+                      title="Update Modal"
+                      visible={this.state.visibleUpdateModal}
+                      onOk={() => {this.handleOkUpdate()}}
+                      onCancel={this.handleCancelUpdate}
+                    >
+                        <input type="text" name="updateCategoryName" onChange={this.onChange} value={this.state.updateCategoryName} />
+                    </Modal>
+                    <Divider type="vertical" />
+                    <span onClick={()=>{this.handleDelete(record._id)}} style={{cursor:'pointer',color:'red'}}>Delete</span>
+                  </span>
+                )}
+              />
+            </Table>
+          </div>
         </Fragment>
       )
     }

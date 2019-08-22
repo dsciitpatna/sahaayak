@@ -30,3 +30,16 @@
     bottom: 0;
     left: calc(50% - 25px);
 }
+.padding{
+    padding-left: 330px;
+    padding-right: 330px;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 4px;
+  }
